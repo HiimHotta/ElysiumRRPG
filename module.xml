@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module sdkVersion="3.4b">
+    <!--O id identifica seu plugin globalmente. Deve ser único, conter apenas caracteres alfanuméricos, underlines, pontos e deve conter ao menos 5 caracteres e um máximo de 40. Uma vez definido o ID, você não deve alterar ele ;) -->
+    <id>FichaEysium</id>
+    <!--version é a versão do seu plugin. Quando for lançar uma nova versão do seu módulo, altere aqui =) -->
+    <version> 1.0 </version>
+    <name> Ficha Elysium </name>
+    <description> Mesa de uso exclusivo para Elysium e o sistema dela. </description>
+    <author> Hotta, KatrineDesu e Jesarus </author>
+    <site>http://www.mangakakalot.com</site>
+    <contact>Facebook? Twitter? E-Mail?</contact>
+</module>
