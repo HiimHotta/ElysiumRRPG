@@ -1,14 +1,14 @@
-require("rrpg.lua");
+require("firecast.lua");
 local __o_rrpgObjs = require("rrpgObjs.lua");
 require("rrpgGUI.lua");
 require("rrpgDialogs.lua");
 require("rrpgLFM.lua");
 require("ndb.lua");
+require("locale.lua");
+local __o_Utils = require("utils.lua");
 
-function newfrmElysium()
-    __o_rrpgObjs.beginObjectsLoading();
-
-    local obj = gui.fromHandle(_obj_newObject("form"));
+local function constructNew_frmElysium()
+    local obj = GUI.fromHandle(_obj_newObject("form"));
     local self = obj;
     local sheet = nil;
 
@@ -31,17 +31,17 @@ function newfrmElysium()
     obj:setTitle("Ficha Elysium");
     obj:setName("frmElysium");
 
-    obj.pgcPrincipal = gui.fromHandle(_obj_newObject("tabControl"));
+    obj.pgcPrincipal = GUI.fromHandle(_obj_newObject("tabControl"));
     obj.pgcPrincipal:setParent(obj);
     obj.pgcPrincipal:setAlign("client");
     obj.pgcPrincipal:setName("pgcPrincipal");
 
-    obj.tab1 = gui.fromHandle(_obj_newObject("tab"));
+    obj.tab1 = GUI.fromHandle(_obj_newObject("tab"));
     obj.tab1:setParent(obj.pgcPrincipal);
     obj.tab1:setTitle("Frente");
     obj.tab1:setName("tab1");
 
-    obj.rectangle1 = gui.fromHandle(_obj_newObject("rectangle"));
+    obj.rectangle1 = GUI.fromHandle(_obj_newObject("rectangle"));
     obj.rectangle1:setParent(obj.tab1);
     obj.rectangle1:setName("rectangle1");
     obj.rectangle1:setAlign("client");
@@ -49,12 +49,12 @@ function newfrmElysium()
     obj.rectangle1:setXradius(10);
     obj.rectangle1:setYradius(10);
 
-    obj.scrollBox1 = gui.fromHandle(_obj_newObject("scrollBox"));
+    obj.scrollBox1 = GUI.fromHandle(_obj_newObject("scrollBox"));
     obj.scrollBox1:setParent(obj.rectangle1);
     obj.scrollBox1:setAlign("client");
     obj.scrollBox1:setName("scrollBox1");
 
-    obj.fraFrenteLayout = gui.fromHandle(_obj_newObject("flowLayout"));
+    obj.fraFrenteLayout = GUI.fromHandle(_obj_newObject("flowLayout"));
     obj.fraFrenteLayout:setParent(obj.scrollBox1);
     obj.fraFrenteLayout:setAlign("top");
     obj.fraFrenteLayout:setHeight(500);
@@ -67,7 +67,7 @@ function newfrmElysium()
     obj.fraFrenteLayout:setMinScaledWidth(300);
     obj.fraFrenteLayout:setVertAlign("leading");
 
-    obj.flowLayout1 = gui.fromHandle(_obj_newObject("flowLayout"));
+    obj.flowLayout1 = GUI.fromHandle(_obj_newObject("flowLayout"));
     obj.flowLayout1:setParent(obj.fraFrenteLayout);
     obj.flowLayout1:setAutoHeight(true);
     obj.flowLayout1:setMinScaledWidth(290);
@@ -77,7 +77,7 @@ function newfrmElysium()
     obj.flowLayout1:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowLayout1:setVertAlign("leading");
 
-    obj.flwNome1 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flwNome1 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flwNome1:setParent(obj.flowLayout1);
     obj.flwNome1:setName("flwNome1");
     obj.flwNome1:setMinWidth(320);
@@ -88,12 +88,12 @@ function newfrmElysium()
     obj.flwNome1:setAvoidScale(true);
     obj.flwNome1:setMargins({left=1, right=1, top=2, bottom=2});
 
-    obj.layNomeHolderFrente = gui.fromHandle(_obj_newObject("layout"));
+    obj.layNomeHolderFrente = GUI.fromHandle(_obj_newObject("layout"));
     obj.layNomeHolderFrente:setParent(obj.flwNome1);
     obj.layNomeHolderFrente:setAlign("client");
     obj.layNomeHolderFrente:setName("layNomeHolderFrente");
 
-    obj.edtNome1 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edtNome1 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edtNome1:setParent(obj.layNomeHolderFrente);
     obj.edtNome1:setName("edtNome1");
     obj.edtNome1:setField("nome");
@@ -103,7 +103,7 @@ function newfrmElysium()
     obj.edtNome1:setVertTextAlign("center");
     obj.edtNome1:setTransparent(true);
 
-    obj.labNome1 = gui.fromHandle(_obj_newObject("label"));
+    obj.labNome1 = GUI.fromHandle(_obj_newObject("label"));
     obj.labNome1:setParent(obj.layNomeHolderFrente);
     obj.labNome1:setMargins({left=3});
     obj.labNome1:setName("labNome1");
@@ -113,7 +113,7 @@ function newfrmElysium()
     obj.labNome1:setFontSize(12);
     obj.labNome1:setFontColor("#D0D0D0");
 
-    obj.fraUpperGridFrente = gui.fromHandle(_obj_newObject("flowLayout"));
+    obj.fraUpperGridFrente = GUI.fromHandle(_obj_newObject("flowLayout"));
     obj.fraUpperGridFrente:setParent(obj.flowLayout1);
     obj.fraUpperGridFrente:setMinWidth(320);
     obj.fraUpperGridFrente:setMaxWidth(1600);
@@ -125,7 +125,7 @@ function newfrmElysium()
     obj.fraUpperGridFrente:setMaxControlsPerLine(3);
     obj.fraUpperGridFrente:setMargins({left=1, right=1, top=2, bottom=2});
 
-    obj.UpperGridCampo1 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.UpperGridCampo1 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.UpperGridCampo1:setParent(obj.fraUpperGridFrente);
     obj.UpperGridCampo1:setHeight(50);
     obj.UpperGridCampo1:setMinScaledWidth(100);
@@ -137,7 +137,7 @@ function newfrmElysium()
     obj.UpperGridCampo1:setMargins({left=1, right=1, top=2, bottom=2});
     obj.UpperGridCampo1:setVertAlign("leading");
 
-    obj.edtUpperGridCampo1 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edtUpperGridCampo1 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edtUpperGridCampo1:setParent(obj.UpperGridCampo1);
     obj.edtUpperGridCampo1:setName("edtUpperGridCampo1");
     obj.edtUpperGridCampo1:setAlign("top");
@@ -149,14 +149,14 @@ function newfrmElysium()
     obj.edtUpperGridCampo1:setWidth(195);
     obj.edtUpperGridCampo1:setFontColor("white");
 
-    obj.linUpperGridCampo1 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.linUpperGridCampo1 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.linUpperGridCampo1:setParent(obj.UpperGridCampo1);
     obj.linUpperGridCampo1:setName("linUpperGridCampo1");
     obj.linUpperGridCampo1:setAlign("top");
     obj.linUpperGridCampo1:setStrokeColor("#FFFFFF50");
     obj.linUpperGridCampo1:setStrokeSize(1);
 
-    obj.labUpperGridCampo1 = gui.fromHandle(_obj_newObject("label"));
+    obj.labUpperGridCampo1 = GUI.fromHandle(_obj_newObject("label"));
     obj.labUpperGridCampo1:setParent(obj.UpperGridCampo1);
     obj.labUpperGridCampo1:setName("labUpperGridCampo1");
     obj.labUpperGridCampo1:setAlign("top");
@@ -170,7 +170,7 @@ function newfrmElysium()
     self.UpperGridCampo1:setHeight(self.edtUpperGridCampo1:getHeight() + self.labUpperGridCampo1:getHeight() + self.linUpperGridCampo1:getHeight());
 
 
-    obj.UpperGridCampo2 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.UpperGridCampo2 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.UpperGridCampo2:setParent(obj.fraUpperGridFrente);
     obj.UpperGridCampo2:setHeight(50);
     obj.UpperGridCampo2:setMinScaledWidth(100);
@@ -182,7 +182,7 @@ function newfrmElysium()
     obj.UpperGridCampo2:setMargins({left=1, right=1, top=2, bottom=2});
     obj.UpperGridCampo2:setVertAlign("leading");
 
-    obj.edtUpperGridCampo2 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edtUpperGridCampo2 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edtUpperGridCampo2:setParent(obj.UpperGridCampo2);
     obj.edtUpperGridCampo2:setName("edtUpperGridCampo2");
     obj.edtUpperGridCampo2:setAlign("top");
@@ -194,14 +194,14 @@ function newfrmElysium()
     obj.edtUpperGridCampo2:setWidth(195);
     obj.edtUpperGridCampo2:setFontColor("white");
 
-    obj.linUpperGridCampo2 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.linUpperGridCampo2 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.linUpperGridCampo2:setParent(obj.UpperGridCampo2);
     obj.linUpperGridCampo2:setName("linUpperGridCampo2");
     obj.linUpperGridCampo2:setAlign("top");
     obj.linUpperGridCampo2:setStrokeColor("#FFFFFF50");
     obj.linUpperGridCampo2:setStrokeSize(1);
 
-    obj.labUpperGridCampo2 = gui.fromHandle(_obj_newObject("label"));
+    obj.labUpperGridCampo2 = GUI.fromHandle(_obj_newObject("label"));
     obj.labUpperGridCampo2:setParent(obj.UpperGridCampo2);
     obj.labUpperGridCampo2:setName("labUpperGridCampo2");
     obj.labUpperGridCampo2:setAlign("top");
@@ -215,7 +215,7 @@ function newfrmElysium()
     self.UpperGridCampo2:setHeight(self.edtUpperGridCampo2:getHeight() + self.labUpperGridCampo2:getHeight() + self.linUpperGridCampo2:getHeight());
 
 
-    obj.UpperGridCampo3 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.UpperGridCampo3 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.UpperGridCampo3:setParent(obj.fraUpperGridFrente);
     obj.UpperGridCampo3:setHeight(50);
     obj.UpperGridCampo3:setMinScaledWidth(100);
@@ -227,7 +227,7 @@ function newfrmElysium()
     obj.UpperGridCampo3:setMargins({left=1, right=1, top=2, bottom=2});
     obj.UpperGridCampo3:setVertAlign("leading");
 
-    obj.edtUpperGridCampo3 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edtUpperGridCampo3 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edtUpperGridCampo3:setParent(obj.UpperGridCampo3);
     obj.edtUpperGridCampo3:setName("edtUpperGridCampo3");
     obj.edtUpperGridCampo3:setAlign("top");
@@ -239,14 +239,14 @@ function newfrmElysium()
     obj.edtUpperGridCampo3:setWidth(195);
     obj.edtUpperGridCampo3:setFontColor("white");
 
-    obj.linUpperGridCampo3 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.linUpperGridCampo3 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.linUpperGridCampo3:setParent(obj.UpperGridCampo3);
     obj.linUpperGridCampo3:setName("linUpperGridCampo3");
     obj.linUpperGridCampo3:setAlign("top");
     obj.linUpperGridCampo3:setStrokeColor("#FFFFFF50");
     obj.linUpperGridCampo3:setStrokeSize(1);
 
-    obj.labUpperGridCampo3 = gui.fromHandle(_obj_newObject("label"));
+    obj.labUpperGridCampo3 = GUI.fromHandle(_obj_newObject("label"));
     obj.labUpperGridCampo3:setParent(obj.UpperGridCampo3);
     obj.labUpperGridCampo3:setName("labUpperGridCampo3");
     obj.labUpperGridCampo3:setAlign("top");
@@ -260,7 +260,7 @@ function newfrmElysium()
     self.UpperGridCampo3:setHeight(self.edtUpperGridCampo3:getHeight() + self.labUpperGridCampo3:getHeight() + self.linUpperGridCampo3:getHeight());
 
 
-    obj.UpperGridCampo4 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.UpperGridCampo4 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.UpperGridCampo4:setParent(obj.fraUpperGridFrente);
     obj.UpperGridCampo4:setHeight(50);
     obj.UpperGridCampo4:setMinScaledWidth(100);
@@ -272,7 +272,7 @@ function newfrmElysium()
     obj.UpperGridCampo4:setMargins({left=1, right=1, top=2, bottom=2});
     obj.UpperGridCampo4:setVertAlign("leading");
 
-    obj.edtUpperGridCampo4 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edtUpperGridCampo4 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edtUpperGridCampo4:setParent(obj.UpperGridCampo4);
     obj.edtUpperGridCampo4:setName("edtUpperGridCampo4");
     obj.edtUpperGridCampo4:setAlign("top");
@@ -284,14 +284,14 @@ function newfrmElysium()
     obj.edtUpperGridCampo4:setWidth(195);
     obj.edtUpperGridCampo4:setFontColor("white");
 
-    obj.linUpperGridCampo4 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.linUpperGridCampo4 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.linUpperGridCampo4:setParent(obj.UpperGridCampo4);
     obj.linUpperGridCampo4:setName("linUpperGridCampo4");
     obj.linUpperGridCampo4:setAlign("top");
     obj.linUpperGridCampo4:setStrokeColor("#FFFFFF50");
     obj.linUpperGridCampo4:setStrokeSize(1);
 
-    obj.labUpperGridCampo4 = gui.fromHandle(_obj_newObject("label"));
+    obj.labUpperGridCampo4 = GUI.fromHandle(_obj_newObject("label"));
     obj.labUpperGridCampo4:setParent(obj.UpperGridCampo4);
     obj.labUpperGridCampo4:setName("labUpperGridCampo4");
     obj.labUpperGridCampo4:setAlign("top");
@@ -305,7 +305,7 @@ function newfrmElysium()
     self.UpperGridCampo4:setHeight(self.edtUpperGridCampo4:getHeight() + self.labUpperGridCampo4:getHeight() + self.linUpperGridCampo4:getHeight());
 
 
-    obj.UpperGridCampo5 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.UpperGridCampo5 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.UpperGridCampo5:setParent(obj.fraUpperGridFrente);
     obj.UpperGridCampo5:setHeight(50);
     obj.UpperGridCampo5:setMinScaledWidth(100);
@@ -317,7 +317,7 @@ function newfrmElysium()
     obj.UpperGridCampo5:setMargins({left=1, right=1, top=2, bottom=2});
     obj.UpperGridCampo5:setVertAlign("leading");
 
-    obj.edtUpperGridCampo5 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edtUpperGridCampo5 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edtUpperGridCampo5:setParent(obj.UpperGridCampo5);
     obj.edtUpperGridCampo5:setName("edtUpperGridCampo5");
     obj.edtUpperGridCampo5:setAlign("top");
@@ -329,14 +329,14 @@ function newfrmElysium()
     obj.edtUpperGridCampo5:setWidth(195);
     obj.edtUpperGridCampo5:setFontColor("white");
 
-    obj.linUpperGridCampo5 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.linUpperGridCampo5 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.linUpperGridCampo5:setParent(obj.UpperGridCampo5);
     obj.linUpperGridCampo5:setName("linUpperGridCampo5");
     obj.linUpperGridCampo5:setAlign("top");
     obj.linUpperGridCampo5:setStrokeColor("#FFFFFF50");
     obj.linUpperGridCampo5:setStrokeSize(1);
 
-    obj.labUpperGridCampo5 = gui.fromHandle(_obj_newObject("label"));
+    obj.labUpperGridCampo5 = GUI.fromHandle(_obj_newObject("label"));
     obj.labUpperGridCampo5:setParent(obj.UpperGridCampo5);
     obj.labUpperGridCampo5:setName("labUpperGridCampo5");
     obj.labUpperGridCampo5:setAlign("top");
@@ -350,7 +350,7 @@ function newfrmElysium()
     self.UpperGridCampo5:setHeight(self.edtUpperGridCampo5:getHeight() + self.labUpperGridCampo5:getHeight() + self.linUpperGridCampo5:getHeight());
 
 
-    obj.UpperGridCampo6 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.UpperGridCampo6 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.UpperGridCampo6:setParent(obj.fraUpperGridFrente);
     obj.UpperGridCampo6:setHeight(50);
     obj.UpperGridCampo6:setMinScaledWidth(100);
@@ -362,7 +362,7 @@ function newfrmElysium()
     obj.UpperGridCampo6:setMargins({left=1, right=1, top=2, bottom=2});
     obj.UpperGridCampo6:setVertAlign("leading");
 
-    obj.edtUpperGridCampo6 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edtUpperGridCampo6 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edtUpperGridCampo6:setParent(obj.UpperGridCampo6);
     obj.edtUpperGridCampo6:setName("edtUpperGridCampo6");
     obj.edtUpperGridCampo6:setAlign("top");
@@ -374,14 +374,14 @@ function newfrmElysium()
     obj.edtUpperGridCampo6:setWidth(195);
     obj.edtUpperGridCampo6:setFontColor("white");
 
-    obj.linUpperGridCampo6 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.linUpperGridCampo6 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.linUpperGridCampo6:setParent(obj.UpperGridCampo6);
     obj.linUpperGridCampo6:setName("linUpperGridCampo6");
     obj.linUpperGridCampo6:setAlign("top");
     obj.linUpperGridCampo6:setStrokeColor("#FFFFFF50");
     obj.linUpperGridCampo6:setStrokeSize(1);
 
-    obj.labUpperGridCampo6 = gui.fromHandle(_obj_newObject("label"));
+    obj.labUpperGridCampo6 = GUI.fromHandle(_obj_newObject("label"));
     obj.labUpperGridCampo6:setParent(obj.UpperGridCampo6);
     obj.labUpperGridCampo6:setName("labUpperGridCampo6");
     obj.labUpperGridCampo6:setAlign("top");
@@ -395,11 +395,11 @@ function newfrmElysium()
     self.UpperGridCampo6:setHeight(self.edtUpperGridCampo6:getHeight() + self.labUpperGridCampo6:getHeight() + self.linUpperGridCampo6:getHeight());
 
 
-    obj.flowLineBreak1 = gui.fromHandle(_obj_newObject("flowLineBreak"));
+    obj.flowLineBreak1 = GUI.fromHandle(_obj_newObject("flowLineBreak"));
     obj.flowLineBreak1:setParent(obj.fraFrenteLayout);
     obj.flowLineBreak1:setName("flowLineBreak1");
 
-    obj.flowLayout2 = gui.fromHandle(_obj_newObject("flowLayout"));
+    obj.flowLayout2 = GUI.fromHandle(_obj_newObject("flowLayout"));
     obj.flowLayout2:setParent(obj.fraFrenteLayout);
     obj.flowLayout2:setHorzAlign("justify");
     obj.flowLayout2:setAutoHeight(true);
@@ -410,7 +410,7 @@ function newfrmElysium()
     obj.flowLayout2:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowLayout2:setVertAlign("leading");
 
-    obj.flowPart1 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart1 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart1:setParent(obj.flowLayout2);
     obj.flowPart1:setMinWidth(280);
     obj.flowPart1:setMaxWidth(800);
@@ -420,7 +420,7 @@ function newfrmElysium()
     obj.flowPart1:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart1:setVertAlign("leading");
 
-    obj.edit1 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edit1 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edit1:setParent(obj.flowPart1);
     obj.edit1:setAlign("left");
     obj.edit1:setField("inspiracao");
@@ -432,7 +432,7 @@ function newfrmElysium()
     obj.edit1:setFontSize(15);
     obj.edit1:setFontColor("white");
 
-    obj.label1 = gui.fromHandle(_obj_newObject("label"));
+    obj.label1 = GUI.fromHandle(_obj_newObject("label"));
     obj.label1:setParent(obj.flowPart1);
     obj.label1:setAlign("client");
     obj.label1:setText("BONUS DE PROFICIÊNCIA");
@@ -442,7 +442,7 @@ function newfrmElysium()
     obj.label1:setFontSize(12);
     obj.label1:setFontColor("#D0D0D0");
 
-    obj.flowPart2 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart2 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart2:setParent(obj.flowLayout2);
     obj.flowPart2:setMinWidth(280);
     obj.flowPart2:setMaxWidth(800);
@@ -452,7 +452,7 @@ function newfrmElysium()
     obj.flowPart2:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart2:setVertAlign("leading");
 
-    obj.edit2 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edit2 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edit2:setParent(obj.flowPart2);
     obj.edit2:setAlign("left");
     obj.edit2:setField("bonusProficiencia");
@@ -464,7 +464,7 @@ function newfrmElysium()
     obj.edit2:setFontSize(15);
     obj.edit2:setFontColor("white");
 
-    obj.label2 = gui.fromHandle(_obj_newObject("label"));
+    obj.label2 = GUI.fromHandle(_obj_newObject("label"));
     obj.label2:setParent(obj.flowPart2);
     obj.label2:setAlign("client");
     obj.label2:setText("VISÃO NÍTIDA");
@@ -474,7 +474,7 @@ function newfrmElysium()
     obj.label2:setFontSize(12);
     obj.label2:setFontColor("#D0D0D0");
 
-    obj.flowPart3 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart3 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart3:setParent(obj.flowLayout2);
     obj.flowPart3:setMinWidth(280);
     obj.flowPart3:setMaxWidth(800);
@@ -484,7 +484,7 @@ function newfrmElysium()
     obj.flowPart3:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart3:setVertAlign("leading");
 
-    obj.edit3 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edit3 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edit3:setParent(obj.flowPart3);
     obj.edit3:setAlign("left");
     obj.edit3:setField("sabedoriaPassiva");
@@ -496,7 +496,7 @@ function newfrmElysium()
     obj.edit3:setFontSize(15);
     obj.edit3:setFontColor("white");
 
-    obj.label3 = gui.fromHandle(_obj_newObject("label"));
+    obj.label3 = GUI.fromHandle(_obj_newObject("label"));
     obj.label3:setParent(obj.flowPart3);
     obj.label3:setAlign("client");
     obj.label3:setText("SABEDORIA PASSIVA (PERCEPÇÃO)");
@@ -508,11 +508,11 @@ function newfrmElysium()
     obj.label3:setFontSize(12);
     obj.label3:setFontColor("#D0D0D0");
 
-    obj.flowLineBreak2 = gui.fromHandle(_obj_newObject("flowLineBreak"));
+    obj.flowLineBreak2 = GUI.fromHandle(_obj_newObject("flowLineBreak"));
     obj.flowLineBreak2:setParent(obj.fraFrenteLayout);
     obj.flowLineBreak2:setName("flowLineBreak2");
 
-    obj.flowLayout3 = gui.fromHandle(_obj_newObject("flowLayout"));
+    obj.flowLayout3 = GUI.fromHandle(_obj_newObject("flowLayout"));
     obj.flowLayout3:setParent(obj.fraFrenteLayout);
     obj.flowLayout3:setAutoHeight(true);
     obj.flowLayout3:setMinScaledWidth(290);
@@ -522,7 +522,7 @@ function newfrmElysium()
     obj.flowLayout3:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowLayout3:setVertAlign("leading");
 
-    obj.fraLayAtributos = gui.fromHandle(_obj_newObject("flowLayout"));
+    obj.fraLayAtributos = GUI.fromHandle(_obj_newObject("flowLayout"));
     obj.fraLayAtributos:setParent(obj.flowLayout3);
     obj.fraLayAtributos:setName("fraLayAtributos");
     obj.fraLayAtributos:setVertAlign("leading");
@@ -536,12 +536,12 @@ function newfrmElysium()
     obj.fraLayAtributos:setAvoidScale(true);
     obj.fraLayAtributos:setStepSizes({310, 420, 640, 760, 1150});
 
-    obj.dataLink1 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink1 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink1:setParent(obj.fraLayAtributos);
-    obj.dataLink1:setField("atributos.forca");
+    obj.dataLink1:setField("atributos.destreza");
     obj.dataLink1:setName("dataLink1");
 
-    obj.flowPart4 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart4 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart4:setParent(obj.fraLayAtributos);
     obj.flowPart4:setHeight(140);
     obj.flowPart4:setMinWidth(320);
@@ -552,7 +552,7 @@ function newfrmElysium()
     obj.flowPart4:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart4:setVertAlign("leading");
 
-    obj.layout1 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout1 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout1:setParent(obj.flowPart4);
     obj.layout1:setLeft(6);
     obj.layout1:setTop(12);
@@ -560,11 +560,11 @@ function newfrmElysium()
     obj.layout1:setHeight(115);
     obj.layout1:setName("layout1");
 
-    obj.edit4 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edit4 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edit4:setParent(obj.layout1);
     obj.edit4:setAlign("top");
     obj.edit4:setMargins({left=30, right=30});
-    obj.edit4:setField("atributos.forca");
+    obj.edit4:setField("atributos.destreza");
     obj.edit4:setHeight(30);
     obj.edit4:setType("number");
     obj.edit4:setMin(0);
@@ -576,10 +576,10 @@ function newfrmElysium()
     obj.edit4:setFontSize(15);
     obj.edit4:setFontColor("white");
 
-    obj.label4 = gui.fromHandle(_obj_newObject("label"));
+    obj.label4 = GUI.fromHandle(_obj_newObject("label"));
     obj.label4:setParent(obj.flowPart4);
     obj.label4:setFrameRegion("modificador");
-    obj.label4:setField("atributos.modforcastr");
+    obj.label4:setField("atributos.moddestrezastr");
     obj.label4:setHorzTextAlign("center");
     obj.label4:setVertTextAlign("center");
     obj.label4:setFontSize(46);
@@ -587,16 +587,16 @@ function newfrmElysium()
     obj.label4:setName("label4");
     obj.label4:setFontColor("white");
 
-    obj.label5 = gui.fromHandle(_obj_newObject("label"));
+    obj.label5 = GUI.fromHandle(_obj_newObject("label"));
     obj.label5:setParent(obj.flowPart4);
     obj.label5:setFrameRegion("titulo");
-    obj.label5:setText("FORÇA");
+    obj.label5:setText("DESTREZA");
     obj.label5:setVertTextAlign("center");
     obj.label5:setHorzTextAlign("center");
     obj.label5:setName("label5");
     obj.label5:setFontColor("white");
 
-    obj.flowLayout4 = gui.fromHandle(_obj_newObject("flowLayout"));
+    obj.flowLayout4 = GUI.fromHandle(_obj_newObject("flowLayout"));
     obj.flowLayout4:setParent(obj.flowPart4);
     obj.flowLayout4:setFrameRegion("RegiaoDePericias");
     obj.flowLayout4:setAutoHeight(true);
@@ -606,7 +606,7 @@ function newfrmElysium()
     obj.flowLayout4:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowLayout4:setVertAlign("leading");
 
-    obj.flowPart5 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart5 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart5:setParent(obj.flowLayout4);
     obj.flowPart5:setMinWidth(206);
     obj.flowPart5:setMaxWidth(250);
@@ -615,28 +615,28 @@ function newfrmElysium()
     obj.flowPart5:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart5:setVertAlign("leading");
 
-    obj.imageCheckBox1 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox1 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox1:setParent(obj.flowPart5);
     obj.imageCheckBox1:setAlign("left");
     obj.imageCheckBox1:setWidth(20);
     obj.imageCheckBox1:setMargins({});
-    obj.imageCheckBox1:setField("resistencias.forca");
+    obj.imageCheckBox1:setField("resistencias.destreza");
     obj.imageCheckBox1:setOptimize(false);
     obj.imageCheckBox1:setImageChecked("images/checkbox2_checked.png");
     obj.imageCheckBox1:setImageUnchecked("images/checkbox2_unchecked.png");
     obj.imageCheckBox1:setName("imageCheckBox1");
     obj.imageCheckBox1:setHeight(20);
 
-    obj.layout2 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout2 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout2:setParent(obj.flowPart5);
     obj.layout2:setAlign("left");
     obj.layout2:setWidth(26);
     obj.layout2:setMargins({left=2});
     obj.layout2:setName("layout2");
 
-    obj.label6 = gui.fromHandle(_obj_newObject("label"));
+    obj.label6 = GUI.fromHandle(_obj_newObject("label"));
     obj.label6:setParent(obj.layout2);
-    obj.label6:setField("resistencias.bonusforcastr");
+    obj.label6:setField("resistencias.bonusdestrezastr");
     obj.label6:setAlign("client");
     obj.label6:setHorzTextAlign("center");
     obj.label6:setVertTextAlign("trailing");
@@ -644,14 +644,14 @@ function newfrmElysium()
     obj.label6:setName("label6");
     obj.label6:setFontColor("white");
 
-    obj.horzLine1 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine1 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine1:setParent(obj.layout2);
     obj.horzLine1:setStrokeColor("white");
     obj.horzLine1:setStrokeSize(1);
     obj.horzLine1:setAlign("bottom");
     obj.horzLine1:setName("horzLine1");
 
-    obj.label7 = gui.fromHandle(_obj_newObject("label"));
+    obj.label7 = GUI.fromHandle(_obj_newObject("label"));
     obj.label7:setParent(obj.flowPart5);
     obj.label7:setAlign("client");
     obj.label7:setText("Teste de Resistência");
@@ -662,12 +662,12 @@ function newfrmElysium()
     obj.label7:setName("label7");
     obj.label7:setFontColor("white");
 
-    obj.dataLink2 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink2 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink2:setParent(obj.flowLayout4);
-    obj.dataLink2:setFields({'atributos.modforca', 'bonusProficiencia', 'resistencias.forca'});
+    obj.dataLink2:setFields({'atributos.moddestreza', 'bonusProficiencia', 'resistencias.destreza'});
     obj.dataLink2:setName("dataLink2");
 
-    obj.flowPart6 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart6 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart6:setParent(obj.flowLayout4);
     obj.flowPart6:setMinWidth(206);
     obj.flowPart6:setMaxWidth(250);
@@ -676,28 +676,28 @@ function newfrmElysium()
     obj.flowPart6:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart6:setVertAlign("leading");
 
-    obj.imageCheckBox2 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox2 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox2:setParent(obj.flowPart6);
     obj.imageCheckBox2:setAlign("left");
     obj.imageCheckBox2:setWidth(20);
     obj.imageCheckBox2:setMargins({});
-    obj.imageCheckBox2:setField("pericias.atletismo");
+    obj.imageCheckBox2:setField("pericias.acrobacia");
     obj.imageCheckBox2:setOptimize(false);
     obj.imageCheckBox2:setImageChecked("images/checkbox1_checked.png");
     obj.imageCheckBox2:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox2:setName("imageCheckBox2");
     obj.imageCheckBox2:setHeight(20);
 
-    obj.layout3 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout3 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout3:setParent(obj.flowPart6);
     obj.layout3:setAlign("left");
     obj.layout3:setWidth(26);
     obj.layout3:setMargins({left=2});
     obj.layout3:setName("layout3");
 
-    obj.label8 = gui.fromHandle(_obj_newObject("label"));
+    obj.label8 = GUI.fromHandle(_obj_newObject("label"));
     obj.label8:setParent(obj.layout3);
-    obj.label8:setField("pericias.bonusatletismostr");
+    obj.label8:setField("pericias.bonusacrobaciastr");
     obj.label8:setAlign("client");
     obj.label8:setHorzTextAlign("center");
     obj.label8:setVertTextAlign("trailing");
@@ -705,17 +705,17 @@ function newfrmElysium()
     obj.label8:setName("label8");
     obj.label8:setFontColor("white");
 
-    obj.horzLine2 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine2 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine2:setParent(obj.layout3);
     obj.horzLine2:setStrokeColor("white");
     obj.horzLine2:setStrokeSize(1);
     obj.horzLine2:setAlign("bottom");
     obj.horzLine2:setName("horzLine2");
 
-    obj.label9 = gui.fromHandle(_obj_newObject("label"));
+    obj.label9 = GUI.fromHandle(_obj_newObject("label"));
     obj.label9:setParent(obj.flowPart6);
     obj.label9:setAlign("client");
-    obj.label9:setText("Atletismo");
+    obj.label9:setText("Acrobacia");
     obj.label9:setVertTextAlign("trailing");
     obj.label9:setMargins({left=5});
     obj.label9:setAutoSize(true);
@@ -723,40 +723,162 @@ function newfrmElysium()
     obj.label9:setName("label9");
     obj.label9:setFontColor("white");
 
-    obj.dataLink3 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink3 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink3:setParent(obj.flowLayout4);
-    obj.dataLink3:setFields({'atributos.modforca', 'bonusProficiencia', 'pericias.atletismo'});
+    obj.dataLink3:setFields({'atributos.moddestreza', 'bonusProficiencia', 'pericias.acrobacia'});
     obj.dataLink3:setName("dataLink3");
 
-    obj.dataLink4 = gui.fromHandle(_obj_newObject("dataLink"));
-    obj.dataLink4:setParent(obj.fraLayAtributos);
-    obj.dataLink4:setField("atributos.destreza");
-    obj.dataLink4:setName("dataLink4");
-
-    obj.flowPart7 = gui.fromHandle(_obj_newObject("flowPart"));
-    obj.flowPart7:setParent(obj.fraLayAtributos);
-    obj.flowPart7:setHeight(140);
-    obj.flowPart7:setMinWidth(320);
-    obj.flowPart7:setMaxWidth(420);
-    obj.flowPart7:setMinScaledWidth(305);
-    obj.flowPart7:setFrameStyle("frames/atributeFrame2/frame.xml");
+    obj.flowPart7 = GUI.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart7:setParent(obj.flowLayout4);
+    obj.flowPart7:setMinWidth(206);
+    obj.flowPart7:setMaxWidth(250);
+    obj.flowPart7:setHeight(17);
     obj.flowPart7:setName("flowPart7");
     obj.flowPart7:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart7:setVertAlign("leading");
 
-    obj.layout4 = gui.fromHandle(_obj_newObject("layout"));
+    obj.imageCheckBox3 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox3:setParent(obj.flowPart7);
+    obj.imageCheckBox3:setAlign("left");
+    obj.imageCheckBox3:setWidth(20);
+    obj.imageCheckBox3:setMargins({});
+    obj.imageCheckBox3:setField("pericias.furtividade");
+    obj.imageCheckBox3:setOptimize(false);
+    obj.imageCheckBox3:setImageChecked("images/checkbox1_checked.png");
+    obj.imageCheckBox3:setImageUnchecked("images/checkbox1_unchecked.png");
+    obj.imageCheckBox3:setName("imageCheckBox3");
+    obj.imageCheckBox3:setHeight(20);
+
+    obj.layout4 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout4:setParent(obj.flowPart7);
-    obj.layout4:setLeft(6);
-    obj.layout4:setTop(12);
-    obj.layout4:setWidth(116);
-    obj.layout4:setHeight(115);
+    obj.layout4:setAlign("left");
+    obj.layout4:setWidth(26);
+    obj.layout4:setMargins({left=2});
     obj.layout4:setName("layout4");
 
-    obj.edit5 = gui.fromHandle(_obj_newObject("edit"));
-    obj.edit5:setParent(obj.layout4);
+    obj.label10 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label10:setParent(obj.layout4);
+    obj.label10:setField("pericias.bonusfurtividadestr");
+    obj.label10:setAlign("client");
+    obj.label10:setHorzTextAlign("center");
+    obj.label10:setVertTextAlign("trailing");
+    obj.label10:setTextTrimming("none");
+    obj.label10:setName("label10");
+    obj.label10:setFontColor("white");
+
+    obj.horzLine3 = GUI.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine3:setParent(obj.layout4);
+    obj.horzLine3:setStrokeColor("white");
+    obj.horzLine3:setStrokeSize(1);
+    obj.horzLine3:setAlign("bottom");
+    obj.horzLine3:setName("horzLine3");
+
+    obj.label11 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label11:setParent(obj.flowPart7);
+    obj.label11:setAlign("client");
+    obj.label11:setText("Furtividade");
+    obj.label11:setVertTextAlign("trailing");
+    obj.label11:setMargins({left=5});
+    obj.label11:setAutoSize(true);
+    obj.label11:setWordWrap(false);
+    obj.label11:setName("label11");
+    obj.label11:setFontColor("white");
+
+    obj.dataLink4 = GUI.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink4:setParent(obj.flowLayout4);
+    obj.dataLink4:setFields({'atributos.moddestreza', 'bonusProficiencia', 'pericias.furtividade'});
+    obj.dataLink4:setName("dataLink4");
+
+    obj.flowPart8 = GUI.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart8:setParent(obj.flowLayout4);
+    obj.flowPart8:setMinWidth(206);
+    obj.flowPart8:setMaxWidth(250);
+    obj.flowPart8:setHeight(17);
+    obj.flowPart8:setName("flowPart8");
+    obj.flowPart8:setMargins({left=1, right=1, top=2, bottom=2});
+    obj.flowPart8:setVertAlign("leading");
+
+    obj.imageCheckBox4 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox4:setParent(obj.flowPart8);
+    obj.imageCheckBox4:setAlign("left");
+    obj.imageCheckBox4:setWidth(20);
+    obj.imageCheckBox4:setMargins({});
+    obj.imageCheckBox4:setField("pericias.prestidigitacao");
+    obj.imageCheckBox4:setOptimize(false);
+    obj.imageCheckBox4:setImageChecked("images/checkbox1_checked.png");
+    obj.imageCheckBox4:setImageUnchecked("images/checkbox1_unchecked.png");
+    obj.imageCheckBox4:setName("imageCheckBox4");
+    obj.imageCheckBox4:setHeight(20);
+
+    obj.layout5 = GUI.fromHandle(_obj_newObject("layout"));
+    obj.layout5:setParent(obj.flowPart8);
+    obj.layout5:setAlign("left");
+    obj.layout5:setWidth(26);
+    obj.layout5:setMargins({left=2});
+    obj.layout5:setName("layout5");
+
+    obj.label12 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label12:setParent(obj.layout5);
+    obj.label12:setField("pericias.bonusprestidigitacaostr");
+    obj.label12:setAlign("client");
+    obj.label12:setHorzTextAlign("center");
+    obj.label12:setVertTextAlign("trailing");
+    obj.label12:setTextTrimming("none");
+    obj.label12:setName("label12");
+    obj.label12:setFontColor("white");
+
+    obj.horzLine4 = GUI.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine4:setParent(obj.layout5);
+    obj.horzLine4:setStrokeColor("white");
+    obj.horzLine4:setStrokeSize(1);
+    obj.horzLine4:setAlign("bottom");
+    obj.horzLine4:setName("horzLine4");
+
+    obj.label13 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label13:setParent(obj.flowPart8);
+    obj.label13:setAlign("client");
+    obj.label13:setText("Prestidigitação");
+    obj.label13:setVertTextAlign("trailing");
+    obj.label13:setMargins({left=5});
+    obj.label13:setAutoSize(true);
+    obj.label13:setWordWrap(false);
+    obj.label13:setName("label13");
+    obj.label13:setFontColor("white");
+
+    obj.dataLink5 = GUI.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink5:setParent(obj.flowLayout4);
+    obj.dataLink5:setFields({'atributos.moddestreza', 'bonusProficiencia', 'pericias.prestidigitacao'});
+    obj.dataLink5:setName("dataLink5");
+
+    obj.dataLink6 = GUI.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink6:setParent(obj.fraLayAtributos);
+    obj.dataLink6:setField("atributos.forca");
+    obj.dataLink6:setName("dataLink6");
+
+    obj.flowPart9 = GUI.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart9:setParent(obj.fraLayAtributos);
+    obj.flowPart9:setHeight(140);
+    obj.flowPart9:setMinWidth(320);
+    obj.flowPart9:setMaxWidth(420);
+    obj.flowPart9:setMinScaledWidth(305);
+    obj.flowPart9:setFrameStyle("frames/atributeFrame2/frame.xml");
+    obj.flowPart9:setName("flowPart9");
+    obj.flowPart9:setMargins({left=1, right=1, top=2, bottom=2});
+    obj.flowPart9:setVertAlign("leading");
+
+    obj.layout6 = GUI.fromHandle(_obj_newObject("layout"));
+    obj.layout6:setParent(obj.flowPart9);
+    obj.layout6:setLeft(6);
+    obj.layout6:setTop(12);
+    obj.layout6:setWidth(116);
+    obj.layout6:setHeight(115);
+    obj.layout6:setName("layout6");
+
+    obj.edit5 = GUI.fromHandle(_obj_newObject("edit"));
+    obj.edit5:setParent(obj.layout6);
     obj.edit5:setAlign("top");
     obj.edit5:setMargins({left=30, right=30});
-    obj.edit5:setField("atributos.destreza");
+    obj.edit5:setField("atributos.forca");
     obj.edit5:setHeight(30);
     obj.edit5:setType("number");
     obj.edit5:setMin(0);
@@ -768,28 +890,28 @@ function newfrmElysium()
     obj.edit5:setFontSize(15);
     obj.edit5:setFontColor("white");
 
-    obj.label10 = gui.fromHandle(_obj_newObject("label"));
-    obj.label10:setParent(obj.flowPart7);
-    obj.label10:setFrameRegion("modificador");
-    obj.label10:setField("atributos.moddestrezastr");
-    obj.label10:setHorzTextAlign("center");
-    obj.label10:setVertTextAlign("center");
-    obj.label10:setFontSize(46);
-    lfm_setPropAsString(obj.label10, "fontStyle",  "bold");
-    obj.label10:setName("label10");
-    obj.label10:setFontColor("white");
+    obj.label14 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label14:setParent(obj.flowPart9);
+    obj.label14:setFrameRegion("modificador");
+    obj.label14:setField("atributos.modforcastr");
+    obj.label14:setHorzTextAlign("center");
+    obj.label14:setVertTextAlign("center");
+    obj.label14:setFontSize(46);
+    lfm_setPropAsString(obj.label14, "fontStyle",  "bold");
+    obj.label14:setName("label14");
+    obj.label14:setFontColor("white");
 
-    obj.label11 = gui.fromHandle(_obj_newObject("label"));
-    obj.label11:setParent(obj.flowPart7);
-    obj.label11:setFrameRegion("titulo");
-    obj.label11:setText("DESTREZA");
-    obj.label11:setVertTextAlign("center");
-    obj.label11:setHorzTextAlign("center");
-    obj.label11:setName("label11");
-    obj.label11:setFontColor("white");
+    obj.label15 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label15:setParent(obj.flowPart9);
+    obj.label15:setFrameRegion("titulo");
+    obj.label15:setText("FORÇA");
+    obj.label15:setVertTextAlign("center");
+    obj.label15:setHorzTextAlign("center");
+    obj.label15:setName("label15");
+    obj.label15:setFontColor("white");
 
-    obj.flowLayout5 = gui.fromHandle(_obj_newObject("flowLayout"));
-    obj.flowLayout5:setParent(obj.flowPart7);
+    obj.flowLayout5 = GUI.fromHandle(_obj_newObject("flowLayout"));
+    obj.flowLayout5:setParent(obj.flowPart9);
     obj.flowLayout5:setFrameRegion("RegiaoDePericias");
     obj.flowLayout5:setAutoHeight(true);
     obj.flowLayout5:setLineSpacing(0);
@@ -798,129 +920,7 @@ function newfrmElysium()
     obj.flowLayout5:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowLayout5:setVertAlign("leading");
 
-    obj.flowPart8 = gui.fromHandle(_obj_newObject("flowPart"));
-    obj.flowPart8:setParent(obj.flowLayout5);
-    obj.flowPart8:setMinWidth(206);
-    obj.flowPart8:setMaxWidth(250);
-    obj.flowPart8:setHeight(17);
-    obj.flowPart8:setName("flowPart8");
-    obj.flowPart8:setMargins({left=1, right=1, top=2, bottom=2});
-    obj.flowPart8:setVertAlign("leading");
-
-    obj.imageCheckBox3 = gui.fromHandle(_obj_newObject("imageCheckBox"));
-    obj.imageCheckBox3:setParent(obj.flowPart8);
-    obj.imageCheckBox3:setAlign("left");
-    obj.imageCheckBox3:setWidth(20);
-    obj.imageCheckBox3:setMargins({});
-    obj.imageCheckBox3:setField("resistencias.destreza");
-    obj.imageCheckBox3:setOptimize(false);
-    obj.imageCheckBox3:setImageChecked("images/checkbox2_checked.png");
-    obj.imageCheckBox3:setImageUnchecked("images/checkbox2_unchecked.png");
-    obj.imageCheckBox3:setName("imageCheckBox3");
-    obj.imageCheckBox3:setHeight(20);
-
-    obj.layout5 = gui.fromHandle(_obj_newObject("layout"));
-    obj.layout5:setParent(obj.flowPart8);
-    obj.layout5:setAlign("left");
-    obj.layout5:setWidth(26);
-    obj.layout5:setMargins({left=2});
-    obj.layout5:setName("layout5");
-
-    obj.label12 = gui.fromHandle(_obj_newObject("label"));
-    obj.label12:setParent(obj.layout5);
-    obj.label12:setField("resistencias.bonusdestrezastr");
-    obj.label12:setAlign("client");
-    obj.label12:setHorzTextAlign("center");
-    obj.label12:setVertTextAlign("trailing");
-    obj.label12:setTextTrimming("none");
-    obj.label12:setName("label12");
-    obj.label12:setFontColor("white");
-
-    obj.horzLine3 = gui.fromHandle(_obj_newObject("horzLine"));
-    obj.horzLine3:setParent(obj.layout5);
-    obj.horzLine3:setStrokeColor("white");
-    obj.horzLine3:setStrokeSize(1);
-    obj.horzLine3:setAlign("bottom");
-    obj.horzLine3:setName("horzLine3");
-
-    obj.label13 = gui.fromHandle(_obj_newObject("label"));
-    obj.label13:setParent(obj.flowPart8);
-    obj.label13:setAlign("client");
-    obj.label13:setText("Teste de Resistência");
-    obj.label13:setVertTextAlign("trailing");
-    obj.label13:setMargins({left=5});
-    obj.label13:setAutoSize(true);
-    obj.label13:setWordWrap(false);
-    obj.label13:setName("label13");
-    obj.label13:setFontColor("white");
-
-    obj.dataLink5 = gui.fromHandle(_obj_newObject("dataLink"));
-    obj.dataLink5:setParent(obj.flowLayout5);
-    obj.dataLink5:setFields({'atributos.moddestreza', 'bonusProficiencia', 'resistencias.destreza'});
-    obj.dataLink5:setName("dataLink5");
-
-    obj.flowPart9 = gui.fromHandle(_obj_newObject("flowPart"));
-    obj.flowPart9:setParent(obj.flowLayout5);
-    obj.flowPart9:setMinWidth(206);
-    obj.flowPart9:setMaxWidth(250);
-    obj.flowPart9:setHeight(17);
-    obj.flowPart9:setName("flowPart9");
-    obj.flowPart9:setMargins({left=1, right=1, top=2, bottom=2});
-    obj.flowPart9:setVertAlign("leading");
-
-    obj.imageCheckBox4 = gui.fromHandle(_obj_newObject("imageCheckBox"));
-    obj.imageCheckBox4:setParent(obj.flowPart9);
-    obj.imageCheckBox4:setAlign("left");
-    obj.imageCheckBox4:setWidth(20);
-    obj.imageCheckBox4:setMargins({});
-    obj.imageCheckBox4:setField("pericias.acrobacia");
-    obj.imageCheckBox4:setOptimize(false);
-    obj.imageCheckBox4:setImageChecked("images/checkbox1_checked.png");
-    obj.imageCheckBox4:setImageUnchecked("images/checkbox1_unchecked.png");
-    obj.imageCheckBox4:setName("imageCheckBox4");
-    obj.imageCheckBox4:setHeight(20);
-
-    obj.layout6 = gui.fromHandle(_obj_newObject("layout"));
-    obj.layout6:setParent(obj.flowPart9);
-    obj.layout6:setAlign("left");
-    obj.layout6:setWidth(26);
-    obj.layout6:setMargins({left=2});
-    obj.layout6:setName("layout6");
-
-    obj.label14 = gui.fromHandle(_obj_newObject("label"));
-    obj.label14:setParent(obj.layout6);
-    obj.label14:setField("pericias.bonusacrobaciastr");
-    obj.label14:setAlign("client");
-    obj.label14:setHorzTextAlign("center");
-    obj.label14:setVertTextAlign("trailing");
-    obj.label14:setTextTrimming("none");
-    obj.label14:setName("label14");
-    obj.label14:setFontColor("white");
-
-    obj.horzLine4 = gui.fromHandle(_obj_newObject("horzLine"));
-    obj.horzLine4:setParent(obj.layout6);
-    obj.horzLine4:setStrokeColor("white");
-    obj.horzLine4:setStrokeSize(1);
-    obj.horzLine4:setAlign("bottom");
-    obj.horzLine4:setName("horzLine4");
-
-    obj.label15 = gui.fromHandle(_obj_newObject("label"));
-    obj.label15:setParent(obj.flowPart9);
-    obj.label15:setAlign("client");
-    obj.label15:setText("Acrobacia");
-    obj.label15:setVertTextAlign("trailing");
-    obj.label15:setMargins({left=5});
-    obj.label15:setAutoSize(true);
-    obj.label15:setWordWrap(false);
-    obj.label15:setName("label15");
-    obj.label15:setFontColor("white");
-
-    obj.dataLink6 = gui.fromHandle(_obj_newObject("dataLink"));
-    obj.dataLink6:setParent(obj.flowLayout5);
-    obj.dataLink6:setFields({'atributos.moddestreza', 'bonusProficiencia', 'pericias.acrobacia'});
-    obj.dataLink6:setName("dataLink6");
-
-    obj.flowPart10 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart10 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart10:setParent(obj.flowLayout5);
     obj.flowPart10:setMinWidth(206);
     obj.flowPart10:setMaxWidth(250);
@@ -929,28 +929,28 @@ function newfrmElysium()
     obj.flowPart10:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart10:setVertAlign("leading");
 
-    obj.imageCheckBox5 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox5 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox5:setParent(obj.flowPart10);
     obj.imageCheckBox5:setAlign("left");
     obj.imageCheckBox5:setWidth(20);
     obj.imageCheckBox5:setMargins({});
-    obj.imageCheckBox5:setField("pericias.furtividade");
+    obj.imageCheckBox5:setField("resistencias.forca");
     obj.imageCheckBox5:setOptimize(false);
-    obj.imageCheckBox5:setImageChecked("images/checkbox1_checked.png");
-    obj.imageCheckBox5:setImageUnchecked("images/checkbox1_unchecked.png");
+    obj.imageCheckBox5:setImageChecked("images/checkbox2_checked.png");
+    obj.imageCheckBox5:setImageUnchecked("images/checkbox2_unchecked.png");
     obj.imageCheckBox5:setName("imageCheckBox5");
     obj.imageCheckBox5:setHeight(20);
 
-    obj.layout7 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout7 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout7:setParent(obj.flowPart10);
     obj.layout7:setAlign("left");
     obj.layout7:setWidth(26);
     obj.layout7:setMargins({left=2});
     obj.layout7:setName("layout7");
 
-    obj.label16 = gui.fromHandle(_obj_newObject("label"));
+    obj.label16 = GUI.fromHandle(_obj_newObject("label"));
     obj.label16:setParent(obj.layout7);
-    obj.label16:setField("pericias.bonusfurtividadestr");
+    obj.label16:setField("resistencias.bonusforcastr");
     obj.label16:setAlign("client");
     obj.label16:setHorzTextAlign("center");
     obj.label16:setVertTextAlign("trailing");
@@ -958,17 +958,17 @@ function newfrmElysium()
     obj.label16:setName("label16");
     obj.label16:setFontColor("white");
 
-    obj.horzLine5 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine5 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine5:setParent(obj.layout7);
     obj.horzLine5:setStrokeColor("white");
     obj.horzLine5:setStrokeSize(1);
     obj.horzLine5:setAlign("bottom");
     obj.horzLine5:setName("horzLine5");
 
-    obj.label17 = gui.fromHandle(_obj_newObject("label"));
+    obj.label17 = GUI.fromHandle(_obj_newObject("label"));
     obj.label17:setParent(obj.flowPart10);
     obj.label17:setAlign("client");
-    obj.label17:setText("Furtividade");
+    obj.label17:setText("Teste de Resistência");
     obj.label17:setVertTextAlign("trailing");
     obj.label17:setMargins({left=5});
     obj.label17:setAutoSize(true);
@@ -976,12 +976,12 @@ function newfrmElysium()
     obj.label17:setName("label17");
     obj.label17:setFontColor("white");
 
-    obj.dataLink7 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink7 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink7:setParent(obj.flowLayout5);
-    obj.dataLink7:setFields({'atributos.moddestreza', 'bonusProficiencia', 'pericias.furtividade'});
+    obj.dataLink7:setFields({'atributos.modforca', 'bonusProficiencia', 'resistencias.forca'});
     obj.dataLink7:setName("dataLink7");
 
-    obj.flowPart11 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart11 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart11:setParent(obj.flowLayout5);
     obj.flowPart11:setMinWidth(206);
     obj.flowPart11:setMaxWidth(250);
@@ -990,28 +990,28 @@ function newfrmElysium()
     obj.flowPart11:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart11:setVertAlign("leading");
 
-    obj.imageCheckBox6 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox6 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox6:setParent(obj.flowPart11);
     obj.imageCheckBox6:setAlign("left");
     obj.imageCheckBox6:setWidth(20);
     obj.imageCheckBox6:setMargins({});
-    obj.imageCheckBox6:setField("pericias.prestidigitacao");
+    obj.imageCheckBox6:setField("pericias.atletismo");
     obj.imageCheckBox6:setOptimize(false);
     obj.imageCheckBox6:setImageChecked("images/checkbox1_checked.png");
     obj.imageCheckBox6:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox6:setName("imageCheckBox6");
     obj.imageCheckBox6:setHeight(20);
 
-    obj.layout8 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout8 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout8:setParent(obj.flowPart11);
     obj.layout8:setAlign("left");
     obj.layout8:setWidth(26);
     obj.layout8:setMargins({left=2});
     obj.layout8:setName("layout8");
 
-    obj.label18 = gui.fromHandle(_obj_newObject("label"));
+    obj.label18 = GUI.fromHandle(_obj_newObject("label"));
     obj.label18:setParent(obj.layout8);
-    obj.label18:setField("pericias.bonusprestidigitacaostr");
+    obj.label18:setField("pericias.bonusatletismostr");
     obj.label18:setAlign("client");
     obj.label18:setHorzTextAlign("center");
     obj.label18:setVertTextAlign("trailing");
@@ -1019,17 +1019,17 @@ function newfrmElysium()
     obj.label18:setName("label18");
     obj.label18:setFontColor("white");
 
-    obj.horzLine6 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine6 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine6:setParent(obj.layout8);
     obj.horzLine6:setStrokeColor("white");
     obj.horzLine6:setStrokeSize(1);
     obj.horzLine6:setAlign("bottom");
     obj.horzLine6:setName("horzLine6");
 
-    obj.label19 = gui.fromHandle(_obj_newObject("label"));
+    obj.label19 = GUI.fromHandle(_obj_newObject("label"));
     obj.label19:setParent(obj.flowPart11);
     obj.label19:setAlign("client");
-    obj.label19:setText("Prestidigitação");
+    obj.label19:setText("Atletismo");
     obj.label19:setVertTextAlign("trailing");
     obj.label19:setMargins({left=5});
     obj.label19:setAutoSize(true);
@@ -1037,17 +1037,17 @@ function newfrmElysium()
     obj.label19:setName("label19");
     obj.label19:setFontColor("white");
 
-    obj.dataLink8 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink8 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink8:setParent(obj.flowLayout5);
-    obj.dataLink8:setFields({'atributos.moddestreza', 'bonusProficiencia', 'pericias.prestidigitacao'});
+    obj.dataLink8:setFields({'atributos.modforca', 'bonusProficiencia', 'pericias.atletismo'});
     obj.dataLink8:setName("dataLink8");
 
-    obj.dataLink9 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink9 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink9:setParent(obj.fraLayAtributos);
     obj.dataLink9:setField("atributos.constituicao");
     obj.dataLink9:setName("dataLink9");
 
-    obj.flowPart12 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart12 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart12:setParent(obj.fraLayAtributos);
     obj.flowPart12:setHeight(140);
     obj.flowPart12:setMinWidth(320);
@@ -1058,7 +1058,7 @@ function newfrmElysium()
     obj.flowPart12:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart12:setVertAlign("leading");
 
-    obj.layout9 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout9 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout9:setParent(obj.flowPart12);
     obj.layout9:setLeft(6);
     obj.layout9:setTop(12);
@@ -1066,7 +1066,7 @@ function newfrmElysium()
     obj.layout9:setHeight(115);
     obj.layout9:setName("layout9");
 
-    obj.edit6 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edit6 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edit6:setParent(obj.layout9);
     obj.edit6:setAlign("top");
     obj.edit6:setMargins({left=30, right=30});
@@ -1082,7 +1082,7 @@ function newfrmElysium()
     obj.edit6:setFontSize(15);
     obj.edit6:setFontColor("white");
 
-    obj.label20 = gui.fromHandle(_obj_newObject("label"));
+    obj.label20 = GUI.fromHandle(_obj_newObject("label"));
     obj.label20:setParent(obj.flowPart12);
     obj.label20:setFrameRegion("modificador");
     obj.label20:setField("atributos.modconstituicaostr");
@@ -1093,7 +1093,7 @@ function newfrmElysium()
     obj.label20:setName("label20");
     obj.label20:setFontColor("white");
 
-    obj.label21 = gui.fromHandle(_obj_newObject("label"));
+    obj.label21 = GUI.fromHandle(_obj_newObject("label"));
     obj.label21:setParent(obj.flowPart12);
     obj.label21:setFrameRegion("titulo");
     obj.label21:setText("CONSTITUIÇÃO");
@@ -1102,7 +1102,7 @@ function newfrmElysium()
     obj.label21:setName("label21");
     obj.label21:setFontColor("white");
 
-    obj.flowLayout6 = gui.fromHandle(_obj_newObject("flowLayout"));
+    obj.flowLayout6 = GUI.fromHandle(_obj_newObject("flowLayout"));
     obj.flowLayout6:setParent(obj.flowPart12);
     obj.flowLayout6:setFrameRegion("RegiaoDePericias");
     obj.flowLayout6:setAutoHeight(true);
@@ -1112,7 +1112,7 @@ function newfrmElysium()
     obj.flowLayout6:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowLayout6:setVertAlign("leading");
 
-    obj.flowPart13 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart13 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart13:setParent(obj.flowLayout6);
     obj.flowPart13:setMinWidth(206);
     obj.flowPart13:setMaxWidth(250);
@@ -1121,7 +1121,7 @@ function newfrmElysium()
     obj.flowPart13:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart13:setVertAlign("leading");
 
-    obj.imageCheckBox7 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox7 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox7:setParent(obj.flowPart13);
     obj.imageCheckBox7:setAlign("left");
     obj.imageCheckBox7:setWidth(20);
@@ -1133,14 +1133,14 @@ function newfrmElysium()
     obj.imageCheckBox7:setName("imageCheckBox7");
     obj.imageCheckBox7:setHeight(20);
 
-    obj.layout10 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout10 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout10:setParent(obj.flowPart13);
     obj.layout10:setAlign("left");
     obj.layout10:setWidth(26);
     obj.layout10:setMargins({left=2});
     obj.layout10:setName("layout10");
 
-    obj.label22 = gui.fromHandle(_obj_newObject("label"));
+    obj.label22 = GUI.fromHandle(_obj_newObject("label"));
     obj.label22:setParent(obj.layout10);
     obj.label22:setField("resistencias.bonusconstituicaostr");
     obj.label22:setAlign("client");
@@ -1150,14 +1150,14 @@ function newfrmElysium()
     obj.label22:setName("label22");
     obj.label22:setFontColor("white");
 
-    obj.horzLine7 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine7 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine7:setParent(obj.layout10);
     obj.horzLine7:setStrokeColor("white");
     obj.horzLine7:setStrokeSize(1);
     obj.horzLine7:setAlign("bottom");
     obj.horzLine7:setName("horzLine7");
 
-    obj.label23 = gui.fromHandle(_obj_newObject("label"));
+    obj.label23 = GUI.fromHandle(_obj_newObject("label"));
     obj.label23:setParent(obj.flowPart13);
     obj.label23:setAlign("client");
     obj.label23:setText("Teste de Resistência");
@@ -1168,17 +1168,17 @@ function newfrmElysium()
     obj.label23:setName("label23");
     obj.label23:setFontColor("white");
 
-    obj.dataLink10 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink10 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink10:setParent(obj.flowLayout6);
     obj.dataLink10:setFields({'atributos.modconstituicao', 'bonusProficiencia', 'resistencias.constituicao'});
     obj.dataLink10:setName("dataLink10");
 
-    obj.dataLink11 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink11 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink11:setParent(obj.fraLayAtributos);
-    obj.dataLink11:setField("atributos.inteligencia");
+    obj.dataLink11:setField("atributos.carisma");
     obj.dataLink11:setName("dataLink11");
 
-    obj.flowPart14 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart14 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart14:setParent(obj.fraLayAtributos);
     obj.flowPart14:setHeight(140);
     obj.flowPart14:setMinWidth(320);
@@ -1189,7 +1189,7 @@ function newfrmElysium()
     obj.flowPart14:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart14:setVertAlign("leading");
 
-    obj.layout11 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout11 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout11:setParent(obj.flowPart14);
     obj.layout11:setLeft(6);
     obj.layout11:setTop(12);
@@ -1197,11 +1197,11 @@ function newfrmElysium()
     obj.layout11:setHeight(115);
     obj.layout11:setName("layout11");
 
-    obj.edit7 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edit7 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edit7:setParent(obj.layout11);
     obj.edit7:setAlign("top");
     obj.edit7:setMargins({left=30, right=30});
-    obj.edit7:setField("atributos.inteligencia");
+    obj.edit7:setField("atributos.carisma");
     obj.edit7:setHeight(30);
     obj.edit7:setType("number");
     obj.edit7:setMin(0);
@@ -1213,10 +1213,10 @@ function newfrmElysium()
     obj.edit7:setFontSize(15);
     obj.edit7:setFontColor("white");
 
-    obj.label24 = gui.fromHandle(_obj_newObject("label"));
+    obj.label24 = GUI.fromHandle(_obj_newObject("label"));
     obj.label24:setParent(obj.flowPart14);
     obj.label24:setFrameRegion("modificador");
-    obj.label24:setField("atributos.modinteligenciastr");
+    obj.label24:setField("atributos.modcarismastr");
     obj.label24:setHorzTextAlign("center");
     obj.label24:setVertTextAlign("center");
     obj.label24:setFontSize(46);
@@ -1224,16 +1224,16 @@ function newfrmElysium()
     obj.label24:setName("label24");
     obj.label24:setFontColor("white");
 
-    obj.label25 = gui.fromHandle(_obj_newObject("label"));
+    obj.label25 = GUI.fromHandle(_obj_newObject("label"));
     obj.label25:setParent(obj.flowPart14);
     obj.label25:setFrameRegion("titulo");
-    obj.label25:setText("INTELIGÊNCIA");
+    obj.label25:setText("AGILIDADE");
     obj.label25:setVertTextAlign("center");
     obj.label25:setHorzTextAlign("center");
     obj.label25:setName("label25");
     obj.label25:setFontColor("white");
 
-    obj.flowLayout7 = gui.fromHandle(_obj_newObject("flowLayout"));
+    obj.flowLayout7 = GUI.fromHandle(_obj_newObject("flowLayout"));
     obj.flowLayout7:setParent(obj.flowPart14);
     obj.flowLayout7:setFrameRegion("RegiaoDePericias");
     obj.flowLayout7:setAutoHeight(true);
@@ -1243,7 +1243,7 @@ function newfrmElysium()
     obj.flowLayout7:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowLayout7:setVertAlign("leading");
 
-    obj.flowPart15 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart15 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart15:setParent(obj.flowLayout7);
     obj.flowPart15:setMinWidth(206);
     obj.flowPart15:setMaxWidth(250);
@@ -1252,28 +1252,28 @@ function newfrmElysium()
     obj.flowPart15:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart15:setVertAlign("leading");
 
-    obj.imageCheckBox8 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox8 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox8:setParent(obj.flowPart15);
     obj.imageCheckBox8:setAlign("left");
     obj.imageCheckBox8:setWidth(20);
     obj.imageCheckBox8:setMargins({});
-    obj.imageCheckBox8:setField("resistencias.inteligencia");
+    obj.imageCheckBox8:setField("resistencias.carisma");
     obj.imageCheckBox8:setOptimize(false);
     obj.imageCheckBox8:setImageChecked("images/checkbox2_checked.png");
     obj.imageCheckBox8:setImageUnchecked("images/checkbox2_unchecked.png");
     obj.imageCheckBox8:setName("imageCheckBox8");
     obj.imageCheckBox8:setHeight(20);
 
-    obj.layout12 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout12 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout12:setParent(obj.flowPart15);
     obj.layout12:setAlign("left");
     obj.layout12:setWidth(26);
     obj.layout12:setMargins({left=2});
     obj.layout12:setName("layout12");
 
-    obj.label26 = gui.fromHandle(_obj_newObject("label"));
+    obj.label26 = GUI.fromHandle(_obj_newObject("label"));
     obj.label26:setParent(obj.layout12);
-    obj.label26:setField("resistencias.bonusinteligenciastr");
+    obj.label26:setField("resistencias.bonuscarismastr");
     obj.label26:setAlign("client");
     obj.label26:setHorzTextAlign("center");
     obj.label26:setVertTextAlign("trailing");
@@ -1281,14 +1281,14 @@ function newfrmElysium()
     obj.label26:setName("label26");
     obj.label26:setFontColor("white");
 
-    obj.horzLine8 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine8 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine8:setParent(obj.layout12);
     obj.horzLine8:setStrokeColor("white");
     obj.horzLine8:setStrokeSize(1);
     obj.horzLine8:setAlign("bottom");
     obj.horzLine8:setName("horzLine8");
 
-    obj.label27 = gui.fromHandle(_obj_newObject("label"));
+    obj.label27 = GUI.fromHandle(_obj_newObject("label"));
     obj.label27:setParent(obj.flowPart15);
     obj.label27:setAlign("client");
     obj.label27:setText("Teste de Resistência");
@@ -1299,12 +1299,12 @@ function newfrmElysium()
     obj.label27:setName("label27");
     obj.label27:setFontColor("white");
 
-    obj.dataLink12 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink12 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink12:setParent(obj.flowLayout7);
-    obj.dataLink12:setFields({'atributos.modinteligencia', 'bonusProficiencia', 'resistencias.inteligencia'});
+    obj.dataLink12:setFields({'atributos.modcarisma', 'bonusProficiencia', 'resistencias.carisma'});
     obj.dataLink12:setName("dataLink12");
 
-    obj.flowPart16 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart16 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart16:setParent(obj.flowLayout7);
     obj.flowPart16:setMinWidth(206);
     obj.flowPart16:setMaxWidth(250);
@@ -1313,28 +1313,28 @@ function newfrmElysium()
     obj.flowPart16:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart16:setVertAlign("leading");
 
-    obj.imageCheckBox9 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox9 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox9:setParent(obj.flowPart16);
     obj.imageCheckBox9:setAlign("left");
     obj.imageCheckBox9:setWidth(20);
     obj.imageCheckBox9:setMargins({});
-    obj.imageCheckBox9:setField("pericias.arcanismo");
+    obj.imageCheckBox9:setField("pericias.atuacao");
     obj.imageCheckBox9:setOptimize(false);
     obj.imageCheckBox9:setImageChecked("images/checkbox1_checked.png");
     obj.imageCheckBox9:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox9:setName("imageCheckBox9");
     obj.imageCheckBox9:setHeight(20);
 
-    obj.layout13 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout13 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout13:setParent(obj.flowPart16);
     obj.layout13:setAlign("left");
     obj.layout13:setWidth(26);
     obj.layout13:setMargins({left=2});
     obj.layout13:setName("layout13");
 
-    obj.label28 = gui.fromHandle(_obj_newObject("label"));
+    obj.label28 = GUI.fromHandle(_obj_newObject("label"));
     obj.label28:setParent(obj.layout13);
-    obj.label28:setField("pericias.bonusarcanismostr");
+    obj.label28:setField("pericias.bonusatuacaostr");
     obj.label28:setAlign("client");
     obj.label28:setHorzTextAlign("center");
     obj.label28:setVertTextAlign("trailing");
@@ -1342,17 +1342,17 @@ function newfrmElysium()
     obj.label28:setName("label28");
     obj.label28:setFontColor("white");
 
-    obj.horzLine9 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine9 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine9:setParent(obj.layout13);
     obj.horzLine9:setStrokeColor("white");
     obj.horzLine9:setStrokeSize(1);
     obj.horzLine9:setAlign("bottom");
     obj.horzLine9:setName("horzLine9");
 
-    obj.label29 = gui.fromHandle(_obj_newObject("label"));
+    obj.label29 = GUI.fromHandle(_obj_newObject("label"));
     obj.label29:setParent(obj.flowPart16);
     obj.label29:setAlign("client");
-    obj.label29:setText("Arcanismo");
+    obj.label29:setText("Atuação");
     obj.label29:setVertTextAlign("trailing");
     obj.label29:setMargins({left=5});
     obj.label29:setAutoSize(true);
@@ -1360,12 +1360,12 @@ function newfrmElysium()
     obj.label29:setName("label29");
     obj.label29:setFontColor("white");
 
-    obj.dataLink13 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink13 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink13:setParent(obj.flowLayout7);
-    obj.dataLink13:setFields({'atributos.modinteligencia', 'bonusProficiencia', 'pericias.arcanismo'});
+    obj.dataLink13:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.atuacao'});
     obj.dataLink13:setName("dataLink13");
 
-    obj.flowPart17 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart17 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart17:setParent(obj.flowLayout7);
     obj.flowPart17:setMinWidth(206);
     obj.flowPart17:setMaxWidth(250);
@@ -1374,28 +1374,28 @@ function newfrmElysium()
     obj.flowPart17:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart17:setVertAlign("leading");
 
-    obj.imageCheckBox10 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox10 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox10:setParent(obj.flowPart17);
     obj.imageCheckBox10:setAlign("left");
     obj.imageCheckBox10:setWidth(20);
     obj.imageCheckBox10:setMargins({});
-    obj.imageCheckBox10:setField("pericias.historia");
+    obj.imageCheckBox10:setField("pericias.enganacao");
     obj.imageCheckBox10:setOptimize(false);
     obj.imageCheckBox10:setImageChecked("images/checkbox1_checked.png");
     obj.imageCheckBox10:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox10:setName("imageCheckBox10");
     obj.imageCheckBox10:setHeight(20);
 
-    obj.layout14 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout14 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout14:setParent(obj.flowPart17);
     obj.layout14:setAlign("left");
     obj.layout14:setWidth(26);
     obj.layout14:setMargins({left=2});
     obj.layout14:setName("layout14");
 
-    obj.label30 = gui.fromHandle(_obj_newObject("label"));
+    obj.label30 = GUI.fromHandle(_obj_newObject("label"));
     obj.label30:setParent(obj.layout14);
-    obj.label30:setField("pericias.bonushistoriastr");
+    obj.label30:setField("pericias.bonusenganacaostr");
     obj.label30:setAlign("client");
     obj.label30:setHorzTextAlign("center");
     obj.label30:setVertTextAlign("trailing");
@@ -1403,17 +1403,17 @@ function newfrmElysium()
     obj.label30:setName("label30");
     obj.label30:setFontColor("white");
 
-    obj.horzLine10 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine10 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine10:setParent(obj.layout14);
     obj.horzLine10:setStrokeColor("white");
     obj.horzLine10:setStrokeSize(1);
     obj.horzLine10:setAlign("bottom");
     obj.horzLine10:setName("horzLine10");
 
-    obj.label31 = gui.fromHandle(_obj_newObject("label"));
+    obj.label31 = GUI.fromHandle(_obj_newObject("label"));
     obj.label31:setParent(obj.flowPart17);
     obj.label31:setAlign("client");
-    obj.label31:setText("História");
+    obj.label31:setText("Enganação");
     obj.label31:setVertTextAlign("trailing");
     obj.label31:setMargins({left=5});
     obj.label31:setAutoSize(true);
@@ -1421,12 +1421,12 @@ function newfrmElysium()
     obj.label31:setName("label31");
     obj.label31:setFontColor("white");
 
-    obj.dataLink14 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink14 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink14:setParent(obj.flowLayout7);
-    obj.dataLink14:setFields({'atributos.modinteligencia', 'bonusProficiencia', 'pericias.historia'});
+    obj.dataLink14:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.enganacao'});
     obj.dataLink14:setName("dataLink14");
 
-    obj.flowPart18 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart18 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart18:setParent(obj.flowLayout7);
     obj.flowPart18:setMinWidth(206);
     obj.flowPart18:setMaxWidth(250);
@@ -1435,28 +1435,28 @@ function newfrmElysium()
     obj.flowPart18:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart18:setVertAlign("leading");
 
-    obj.imageCheckBox11 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox11 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox11:setParent(obj.flowPart18);
     obj.imageCheckBox11:setAlign("left");
     obj.imageCheckBox11:setWidth(20);
     obj.imageCheckBox11:setMargins({});
-    obj.imageCheckBox11:setField("pericias.investigacao");
+    obj.imageCheckBox11:setField("pericias.intimidacao");
     obj.imageCheckBox11:setOptimize(false);
     obj.imageCheckBox11:setImageChecked("images/checkbox1_checked.png");
     obj.imageCheckBox11:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox11:setName("imageCheckBox11");
     obj.imageCheckBox11:setHeight(20);
 
-    obj.layout15 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout15 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout15:setParent(obj.flowPart18);
     obj.layout15:setAlign("left");
     obj.layout15:setWidth(26);
     obj.layout15:setMargins({left=2});
     obj.layout15:setName("layout15");
 
-    obj.label32 = gui.fromHandle(_obj_newObject("label"));
+    obj.label32 = GUI.fromHandle(_obj_newObject("label"));
     obj.label32:setParent(obj.layout15);
-    obj.label32:setField("pericias.bonusinvestigacaostr");
+    obj.label32:setField("pericias.bonusintimidacaostr");
     obj.label32:setAlign("client");
     obj.label32:setHorzTextAlign("center");
     obj.label32:setVertTextAlign("trailing");
@@ -1464,17 +1464,17 @@ function newfrmElysium()
     obj.label32:setName("label32");
     obj.label32:setFontColor("white");
 
-    obj.horzLine11 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine11 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine11:setParent(obj.layout15);
     obj.horzLine11:setStrokeColor("white");
     obj.horzLine11:setStrokeSize(1);
     obj.horzLine11:setAlign("bottom");
     obj.horzLine11:setName("horzLine11");
 
-    obj.label33 = gui.fromHandle(_obj_newObject("label"));
+    obj.label33 = GUI.fromHandle(_obj_newObject("label"));
     obj.label33:setParent(obj.flowPart18);
     obj.label33:setAlign("client");
-    obj.label33:setText("Investigação");
+    obj.label33:setText("Intimidação");
     obj.label33:setVertTextAlign("trailing");
     obj.label33:setMargins({left=5});
     obj.label33:setAutoSize(true);
@@ -1482,12 +1482,12 @@ function newfrmElysium()
     obj.label33:setName("label33");
     obj.label33:setFontColor("white");
 
-    obj.dataLink15 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink15 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink15:setParent(obj.flowLayout7);
-    obj.dataLink15:setFields({'atributos.modinteligencia', 'bonusProficiencia', 'pericias.investigacao'});
+    obj.dataLink15:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.intimidacao'});
     obj.dataLink15:setName("dataLink15");
 
-    obj.flowPart19 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart19 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart19:setParent(obj.flowLayout7);
     obj.flowPart19:setMinWidth(206);
     obj.flowPart19:setMaxWidth(250);
@@ -1496,28 +1496,28 @@ function newfrmElysium()
     obj.flowPart19:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart19:setVertAlign("leading");
 
-    obj.imageCheckBox12 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox12 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox12:setParent(obj.flowPart19);
     obj.imageCheckBox12:setAlign("left");
     obj.imageCheckBox12:setWidth(20);
     obj.imageCheckBox12:setMargins({});
-    obj.imageCheckBox12:setField("pericias.natureza");
+    obj.imageCheckBox12:setField("pericias.persuasao");
     obj.imageCheckBox12:setOptimize(false);
     obj.imageCheckBox12:setImageChecked("images/checkbox1_checked.png");
     obj.imageCheckBox12:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox12:setName("imageCheckBox12");
     obj.imageCheckBox12:setHeight(20);
 
-    obj.layout16 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout16 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout16:setParent(obj.flowPart19);
     obj.layout16:setAlign("left");
     obj.layout16:setWidth(26);
     obj.layout16:setMargins({left=2});
     obj.layout16:setName("layout16");
 
-    obj.label34 = gui.fromHandle(_obj_newObject("label"));
+    obj.label34 = GUI.fromHandle(_obj_newObject("label"));
     obj.label34:setParent(obj.layout16);
-    obj.label34:setField("pericias.bonusnaturezastr");
+    obj.label34:setField("pericias.bonuspersuasaostr");
     obj.label34:setAlign("client");
     obj.label34:setHorzTextAlign("center");
     obj.label34:setVertTextAlign("trailing");
@@ -1525,17 +1525,17 @@ function newfrmElysium()
     obj.label34:setName("label34");
     obj.label34:setFontColor("white");
 
-    obj.horzLine12 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine12 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine12:setParent(obj.layout16);
     obj.horzLine12:setStrokeColor("white");
     obj.horzLine12:setStrokeSize(1);
     obj.horzLine12:setAlign("bottom");
     obj.horzLine12:setName("horzLine12");
 
-    obj.label35 = gui.fromHandle(_obj_newObject("label"));
+    obj.label35 = GUI.fromHandle(_obj_newObject("label"));
     obj.label35:setParent(obj.flowPart19);
     obj.label35:setAlign("client");
-    obj.label35:setText("Natureza");
+    obj.label35:setText("Persuasão");
     obj.label35:setVertTextAlign("trailing");
     obj.label35:setMargins({left=5});
     obj.label35:setAutoSize(true);
@@ -1543,101 +1543,40 @@ function newfrmElysium()
     obj.label35:setName("label35");
     obj.label35:setFontColor("white");
 
-    obj.dataLink16 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink16 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink16:setParent(obj.flowLayout7);
-    obj.dataLink16:setFields({'atributos.modinteligencia', 'bonusProficiencia', 'pericias.natureza'});
+    obj.dataLink16:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.persuasao'});
     obj.dataLink16:setName("dataLink16");
 
-    obj.flowPart20 = gui.fromHandle(_obj_newObject("flowPart"));
-    obj.flowPart20:setParent(obj.flowLayout7);
-    obj.flowPart20:setMinWidth(206);
-    obj.flowPart20:setMaxWidth(250);
-    obj.flowPart20:setHeight(17);
+    obj.dataLink17 = GUI.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink17:setParent(obj.fraLayAtributos);
+    obj.dataLink17:setField("atributos.inteligencia");
+    obj.dataLink17:setName("dataLink17");
+
+    obj.flowPart20 = GUI.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart20:setParent(obj.fraLayAtributos);
+    obj.flowPart20:setHeight(140);
+    obj.flowPart20:setMinWidth(320);
+    obj.flowPart20:setMaxWidth(420);
+    obj.flowPart20:setMinScaledWidth(305);
+    obj.flowPart20:setFrameStyle("frames/atributeFrame2/frame.xml");
     obj.flowPart20:setName("flowPart20");
     obj.flowPart20:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart20:setVertAlign("leading");
 
-    obj.imageCheckBox13 = gui.fromHandle(_obj_newObject("imageCheckBox"));
-    obj.imageCheckBox13:setParent(obj.flowPart20);
-    obj.imageCheckBox13:setAlign("left");
-    obj.imageCheckBox13:setWidth(20);
-    obj.imageCheckBox13:setMargins({});
-    obj.imageCheckBox13:setField("pericias.religiao");
-    obj.imageCheckBox13:setOptimize(false);
-    obj.imageCheckBox13:setImageChecked("images/checkbox1_checked.png");
-    obj.imageCheckBox13:setImageUnchecked("images/checkbox1_unchecked.png");
-    obj.imageCheckBox13:setName("imageCheckBox13");
-    obj.imageCheckBox13:setHeight(20);
-
-    obj.layout17 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout17 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout17:setParent(obj.flowPart20);
-    obj.layout17:setAlign("left");
-    obj.layout17:setWidth(26);
-    obj.layout17:setMargins({left=2});
+    obj.layout17:setLeft(6);
+    obj.layout17:setTop(12);
+    obj.layout17:setWidth(116);
+    obj.layout17:setHeight(115);
     obj.layout17:setName("layout17");
 
-    obj.label36 = gui.fromHandle(_obj_newObject("label"));
-    obj.label36:setParent(obj.layout17);
-    obj.label36:setField("pericias.bonusreligiaostr");
-    obj.label36:setAlign("client");
-    obj.label36:setHorzTextAlign("center");
-    obj.label36:setVertTextAlign("trailing");
-    obj.label36:setTextTrimming("none");
-    obj.label36:setName("label36");
-    obj.label36:setFontColor("white");
-
-    obj.horzLine13 = gui.fromHandle(_obj_newObject("horzLine"));
-    obj.horzLine13:setParent(obj.layout17);
-    obj.horzLine13:setStrokeColor("white");
-    obj.horzLine13:setStrokeSize(1);
-    obj.horzLine13:setAlign("bottom");
-    obj.horzLine13:setName("horzLine13");
-
-    obj.label37 = gui.fromHandle(_obj_newObject("label"));
-    obj.label37:setParent(obj.flowPart20);
-    obj.label37:setAlign("client");
-    obj.label37:setText("Religião");
-    obj.label37:setVertTextAlign("trailing");
-    obj.label37:setMargins({left=5});
-    obj.label37:setAutoSize(true);
-    obj.label37:setWordWrap(false);
-    obj.label37:setName("label37");
-    obj.label37:setFontColor("white");
-
-    obj.dataLink17 = gui.fromHandle(_obj_newObject("dataLink"));
-    obj.dataLink17:setParent(obj.flowLayout7);
-    obj.dataLink17:setFields({'atributos.modinteligencia', 'bonusProficiencia', 'pericias.religiao'});
-    obj.dataLink17:setName("dataLink17");
-
-    obj.dataLink18 = gui.fromHandle(_obj_newObject("dataLink"));
-    obj.dataLink18:setParent(obj.fraLayAtributos);
-    obj.dataLink18:setField("atributos.sabedoria");
-    obj.dataLink18:setName("dataLink18");
-
-    obj.flowPart21 = gui.fromHandle(_obj_newObject("flowPart"));
-    obj.flowPart21:setParent(obj.fraLayAtributos);
-    obj.flowPart21:setHeight(140);
-    obj.flowPart21:setMinWidth(320);
-    obj.flowPart21:setMaxWidth(420);
-    obj.flowPart21:setMinScaledWidth(305);
-    obj.flowPart21:setFrameStyle("frames/atributeFrame2/frame.xml");
-    obj.flowPart21:setName("flowPart21");
-    obj.flowPart21:setMargins({left=1, right=1, top=2, bottom=2});
-    obj.flowPart21:setVertAlign("leading");
-
-    obj.layout18 = gui.fromHandle(_obj_newObject("layout"));
-    obj.layout18:setParent(obj.flowPart21);
-    obj.layout18:setLeft(6);
-    obj.layout18:setTop(12);
-    obj.layout18:setWidth(116);
-    obj.layout18:setHeight(115);
-    obj.layout18:setName("layout18");
-
-    obj.edit8 = gui.fromHandle(_obj_newObject("edit"));
-    obj.edit8:setParent(obj.layout18);
+    obj.edit8 = GUI.fromHandle(_obj_newObject("edit"));
+    obj.edit8:setParent(obj.layout17);
     obj.edit8:setAlign("top");
     obj.edit8:setMargins({left=30, right=30});
-    obj.edit8:setField("atributos.sabedoria");
+    obj.edit8:setField("atributos.inteligencia");
     obj.edit8:setHeight(30);
     obj.edit8:setType("number");
     obj.edit8:setMin(0);
@@ -1649,28 +1588,28 @@ function newfrmElysium()
     obj.edit8:setFontSize(15);
     obj.edit8:setFontColor("white");
 
-    obj.label38 = gui.fromHandle(_obj_newObject("label"));
-    obj.label38:setParent(obj.flowPart21);
-    obj.label38:setFrameRegion("modificador");
-    obj.label38:setField("atributos.modsabedoriastr");
-    obj.label38:setHorzTextAlign("center");
-    obj.label38:setVertTextAlign("center");
-    obj.label38:setFontSize(46);
-    lfm_setPropAsString(obj.label38, "fontStyle",  "bold");
-    obj.label38:setName("label38");
-    obj.label38:setFontColor("white");
+    obj.label36 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label36:setParent(obj.flowPart20);
+    obj.label36:setFrameRegion("modificador");
+    obj.label36:setField("atributos.modinteligenciastr");
+    obj.label36:setHorzTextAlign("center");
+    obj.label36:setVertTextAlign("center");
+    obj.label36:setFontSize(46);
+    lfm_setPropAsString(obj.label36, "fontStyle",  "bold");
+    obj.label36:setName("label36");
+    obj.label36:setFontColor("white");
 
-    obj.label39 = gui.fromHandle(_obj_newObject("label"));
-    obj.label39:setParent(obj.flowPart21);
-    obj.label39:setFrameRegion("titulo");
-    obj.label39:setText("SABEDORIA");
-    obj.label39:setVertTextAlign("center");
-    obj.label39:setHorzTextAlign("center");
-    obj.label39:setName("label39");
-    obj.label39:setFontColor("white");
+    obj.label37 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label37:setParent(obj.flowPart20);
+    obj.label37:setFrameRegion("titulo");
+    obj.label37:setText("INTELIGÊNCIA");
+    obj.label37:setVertTextAlign("center");
+    obj.label37:setHorzTextAlign("center");
+    obj.label37:setName("label37");
+    obj.label37:setFontColor("white");
 
-    obj.flowLayout8 = gui.fromHandle(_obj_newObject("flowLayout"));
-    obj.flowLayout8:setParent(obj.flowPart21);
+    obj.flowLayout8 = GUI.fromHandle(_obj_newObject("flowLayout"));
+    obj.flowLayout8:setParent(obj.flowPart20);
     obj.flowLayout8:setFrameRegion("RegiaoDePericias");
     obj.flowLayout8:setAutoHeight(true);
     obj.flowLayout8:setLineSpacing(0);
@@ -1679,7 +1618,68 @@ function newfrmElysium()
     obj.flowLayout8:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowLayout8:setVertAlign("leading");
 
-    obj.flowPart22 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart21 = GUI.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart21:setParent(obj.flowLayout8);
+    obj.flowPart21:setMinWidth(206);
+    obj.flowPart21:setMaxWidth(250);
+    obj.flowPart21:setHeight(17);
+    obj.flowPart21:setName("flowPart21");
+    obj.flowPart21:setMargins({left=1, right=1, top=2, bottom=2});
+    obj.flowPart21:setVertAlign("leading");
+
+    obj.imageCheckBox13 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox13:setParent(obj.flowPart21);
+    obj.imageCheckBox13:setAlign("left");
+    obj.imageCheckBox13:setWidth(20);
+    obj.imageCheckBox13:setMargins({});
+    obj.imageCheckBox13:setField("resistencias.inteligencia");
+    obj.imageCheckBox13:setOptimize(false);
+    obj.imageCheckBox13:setImageChecked("images/checkbox2_checked.png");
+    obj.imageCheckBox13:setImageUnchecked("images/checkbox2_unchecked.png");
+    obj.imageCheckBox13:setName("imageCheckBox13");
+    obj.imageCheckBox13:setHeight(20);
+
+    obj.layout18 = GUI.fromHandle(_obj_newObject("layout"));
+    obj.layout18:setParent(obj.flowPart21);
+    obj.layout18:setAlign("left");
+    obj.layout18:setWidth(26);
+    obj.layout18:setMargins({left=2});
+    obj.layout18:setName("layout18");
+
+    obj.label38 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label38:setParent(obj.layout18);
+    obj.label38:setField("resistencias.bonusinteligenciastr");
+    obj.label38:setAlign("client");
+    obj.label38:setHorzTextAlign("center");
+    obj.label38:setVertTextAlign("trailing");
+    obj.label38:setTextTrimming("none");
+    obj.label38:setName("label38");
+    obj.label38:setFontColor("white");
+
+    obj.horzLine13 = GUI.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine13:setParent(obj.layout18);
+    obj.horzLine13:setStrokeColor("white");
+    obj.horzLine13:setStrokeSize(1);
+    obj.horzLine13:setAlign("bottom");
+    obj.horzLine13:setName("horzLine13");
+
+    obj.label39 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label39:setParent(obj.flowPart21);
+    obj.label39:setAlign("client");
+    obj.label39:setText("Teste de Resistência");
+    obj.label39:setVertTextAlign("trailing");
+    obj.label39:setMargins({left=5});
+    obj.label39:setAutoSize(true);
+    obj.label39:setWordWrap(false);
+    obj.label39:setName("label39");
+    obj.label39:setFontColor("white");
+
+    obj.dataLink18 = GUI.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink18:setParent(obj.flowLayout8);
+    obj.dataLink18:setFields({'atributos.modinteligencia', 'bonusProficiencia', 'resistencias.inteligencia'});
+    obj.dataLink18:setName("dataLink18");
+
+    obj.flowPart22 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart22:setParent(obj.flowLayout8);
     obj.flowPart22:setMinWidth(206);
     obj.flowPart22:setMaxWidth(250);
@@ -1688,28 +1688,28 @@ function newfrmElysium()
     obj.flowPart22:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart22:setVertAlign("leading");
 
-    obj.imageCheckBox14 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox14 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox14:setParent(obj.flowPart22);
     obj.imageCheckBox14:setAlign("left");
     obj.imageCheckBox14:setWidth(20);
     obj.imageCheckBox14:setMargins({});
-    obj.imageCheckBox14:setField("resistencias.sabedoria");
+    obj.imageCheckBox14:setField("pericias.arcanismo");
     obj.imageCheckBox14:setOptimize(false);
-    obj.imageCheckBox14:setImageChecked("images/checkbox2_checked.png");
-    obj.imageCheckBox14:setImageUnchecked("images/checkbox2_unchecked.png");
+    obj.imageCheckBox14:setImageChecked("images/checkbox1_checked.png");
+    obj.imageCheckBox14:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox14:setName("imageCheckBox14");
     obj.imageCheckBox14:setHeight(20);
 
-    obj.layout19 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout19 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout19:setParent(obj.flowPart22);
     obj.layout19:setAlign("left");
     obj.layout19:setWidth(26);
     obj.layout19:setMargins({left=2});
     obj.layout19:setName("layout19");
 
-    obj.label40 = gui.fromHandle(_obj_newObject("label"));
+    obj.label40 = GUI.fromHandle(_obj_newObject("label"));
     obj.label40:setParent(obj.layout19);
-    obj.label40:setField("resistencias.bonussabedoriastr");
+    obj.label40:setField("pericias.bonusarcanismostr");
     obj.label40:setAlign("client");
     obj.label40:setHorzTextAlign("center");
     obj.label40:setVertTextAlign("trailing");
@@ -1717,17 +1717,17 @@ function newfrmElysium()
     obj.label40:setName("label40");
     obj.label40:setFontColor("white");
 
-    obj.horzLine14 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine14 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine14:setParent(obj.layout19);
     obj.horzLine14:setStrokeColor("white");
     obj.horzLine14:setStrokeSize(1);
     obj.horzLine14:setAlign("bottom");
     obj.horzLine14:setName("horzLine14");
 
-    obj.label41 = gui.fromHandle(_obj_newObject("label"));
+    obj.label41 = GUI.fromHandle(_obj_newObject("label"));
     obj.label41:setParent(obj.flowPart22);
     obj.label41:setAlign("client");
-    obj.label41:setText("Teste de Resistência");
+    obj.label41:setText("Arcanismo");
     obj.label41:setVertTextAlign("trailing");
     obj.label41:setMargins({left=5});
     obj.label41:setAutoSize(true);
@@ -1735,12 +1735,12 @@ function newfrmElysium()
     obj.label41:setName("label41");
     obj.label41:setFontColor("white");
 
-    obj.dataLink19 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink19 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink19:setParent(obj.flowLayout8);
-    obj.dataLink19:setFields({'atributos.modsabedoria', 'bonusProficiencia', 'resistencias.sabedoria'});
+    obj.dataLink19:setFields({'atributos.modinteligencia', 'bonusProficiencia', 'pericias.arcanismo'});
     obj.dataLink19:setName("dataLink19");
 
-    obj.flowPart23 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart23 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart23:setParent(obj.flowLayout8);
     obj.flowPart23:setMinWidth(206);
     obj.flowPart23:setMaxWidth(250);
@@ -1749,28 +1749,28 @@ function newfrmElysium()
     obj.flowPart23:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart23:setVertAlign("leading");
 
-    obj.imageCheckBox15 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox15 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox15:setParent(obj.flowPart23);
     obj.imageCheckBox15:setAlign("left");
     obj.imageCheckBox15:setWidth(20);
     obj.imageCheckBox15:setMargins({});
-    obj.imageCheckBox15:setField("pericias.adestrarAnimais");
+    obj.imageCheckBox15:setField("pericias.historia");
     obj.imageCheckBox15:setOptimize(false);
     obj.imageCheckBox15:setImageChecked("images/checkbox1_checked.png");
     obj.imageCheckBox15:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox15:setName("imageCheckBox15");
     obj.imageCheckBox15:setHeight(20);
 
-    obj.layout20 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout20 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout20:setParent(obj.flowPart23);
     obj.layout20:setAlign("left");
     obj.layout20:setWidth(26);
     obj.layout20:setMargins({left=2});
     obj.layout20:setName("layout20");
 
-    obj.label42 = gui.fromHandle(_obj_newObject("label"));
+    obj.label42 = GUI.fromHandle(_obj_newObject("label"));
     obj.label42:setParent(obj.layout20);
-    obj.label42:setField("pericias.bonusadestrarAnimaisstr");
+    obj.label42:setField("pericias.bonushistoriastr");
     obj.label42:setAlign("client");
     obj.label42:setHorzTextAlign("center");
     obj.label42:setVertTextAlign("trailing");
@@ -1778,17 +1778,17 @@ function newfrmElysium()
     obj.label42:setName("label42");
     obj.label42:setFontColor("white");
 
-    obj.horzLine15 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine15 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine15:setParent(obj.layout20);
     obj.horzLine15:setStrokeColor("white");
     obj.horzLine15:setStrokeSize(1);
     obj.horzLine15:setAlign("bottom");
     obj.horzLine15:setName("horzLine15");
 
-    obj.label43 = gui.fromHandle(_obj_newObject("label"));
+    obj.label43 = GUI.fromHandle(_obj_newObject("label"));
     obj.label43:setParent(obj.flowPart23);
     obj.label43:setAlign("client");
-    obj.label43:setText("Adestrar Animais");
+    obj.label43:setText("História");
     obj.label43:setVertTextAlign("trailing");
     obj.label43:setMargins({left=5});
     obj.label43:setAutoSize(true);
@@ -1796,12 +1796,12 @@ function newfrmElysium()
     obj.label43:setName("label43");
     obj.label43:setFontColor("white");
 
-    obj.dataLink20 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink20 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink20:setParent(obj.flowLayout8);
-    obj.dataLink20:setFields({'atributos.modsabedoria', 'bonusProficiencia', 'pericias.adestrarAnimais'});
+    obj.dataLink20:setFields({'atributos.modinteligencia', 'bonusProficiencia', 'pericias.historia'});
     obj.dataLink20:setName("dataLink20");
 
-    obj.flowPart24 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart24 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart24:setParent(obj.flowLayout8);
     obj.flowPart24:setMinWidth(206);
     obj.flowPart24:setMaxWidth(250);
@@ -1810,28 +1810,28 @@ function newfrmElysium()
     obj.flowPart24:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart24:setVertAlign("leading");
 
-    obj.imageCheckBox16 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox16 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox16:setParent(obj.flowPart24);
     obj.imageCheckBox16:setAlign("left");
     obj.imageCheckBox16:setWidth(20);
     obj.imageCheckBox16:setMargins({});
-    obj.imageCheckBox16:setField("pericias.intuicao");
+    obj.imageCheckBox16:setField("pericias.investigacao");
     obj.imageCheckBox16:setOptimize(false);
     obj.imageCheckBox16:setImageChecked("images/checkbox1_checked.png");
     obj.imageCheckBox16:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox16:setName("imageCheckBox16");
     obj.imageCheckBox16:setHeight(20);
 
-    obj.layout21 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout21 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout21:setParent(obj.flowPart24);
     obj.layout21:setAlign("left");
     obj.layout21:setWidth(26);
     obj.layout21:setMargins({left=2});
     obj.layout21:setName("layout21");
 
-    obj.label44 = gui.fromHandle(_obj_newObject("label"));
+    obj.label44 = GUI.fromHandle(_obj_newObject("label"));
     obj.label44:setParent(obj.layout21);
-    obj.label44:setField("pericias.bonusintuicaostr");
+    obj.label44:setField("pericias.bonusinvestigacaostr");
     obj.label44:setAlign("client");
     obj.label44:setHorzTextAlign("center");
     obj.label44:setVertTextAlign("trailing");
@@ -1839,17 +1839,17 @@ function newfrmElysium()
     obj.label44:setName("label44");
     obj.label44:setFontColor("white");
 
-    obj.horzLine16 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine16 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine16:setParent(obj.layout21);
     obj.horzLine16:setStrokeColor("white");
     obj.horzLine16:setStrokeSize(1);
     obj.horzLine16:setAlign("bottom");
     obj.horzLine16:setName("horzLine16");
 
-    obj.label45 = gui.fromHandle(_obj_newObject("label"));
+    obj.label45 = GUI.fromHandle(_obj_newObject("label"));
     obj.label45:setParent(obj.flowPart24);
     obj.label45:setAlign("client");
-    obj.label45:setText("Intuição");
+    obj.label45:setText("Investigação");
     obj.label45:setVertTextAlign("trailing");
     obj.label45:setMargins({left=5});
     obj.label45:setAutoSize(true);
@@ -1857,12 +1857,12 @@ function newfrmElysium()
     obj.label45:setName("label45");
     obj.label45:setFontColor("white");
 
-    obj.dataLink21 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink21 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink21:setParent(obj.flowLayout8);
-    obj.dataLink21:setFields({'atributos.modsabedoria', 'bonusProficiencia', 'pericias.intuicao'});
+    obj.dataLink21:setFields({'atributos.modinteligencia', 'bonusProficiencia', 'pericias.investigacao'});
     obj.dataLink21:setName("dataLink21");
 
-    obj.flowPart25 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart25 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart25:setParent(obj.flowLayout8);
     obj.flowPart25:setMinWidth(206);
     obj.flowPart25:setMaxWidth(250);
@@ -1871,28 +1871,28 @@ function newfrmElysium()
     obj.flowPart25:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart25:setVertAlign("leading");
 
-    obj.imageCheckBox17 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox17 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox17:setParent(obj.flowPart25);
     obj.imageCheckBox17:setAlign("left");
     obj.imageCheckBox17:setWidth(20);
     obj.imageCheckBox17:setMargins({});
-    obj.imageCheckBox17:setField("pericias.medicina");
+    obj.imageCheckBox17:setField("pericias.natureza");
     obj.imageCheckBox17:setOptimize(false);
     obj.imageCheckBox17:setImageChecked("images/checkbox1_checked.png");
     obj.imageCheckBox17:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox17:setName("imageCheckBox17");
     obj.imageCheckBox17:setHeight(20);
 
-    obj.layout22 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout22 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout22:setParent(obj.flowPart25);
     obj.layout22:setAlign("left");
     obj.layout22:setWidth(26);
     obj.layout22:setMargins({left=2});
     obj.layout22:setName("layout22");
 
-    obj.label46 = gui.fromHandle(_obj_newObject("label"));
+    obj.label46 = GUI.fromHandle(_obj_newObject("label"));
     obj.label46:setParent(obj.layout22);
-    obj.label46:setField("pericias.bonusmedicinastr");
+    obj.label46:setField("pericias.bonusnaturezastr");
     obj.label46:setAlign("client");
     obj.label46:setHorzTextAlign("center");
     obj.label46:setVertTextAlign("trailing");
@@ -1900,17 +1900,17 @@ function newfrmElysium()
     obj.label46:setName("label46");
     obj.label46:setFontColor("white");
 
-    obj.horzLine17 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine17 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine17:setParent(obj.layout22);
     obj.horzLine17:setStrokeColor("white");
     obj.horzLine17:setStrokeSize(1);
     obj.horzLine17:setAlign("bottom");
     obj.horzLine17:setName("horzLine17");
 
-    obj.label47 = gui.fromHandle(_obj_newObject("label"));
+    obj.label47 = GUI.fromHandle(_obj_newObject("label"));
     obj.label47:setParent(obj.flowPart25);
     obj.label47:setAlign("client");
-    obj.label47:setText("Medicina");
+    obj.label47:setText("Natureza");
     obj.label47:setVertTextAlign("trailing");
     obj.label47:setMargins({left=5});
     obj.label47:setAutoSize(true);
@@ -1918,12 +1918,12 @@ function newfrmElysium()
     obj.label47:setName("label47");
     obj.label47:setFontColor("white");
 
-    obj.dataLink22 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink22 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink22:setParent(obj.flowLayout8);
-    obj.dataLink22:setFields({'atributos.modsabedoria', 'bonusProficiencia', 'pericias.medicina'});
+    obj.dataLink22:setFields({'atributos.modinteligencia', 'bonusProficiencia', 'pericias.natureza'});
     obj.dataLink22:setName("dataLink22");
 
-    obj.flowPart26 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart26 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart26:setParent(obj.flowLayout8);
     obj.flowPart26:setMinWidth(206);
     obj.flowPart26:setMaxWidth(250);
@@ -1932,28 +1932,28 @@ function newfrmElysium()
     obj.flowPart26:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart26:setVertAlign("leading");
 
-    obj.imageCheckBox18 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox18 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox18:setParent(obj.flowPart26);
     obj.imageCheckBox18:setAlign("left");
     obj.imageCheckBox18:setWidth(20);
     obj.imageCheckBox18:setMargins({});
-    obj.imageCheckBox18:setField("pericias.percepcao");
+    obj.imageCheckBox18:setField("pericias.religiao");
     obj.imageCheckBox18:setOptimize(false);
     obj.imageCheckBox18:setImageChecked("images/checkbox1_checked.png");
     obj.imageCheckBox18:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox18:setName("imageCheckBox18");
     obj.imageCheckBox18:setHeight(20);
 
-    obj.layout23 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout23 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout23:setParent(obj.flowPart26);
     obj.layout23:setAlign("left");
     obj.layout23:setWidth(26);
     obj.layout23:setMargins({left=2});
     obj.layout23:setName("layout23");
 
-    obj.label48 = gui.fromHandle(_obj_newObject("label"));
+    obj.label48 = GUI.fromHandle(_obj_newObject("label"));
     obj.label48:setParent(obj.layout23);
-    obj.label48:setField("pericias.bonuspercepcaostr");
+    obj.label48:setField("pericias.bonusreligiaostr");
     obj.label48:setAlign("client");
     obj.label48:setHorzTextAlign("center");
     obj.label48:setVertTextAlign("trailing");
@@ -1961,17 +1961,17 @@ function newfrmElysium()
     obj.label48:setName("label48");
     obj.label48:setFontColor("white");
 
-    obj.horzLine18 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine18 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine18:setParent(obj.layout23);
     obj.horzLine18:setStrokeColor("white");
     obj.horzLine18:setStrokeSize(1);
     obj.horzLine18:setAlign("bottom");
     obj.horzLine18:setName("horzLine18");
 
-    obj.label49 = gui.fromHandle(_obj_newObject("label"));
+    obj.label49 = GUI.fromHandle(_obj_newObject("label"));
     obj.label49:setParent(obj.flowPart26);
     obj.label49:setAlign("client");
-    obj.label49:setText("Percepção");
+    obj.label49:setText("Religião");
     obj.label49:setVertTextAlign("trailing");
     obj.label49:setMargins({left=5});
     obj.label49:setAutoSize(true);
@@ -1979,98 +1979,37 @@ function newfrmElysium()
     obj.label49:setName("label49");
     obj.label49:setFontColor("white");
 
-    obj.dataLink23 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink23 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink23:setParent(obj.flowLayout8);
-    obj.dataLink23:setFields({'atributos.modsabedoria', 'bonusProficiencia', 'pericias.percepcao'});
+    obj.dataLink23:setFields({'atributos.modinteligencia', 'bonusProficiencia', 'pericias.religiao'});
     obj.dataLink23:setName("dataLink23");
 
-    obj.flowPart27 = gui.fromHandle(_obj_newObject("flowPart"));
-    obj.flowPart27:setParent(obj.flowLayout8);
-    obj.flowPart27:setMinWidth(206);
-    obj.flowPart27:setMaxWidth(250);
-    obj.flowPart27:setHeight(17);
+    obj.dataLink24 = GUI.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink24:setParent(obj.fraLayAtributos);
+    obj.dataLink24:setField("atributos.carisma");
+    obj.dataLink24:setName("dataLink24");
+
+    obj.flowPart27 = GUI.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart27:setParent(obj.fraLayAtributos);
+    obj.flowPart27:setHeight(140);
+    obj.flowPart27:setMinWidth(320);
+    obj.flowPart27:setMaxWidth(420);
+    obj.flowPart27:setMinScaledWidth(305);
+    obj.flowPart27:setFrameStyle("frames/atributeFrame2/frame.xml");
     obj.flowPart27:setName("flowPart27");
     obj.flowPart27:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart27:setVertAlign("leading");
 
-    obj.imageCheckBox19 = gui.fromHandle(_obj_newObject("imageCheckBox"));
-    obj.imageCheckBox19:setParent(obj.flowPart27);
-    obj.imageCheckBox19:setAlign("left");
-    obj.imageCheckBox19:setWidth(20);
-    obj.imageCheckBox19:setMargins({});
-    obj.imageCheckBox19:setField("pericias.sobrevivencia");
-    obj.imageCheckBox19:setOptimize(false);
-    obj.imageCheckBox19:setImageChecked("images/checkbox1_checked.png");
-    obj.imageCheckBox19:setImageUnchecked("images/checkbox1_unchecked.png");
-    obj.imageCheckBox19:setName("imageCheckBox19");
-    obj.imageCheckBox19:setHeight(20);
-
-    obj.layout24 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout24 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout24:setParent(obj.flowPart27);
-    obj.layout24:setAlign("left");
-    obj.layout24:setWidth(26);
-    obj.layout24:setMargins({left=2});
+    obj.layout24:setLeft(6);
+    obj.layout24:setTop(12);
+    obj.layout24:setWidth(116);
+    obj.layout24:setHeight(115);
     obj.layout24:setName("layout24");
 
-    obj.label50 = gui.fromHandle(_obj_newObject("label"));
-    obj.label50:setParent(obj.layout24);
-    obj.label50:setField("pericias.bonussobrevivenciastr");
-    obj.label50:setAlign("client");
-    obj.label50:setHorzTextAlign("center");
-    obj.label50:setVertTextAlign("trailing");
-    obj.label50:setTextTrimming("none");
-    obj.label50:setName("label50");
-    obj.label50:setFontColor("white");
-
-    obj.horzLine19 = gui.fromHandle(_obj_newObject("horzLine"));
-    obj.horzLine19:setParent(obj.layout24);
-    obj.horzLine19:setStrokeColor("white");
-    obj.horzLine19:setStrokeSize(1);
-    obj.horzLine19:setAlign("bottom");
-    obj.horzLine19:setName("horzLine19");
-
-    obj.label51 = gui.fromHandle(_obj_newObject("label"));
-    obj.label51:setParent(obj.flowPart27);
-    obj.label51:setAlign("client");
-    obj.label51:setText("Sobrevivência");
-    obj.label51:setVertTextAlign("trailing");
-    obj.label51:setMargins({left=5});
-    obj.label51:setAutoSize(true);
-    obj.label51:setWordWrap(false);
-    obj.label51:setName("label51");
-    obj.label51:setFontColor("white");
-
-    obj.dataLink24 = gui.fromHandle(_obj_newObject("dataLink"));
-    obj.dataLink24:setParent(obj.flowLayout8);
-    obj.dataLink24:setFields({'atributos.modsabedoria', 'bonusProficiencia', 'pericias.sobrevivencia'});
-    obj.dataLink24:setName("dataLink24");
-
-    obj.dataLink25 = gui.fromHandle(_obj_newObject("dataLink"));
-    obj.dataLink25:setParent(obj.fraLayAtributos);
-    obj.dataLink25:setField("atributos.carisma");
-    obj.dataLink25:setName("dataLink25");
-
-    obj.flowPart28 = gui.fromHandle(_obj_newObject("flowPart"));
-    obj.flowPart28:setParent(obj.fraLayAtributos);
-    obj.flowPart28:setHeight(140);
-    obj.flowPart28:setMinWidth(320);
-    obj.flowPart28:setMaxWidth(420);
-    obj.flowPart28:setMinScaledWidth(305);
-    obj.flowPart28:setFrameStyle("frames/atributeFrame2/frame.xml");
-    obj.flowPart28:setName("flowPart28");
-    obj.flowPart28:setMargins({left=1, right=1, top=2, bottom=2});
-    obj.flowPart28:setVertAlign("leading");
-
-    obj.layout25 = gui.fromHandle(_obj_newObject("layout"));
-    obj.layout25:setParent(obj.flowPart28);
-    obj.layout25:setLeft(6);
-    obj.layout25:setTop(12);
-    obj.layout25:setWidth(116);
-    obj.layout25:setHeight(115);
-    obj.layout25:setName("layout25");
-
-    obj.edit9 = gui.fromHandle(_obj_newObject("edit"));
-    obj.edit9:setParent(obj.layout25);
+    obj.edit9 = GUI.fromHandle(_obj_newObject("edit"));
+    obj.edit9:setParent(obj.layout24);
     obj.edit9:setAlign("top");
     obj.edit9:setMargins({left=30, right=30});
     obj.edit9:setField("atributos.carisma");
@@ -2085,28 +2024,28 @@ function newfrmElysium()
     obj.edit9:setFontSize(15);
     obj.edit9:setFontColor("white");
 
-    obj.label52 = gui.fromHandle(_obj_newObject("label"));
-    obj.label52:setParent(obj.flowPart28);
-    obj.label52:setFrameRegion("modificador");
-    obj.label52:setField("atributos.modcarismastr");
-    obj.label52:setHorzTextAlign("center");
-    obj.label52:setVertTextAlign("center");
-    obj.label52:setFontSize(46);
-    lfm_setPropAsString(obj.label52, "fontStyle",  "bold");
-    obj.label52:setName("label52");
-    obj.label52:setFontColor("white");
+    obj.label50 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label50:setParent(obj.flowPart27);
+    obj.label50:setFrameRegion("modificador");
+    obj.label50:setField("atributos.modcarismastr");
+    obj.label50:setHorzTextAlign("center");
+    obj.label50:setVertTextAlign("center");
+    obj.label50:setFontSize(46);
+    lfm_setPropAsString(obj.label50, "fontStyle",  "bold");
+    obj.label50:setName("label50");
+    obj.label50:setFontColor("white");
 
-    obj.label53 = gui.fromHandle(_obj_newObject("label"));
-    obj.label53:setParent(obj.flowPart28);
-    obj.label53:setFrameRegion("titulo");
-    obj.label53:setText("CARISMA");
-    obj.label53:setVertTextAlign("center");
-    obj.label53:setHorzTextAlign("center");
-    obj.label53:setName("label53");
-    obj.label53:setFontColor("white");
+    obj.label51 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label51:setParent(obj.flowPart27);
+    obj.label51:setFrameRegion("titulo");
+    obj.label51:setText("AUTO-CONTROLE");
+    obj.label51:setVertTextAlign("center");
+    obj.label51:setHorzTextAlign("center");
+    obj.label51:setName("label51");
+    obj.label51:setFontColor("white");
 
-    obj.flowLayout9 = gui.fromHandle(_obj_newObject("flowLayout"));
-    obj.flowLayout9:setParent(obj.flowPart28);
+    obj.flowLayout9 = GUI.fromHandle(_obj_newObject("flowLayout"));
+    obj.flowLayout9:setParent(obj.flowPart27);
     obj.flowLayout9:setFrameRegion("RegiaoDePericias");
     obj.flowLayout9:setAutoHeight(true);
     obj.flowLayout9:setLineSpacing(0);
@@ -2115,7 +2054,68 @@ function newfrmElysium()
     obj.flowLayout9:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowLayout9:setVertAlign("leading");
 
-    obj.flowPart29 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart28 = GUI.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart28:setParent(obj.flowLayout9);
+    obj.flowPart28:setMinWidth(206);
+    obj.flowPart28:setMaxWidth(250);
+    obj.flowPart28:setHeight(17);
+    obj.flowPart28:setName("flowPart28");
+    obj.flowPart28:setMargins({left=1, right=1, top=2, bottom=2});
+    obj.flowPart28:setVertAlign("leading");
+
+    obj.imageCheckBox19 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox19:setParent(obj.flowPart28);
+    obj.imageCheckBox19:setAlign("left");
+    obj.imageCheckBox19:setWidth(20);
+    obj.imageCheckBox19:setMargins({});
+    obj.imageCheckBox19:setField("resistencias.carisma");
+    obj.imageCheckBox19:setOptimize(false);
+    obj.imageCheckBox19:setImageChecked("images/checkbox2_checked.png");
+    obj.imageCheckBox19:setImageUnchecked("images/checkbox2_unchecked.png");
+    obj.imageCheckBox19:setName("imageCheckBox19");
+    obj.imageCheckBox19:setHeight(20);
+
+    obj.layout25 = GUI.fromHandle(_obj_newObject("layout"));
+    obj.layout25:setParent(obj.flowPart28);
+    obj.layout25:setAlign("left");
+    obj.layout25:setWidth(26);
+    obj.layout25:setMargins({left=2});
+    obj.layout25:setName("layout25");
+
+    obj.label52 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label52:setParent(obj.layout25);
+    obj.label52:setField("resistencias.bonuscarismastr");
+    obj.label52:setAlign("client");
+    obj.label52:setHorzTextAlign("center");
+    obj.label52:setVertTextAlign("trailing");
+    obj.label52:setTextTrimming("none");
+    obj.label52:setName("label52");
+    obj.label52:setFontColor("white");
+
+    obj.horzLine19 = GUI.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine19:setParent(obj.layout25);
+    obj.horzLine19:setStrokeColor("white");
+    obj.horzLine19:setStrokeSize(1);
+    obj.horzLine19:setAlign("bottom");
+    obj.horzLine19:setName("horzLine19");
+
+    obj.label53 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label53:setParent(obj.flowPart28);
+    obj.label53:setAlign("client");
+    obj.label53:setText("Teste de Resistência");
+    obj.label53:setVertTextAlign("trailing");
+    obj.label53:setMargins({left=5});
+    obj.label53:setAutoSize(true);
+    obj.label53:setWordWrap(false);
+    obj.label53:setName("label53");
+    obj.label53:setFontColor("white");
+
+    obj.dataLink25 = GUI.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink25:setParent(obj.flowLayout9);
+    obj.dataLink25:setFields({'atributos.modcarisma', 'bonusProficiencia', 'resistencias.carisma'});
+    obj.dataLink25:setName("dataLink25");
+
+    obj.flowPart29 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart29:setParent(obj.flowLayout9);
     obj.flowPart29:setMinWidth(206);
     obj.flowPart29:setMaxWidth(250);
@@ -2124,28 +2124,28 @@ function newfrmElysium()
     obj.flowPart29:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart29:setVertAlign("leading");
 
-    obj.imageCheckBox20 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox20 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox20:setParent(obj.flowPart29);
     obj.imageCheckBox20:setAlign("left");
     obj.imageCheckBox20:setWidth(20);
     obj.imageCheckBox20:setMargins({});
-    obj.imageCheckBox20:setField("resistencias.carisma");
+    obj.imageCheckBox20:setField("pericias.atuacao");
     obj.imageCheckBox20:setOptimize(false);
-    obj.imageCheckBox20:setImageChecked("images/checkbox2_checked.png");
-    obj.imageCheckBox20:setImageUnchecked("images/checkbox2_unchecked.png");
+    obj.imageCheckBox20:setImageChecked("images/checkbox1_checked.png");
+    obj.imageCheckBox20:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox20:setName("imageCheckBox20");
     obj.imageCheckBox20:setHeight(20);
 
-    obj.layout26 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout26 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout26:setParent(obj.flowPart29);
     obj.layout26:setAlign("left");
     obj.layout26:setWidth(26);
     obj.layout26:setMargins({left=2});
     obj.layout26:setName("layout26");
 
-    obj.label54 = gui.fromHandle(_obj_newObject("label"));
+    obj.label54 = GUI.fromHandle(_obj_newObject("label"));
     obj.label54:setParent(obj.layout26);
-    obj.label54:setField("resistencias.bonuscarismastr");
+    obj.label54:setField("pericias.bonusatuacaostr");
     obj.label54:setAlign("client");
     obj.label54:setHorzTextAlign("center");
     obj.label54:setVertTextAlign("trailing");
@@ -2153,17 +2153,17 @@ function newfrmElysium()
     obj.label54:setName("label54");
     obj.label54:setFontColor("white");
 
-    obj.horzLine20 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine20 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine20:setParent(obj.layout26);
     obj.horzLine20:setStrokeColor("white");
     obj.horzLine20:setStrokeSize(1);
     obj.horzLine20:setAlign("bottom");
     obj.horzLine20:setName("horzLine20");
 
-    obj.label55 = gui.fromHandle(_obj_newObject("label"));
+    obj.label55 = GUI.fromHandle(_obj_newObject("label"));
     obj.label55:setParent(obj.flowPart29);
     obj.label55:setAlign("client");
-    obj.label55:setText("Teste de Resistência");
+    obj.label55:setText("Atuação");
     obj.label55:setVertTextAlign("trailing");
     obj.label55:setMargins({left=5});
     obj.label55:setAutoSize(true);
@@ -2171,12 +2171,12 @@ function newfrmElysium()
     obj.label55:setName("label55");
     obj.label55:setFontColor("white");
 
-    obj.dataLink26 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink26 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink26:setParent(obj.flowLayout9);
-    obj.dataLink26:setFields({'atributos.modcarisma', 'bonusProficiencia', 'resistencias.carisma'});
+    obj.dataLink26:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.atuacao'});
     obj.dataLink26:setName("dataLink26");
 
-    obj.flowPart30 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart30 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart30:setParent(obj.flowLayout9);
     obj.flowPart30:setMinWidth(206);
     obj.flowPart30:setMaxWidth(250);
@@ -2185,28 +2185,28 @@ function newfrmElysium()
     obj.flowPart30:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart30:setVertAlign("leading");
 
-    obj.imageCheckBox21 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox21 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox21:setParent(obj.flowPart30);
     obj.imageCheckBox21:setAlign("left");
     obj.imageCheckBox21:setWidth(20);
     obj.imageCheckBox21:setMargins({});
-    obj.imageCheckBox21:setField("pericias.atuacao");
+    obj.imageCheckBox21:setField("pericias.enganacao");
     obj.imageCheckBox21:setOptimize(false);
     obj.imageCheckBox21:setImageChecked("images/checkbox1_checked.png");
     obj.imageCheckBox21:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox21:setName("imageCheckBox21");
     obj.imageCheckBox21:setHeight(20);
 
-    obj.layout27 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout27 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout27:setParent(obj.flowPart30);
     obj.layout27:setAlign("left");
     obj.layout27:setWidth(26);
     obj.layout27:setMargins({left=2});
     obj.layout27:setName("layout27");
 
-    obj.label56 = gui.fromHandle(_obj_newObject("label"));
+    obj.label56 = GUI.fromHandle(_obj_newObject("label"));
     obj.label56:setParent(obj.layout27);
-    obj.label56:setField("pericias.bonusatuacaostr");
+    obj.label56:setField("pericias.bonusenganacaostr");
     obj.label56:setAlign("client");
     obj.label56:setHorzTextAlign("center");
     obj.label56:setVertTextAlign("trailing");
@@ -2214,17 +2214,17 @@ function newfrmElysium()
     obj.label56:setName("label56");
     obj.label56:setFontColor("white");
 
-    obj.horzLine21 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine21 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine21:setParent(obj.layout27);
     obj.horzLine21:setStrokeColor("white");
     obj.horzLine21:setStrokeSize(1);
     obj.horzLine21:setAlign("bottom");
     obj.horzLine21:setName("horzLine21");
 
-    obj.label57 = gui.fromHandle(_obj_newObject("label"));
+    obj.label57 = GUI.fromHandle(_obj_newObject("label"));
     obj.label57:setParent(obj.flowPart30);
     obj.label57:setAlign("client");
-    obj.label57:setText("Atuação");
+    obj.label57:setText("Enganação");
     obj.label57:setVertTextAlign("trailing");
     obj.label57:setMargins({left=5});
     obj.label57:setAutoSize(true);
@@ -2232,12 +2232,12 @@ function newfrmElysium()
     obj.label57:setName("label57");
     obj.label57:setFontColor("white");
 
-    obj.dataLink27 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink27 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink27:setParent(obj.flowLayout9);
-    obj.dataLink27:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.atuacao'});
+    obj.dataLink27:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.enganacao'});
     obj.dataLink27:setName("dataLink27");
 
-    obj.flowPart31 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart31 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart31:setParent(obj.flowLayout9);
     obj.flowPart31:setMinWidth(206);
     obj.flowPart31:setMaxWidth(250);
@@ -2246,28 +2246,28 @@ function newfrmElysium()
     obj.flowPart31:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart31:setVertAlign("leading");
 
-    obj.imageCheckBox22 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox22 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox22:setParent(obj.flowPart31);
     obj.imageCheckBox22:setAlign("left");
     obj.imageCheckBox22:setWidth(20);
     obj.imageCheckBox22:setMargins({});
-    obj.imageCheckBox22:setField("pericias.enganacao");
+    obj.imageCheckBox22:setField("pericias.intimidacao");
     obj.imageCheckBox22:setOptimize(false);
     obj.imageCheckBox22:setImageChecked("images/checkbox1_checked.png");
     obj.imageCheckBox22:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox22:setName("imageCheckBox22");
     obj.imageCheckBox22:setHeight(20);
 
-    obj.layout28 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout28 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout28:setParent(obj.flowPart31);
     obj.layout28:setAlign("left");
     obj.layout28:setWidth(26);
     obj.layout28:setMargins({left=2});
     obj.layout28:setName("layout28");
 
-    obj.label58 = gui.fromHandle(_obj_newObject("label"));
+    obj.label58 = GUI.fromHandle(_obj_newObject("label"));
     obj.label58:setParent(obj.layout28);
-    obj.label58:setField("pericias.bonusenganacaostr");
+    obj.label58:setField("pericias.bonusintimidacaostr");
     obj.label58:setAlign("client");
     obj.label58:setHorzTextAlign("center");
     obj.label58:setVertTextAlign("trailing");
@@ -2275,17 +2275,17 @@ function newfrmElysium()
     obj.label58:setName("label58");
     obj.label58:setFontColor("white");
 
-    obj.horzLine22 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine22 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine22:setParent(obj.layout28);
     obj.horzLine22:setStrokeColor("white");
     obj.horzLine22:setStrokeSize(1);
     obj.horzLine22:setAlign("bottom");
     obj.horzLine22:setName("horzLine22");
 
-    obj.label59 = gui.fromHandle(_obj_newObject("label"));
+    obj.label59 = GUI.fromHandle(_obj_newObject("label"));
     obj.label59:setParent(obj.flowPart31);
     obj.label59:setAlign("client");
-    obj.label59:setText("Enganação");
+    obj.label59:setText("Intimidação");
     obj.label59:setVertTextAlign("trailing");
     obj.label59:setMargins({left=5});
     obj.label59:setAutoSize(true);
@@ -2293,12 +2293,12 @@ function newfrmElysium()
     obj.label59:setName("label59");
     obj.label59:setFontColor("white");
 
-    obj.dataLink28 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink28 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink28:setParent(obj.flowLayout9);
-    obj.dataLink28:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.enganacao'});
+    obj.dataLink28:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.intimidacao'});
     obj.dataLink28:setName("dataLink28");
 
-    obj.flowPart32 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart32 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart32:setParent(obj.flowLayout9);
     obj.flowPart32:setMinWidth(206);
     obj.flowPart32:setMaxWidth(250);
@@ -2307,28 +2307,28 @@ function newfrmElysium()
     obj.flowPart32:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart32:setVertAlign("leading");
 
-    obj.imageCheckBox23 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox23 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox23:setParent(obj.flowPart32);
     obj.imageCheckBox23:setAlign("left");
     obj.imageCheckBox23:setWidth(20);
     obj.imageCheckBox23:setMargins({});
-    obj.imageCheckBox23:setField("pericias.intimidacao");
+    obj.imageCheckBox23:setField("pericias.persuasao");
     obj.imageCheckBox23:setOptimize(false);
     obj.imageCheckBox23:setImageChecked("images/checkbox1_checked.png");
     obj.imageCheckBox23:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox23:setName("imageCheckBox23");
     obj.imageCheckBox23:setHeight(20);
 
-    obj.layout29 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout29 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout29:setParent(obj.flowPart32);
     obj.layout29:setAlign("left");
     obj.layout29:setWidth(26);
     obj.layout29:setMargins({left=2});
     obj.layout29:setName("layout29");
 
-    obj.label60 = gui.fromHandle(_obj_newObject("label"));
+    obj.label60 = GUI.fromHandle(_obj_newObject("label"));
     obj.label60:setParent(obj.layout29);
-    obj.label60:setField("pericias.bonusintimidacaostr");
+    obj.label60:setField("pericias.bonuspersuasaostr");
     obj.label60:setAlign("client");
     obj.label60:setHorzTextAlign("center");
     obj.label60:setVertTextAlign("trailing");
@@ -2336,17 +2336,17 @@ function newfrmElysium()
     obj.label60:setName("label60");
     obj.label60:setFontColor("white");
 
-    obj.horzLine23 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine23 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine23:setParent(obj.layout29);
     obj.horzLine23:setStrokeColor("white");
     obj.horzLine23:setStrokeSize(1);
     obj.horzLine23:setAlign("bottom");
     obj.horzLine23:setName("horzLine23");
 
-    obj.label61 = gui.fromHandle(_obj_newObject("label"));
+    obj.label61 = GUI.fromHandle(_obj_newObject("label"));
     obj.label61:setParent(obj.flowPart32);
     obj.label61:setAlign("client");
-    obj.label61:setText("Intimidação");
+    obj.label61:setText("Persuasão");
     obj.label61:setVertTextAlign("trailing");
     obj.label61:setMargins({left=5});
     obj.label61:setAutoSize(true);
@@ -2354,101 +2354,40 @@ function newfrmElysium()
     obj.label61:setName("label61");
     obj.label61:setFontColor("white");
 
-    obj.dataLink29 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink29 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink29:setParent(obj.flowLayout9);
-    obj.dataLink29:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.intimidacao'});
+    obj.dataLink29:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.persuasao'});
     obj.dataLink29:setName("dataLink29");
 
-    obj.flowPart33 = gui.fromHandle(_obj_newObject("flowPart"));
-    obj.flowPart33:setParent(obj.flowLayout9);
-    obj.flowPart33:setMinWidth(206);
-    obj.flowPart33:setMaxWidth(250);
-    obj.flowPart33:setHeight(17);
+    obj.dataLink30 = GUI.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink30:setParent(obj.fraLayAtributos);
+    obj.dataLink30:setField("atributos.sabedoria");
+    obj.dataLink30:setName("dataLink30");
+
+    obj.flowPart33 = GUI.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart33:setParent(obj.fraLayAtributos);
+    obj.flowPart33:setHeight(140);
+    obj.flowPart33:setMinWidth(320);
+    obj.flowPart33:setMaxWidth(420);
+    obj.flowPart33:setMinScaledWidth(305);
+    obj.flowPart33:setFrameStyle("frames/atributeFrame2/frame.xml");
     obj.flowPart33:setName("flowPart33");
     obj.flowPart33:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart33:setVertAlign("leading");
 
-    obj.imageCheckBox24 = gui.fromHandle(_obj_newObject("imageCheckBox"));
-    obj.imageCheckBox24:setParent(obj.flowPart33);
-    obj.imageCheckBox24:setAlign("left");
-    obj.imageCheckBox24:setWidth(20);
-    obj.imageCheckBox24:setMargins({});
-    obj.imageCheckBox24:setField("pericias.persuasao");
-    obj.imageCheckBox24:setOptimize(false);
-    obj.imageCheckBox24:setImageChecked("images/checkbox1_checked.png");
-    obj.imageCheckBox24:setImageUnchecked("images/checkbox1_unchecked.png");
-    obj.imageCheckBox24:setName("imageCheckBox24");
-    obj.imageCheckBox24:setHeight(20);
-
-    obj.layout30 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout30 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout30:setParent(obj.flowPart33);
-    obj.layout30:setAlign("left");
-    obj.layout30:setWidth(26);
-    obj.layout30:setMargins({left=2});
+    obj.layout30:setLeft(6);
+    obj.layout30:setTop(12);
+    obj.layout30:setWidth(116);
+    obj.layout30:setHeight(115);
     obj.layout30:setName("layout30");
 
-    obj.label62 = gui.fromHandle(_obj_newObject("label"));
-    obj.label62:setParent(obj.layout30);
-    obj.label62:setField("pericias.bonuspersuasaostr");
-    obj.label62:setAlign("client");
-    obj.label62:setHorzTextAlign("center");
-    obj.label62:setVertTextAlign("trailing");
-    obj.label62:setTextTrimming("none");
-    obj.label62:setName("label62");
-    obj.label62:setFontColor("white");
-
-    obj.horzLine24 = gui.fromHandle(_obj_newObject("horzLine"));
-    obj.horzLine24:setParent(obj.layout30);
-    obj.horzLine24:setStrokeColor("white");
-    obj.horzLine24:setStrokeSize(1);
-    obj.horzLine24:setAlign("bottom");
-    obj.horzLine24:setName("horzLine24");
-
-    obj.label63 = gui.fromHandle(_obj_newObject("label"));
-    obj.label63:setParent(obj.flowPart33);
-    obj.label63:setAlign("client");
-    obj.label63:setText("Persuasão");
-    obj.label63:setVertTextAlign("trailing");
-    obj.label63:setMargins({left=5});
-    obj.label63:setAutoSize(true);
-    obj.label63:setWordWrap(false);
-    obj.label63:setName("label63");
-    obj.label63:setFontColor("white");
-
-    obj.dataLink30 = gui.fromHandle(_obj_newObject("dataLink"));
-    obj.dataLink30:setParent(obj.flowLayout9);
-    obj.dataLink30:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.persuasao'});
-    obj.dataLink30:setName("dataLink30");
-
-    obj.dataLink31 = gui.fromHandle(_obj_newObject("dataLink"));
-    obj.dataLink31:setParent(obj.fraLayAtributos);
-    obj.dataLink31:setField("atributos.carisma");
-    obj.dataLink31:setName("dataLink31");
-
-    obj.flowPart34 = gui.fromHandle(_obj_newObject("flowPart"));
-    obj.flowPart34:setParent(obj.fraLayAtributos);
-    obj.flowPart34:setHeight(140);
-    obj.flowPart34:setMinWidth(320);
-    obj.flowPart34:setMaxWidth(420);
-    obj.flowPart34:setMinScaledWidth(305);
-    obj.flowPart34:setFrameStyle("frames/atributeFrame2/frame.xml");
-    obj.flowPart34:setName("flowPart34");
-    obj.flowPart34:setMargins({left=1, right=1, top=2, bottom=2});
-    obj.flowPart34:setVertAlign("leading");
-
-    obj.layout31 = gui.fromHandle(_obj_newObject("layout"));
-    obj.layout31:setParent(obj.flowPart34);
-    obj.layout31:setLeft(6);
-    obj.layout31:setTop(12);
-    obj.layout31:setWidth(116);
-    obj.layout31:setHeight(115);
-    obj.layout31:setName("layout31");
-
-    obj.edit10 = gui.fromHandle(_obj_newObject("edit"));
-    obj.edit10:setParent(obj.layout31);
+    obj.edit10 = GUI.fromHandle(_obj_newObject("edit"));
+    obj.edit10:setParent(obj.layout30);
     obj.edit10:setAlign("top");
     obj.edit10:setMargins({left=30, right=30});
-    obj.edit10:setField("atributos.carisma");
+    obj.edit10:setField("atributos.sabedoria");
     obj.edit10:setHeight(30);
     obj.edit10:setType("number");
     obj.edit10:setMin(0);
@@ -2460,28 +2399,28 @@ function newfrmElysium()
     obj.edit10:setFontSize(15);
     obj.edit10:setFontColor("white");
 
-    obj.label64 = gui.fromHandle(_obj_newObject("label"));
-    obj.label64:setParent(obj.flowPart34);
-    obj.label64:setFrameRegion("modificador");
-    obj.label64:setField("atributos.modcarismastr");
-    obj.label64:setHorzTextAlign("center");
-    obj.label64:setVertTextAlign("center");
-    obj.label64:setFontSize(46);
-    lfm_setPropAsString(obj.label64, "fontStyle",  "bold");
-    obj.label64:setName("label64");
-    obj.label64:setFontColor("white");
+    obj.label62 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label62:setParent(obj.flowPart33);
+    obj.label62:setFrameRegion("modificador");
+    obj.label62:setField("atributos.modsabedoriastr");
+    obj.label62:setHorzTextAlign("center");
+    obj.label62:setVertTextAlign("center");
+    obj.label62:setFontSize(46);
+    lfm_setPropAsString(obj.label62, "fontStyle",  "bold");
+    obj.label62:setName("label62");
+    obj.label62:setFontColor("white");
 
-    obj.label65 = gui.fromHandle(_obj_newObject("label"));
-    obj.label65:setParent(obj.flowPart34);
-    obj.label65:setFrameRegion("titulo");
-    obj.label65:setText("AUTO-CONTROLE");
-    obj.label65:setVertTextAlign("center");
-    obj.label65:setHorzTextAlign("center");
-    obj.label65:setName("label65");
-    obj.label65:setFontColor("white");
+    obj.label63 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label63:setParent(obj.flowPart33);
+    obj.label63:setFrameRegion("titulo");
+    obj.label63:setText("SABEDORIA");
+    obj.label63:setVertTextAlign("center");
+    obj.label63:setHorzTextAlign("center");
+    obj.label63:setName("label63");
+    obj.label63:setFontColor("white");
 
-    obj.flowLayout10 = gui.fromHandle(_obj_newObject("flowLayout"));
-    obj.flowLayout10:setParent(obj.flowPart34);
+    obj.flowLayout10 = GUI.fromHandle(_obj_newObject("flowLayout"));
+    obj.flowLayout10:setParent(obj.flowPart33);
     obj.flowLayout10:setFrameRegion("RegiaoDePericias");
     obj.flowLayout10:setAutoHeight(true);
     obj.flowLayout10:setLineSpacing(0);
@@ -2490,7 +2429,68 @@ function newfrmElysium()
     obj.flowLayout10:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowLayout10:setVertAlign("leading");
 
-    obj.flowPart35 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart34 = GUI.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart34:setParent(obj.flowLayout10);
+    obj.flowPart34:setMinWidth(206);
+    obj.flowPart34:setMaxWidth(250);
+    obj.flowPart34:setHeight(17);
+    obj.flowPart34:setName("flowPart34");
+    obj.flowPart34:setMargins({left=1, right=1, top=2, bottom=2});
+    obj.flowPart34:setVertAlign("leading");
+
+    obj.imageCheckBox24 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox24:setParent(obj.flowPart34);
+    obj.imageCheckBox24:setAlign("left");
+    obj.imageCheckBox24:setWidth(20);
+    obj.imageCheckBox24:setMargins({});
+    obj.imageCheckBox24:setField("resistencias.sabedoria");
+    obj.imageCheckBox24:setOptimize(false);
+    obj.imageCheckBox24:setImageChecked("images/checkbox2_checked.png");
+    obj.imageCheckBox24:setImageUnchecked("images/checkbox2_unchecked.png");
+    obj.imageCheckBox24:setName("imageCheckBox24");
+    obj.imageCheckBox24:setHeight(20);
+
+    obj.layout31 = GUI.fromHandle(_obj_newObject("layout"));
+    obj.layout31:setParent(obj.flowPart34);
+    obj.layout31:setAlign("left");
+    obj.layout31:setWidth(26);
+    obj.layout31:setMargins({left=2});
+    obj.layout31:setName("layout31");
+
+    obj.label64 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label64:setParent(obj.layout31);
+    obj.label64:setField("resistencias.bonussabedoriastr");
+    obj.label64:setAlign("client");
+    obj.label64:setHorzTextAlign("center");
+    obj.label64:setVertTextAlign("trailing");
+    obj.label64:setTextTrimming("none");
+    obj.label64:setName("label64");
+    obj.label64:setFontColor("white");
+
+    obj.horzLine24 = GUI.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine24:setParent(obj.layout31);
+    obj.horzLine24:setStrokeColor("white");
+    obj.horzLine24:setStrokeSize(1);
+    obj.horzLine24:setAlign("bottom");
+    obj.horzLine24:setName("horzLine24");
+
+    obj.label65 = GUI.fromHandle(_obj_newObject("label"));
+    obj.label65:setParent(obj.flowPart34);
+    obj.label65:setAlign("client");
+    obj.label65:setText("Teste de Resistência");
+    obj.label65:setVertTextAlign("trailing");
+    obj.label65:setMargins({left=5});
+    obj.label65:setAutoSize(true);
+    obj.label65:setWordWrap(false);
+    obj.label65:setName("label65");
+    obj.label65:setFontColor("white");
+
+    obj.dataLink31 = GUI.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink31:setParent(obj.flowLayout10);
+    obj.dataLink31:setFields({'atributos.modsabedoria', 'bonusProficiencia', 'resistencias.sabedoria'});
+    obj.dataLink31:setName("dataLink31");
+
+    obj.flowPart35 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart35:setParent(obj.flowLayout10);
     obj.flowPart35:setMinWidth(206);
     obj.flowPart35:setMaxWidth(250);
@@ -2499,28 +2499,28 @@ function newfrmElysium()
     obj.flowPart35:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart35:setVertAlign("leading");
 
-    obj.imageCheckBox25 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox25 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox25:setParent(obj.flowPart35);
     obj.imageCheckBox25:setAlign("left");
     obj.imageCheckBox25:setWidth(20);
     obj.imageCheckBox25:setMargins({});
-    obj.imageCheckBox25:setField("resistencias.carisma");
+    obj.imageCheckBox25:setField("pericias.adestrarAnimais");
     obj.imageCheckBox25:setOptimize(false);
-    obj.imageCheckBox25:setImageChecked("images/checkbox2_checked.png");
-    obj.imageCheckBox25:setImageUnchecked("images/checkbox2_unchecked.png");
+    obj.imageCheckBox25:setImageChecked("images/checkbox1_checked.png");
+    obj.imageCheckBox25:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox25:setName("imageCheckBox25");
     obj.imageCheckBox25:setHeight(20);
 
-    obj.layout32 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout32 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout32:setParent(obj.flowPart35);
     obj.layout32:setAlign("left");
     obj.layout32:setWidth(26);
     obj.layout32:setMargins({left=2});
     obj.layout32:setName("layout32");
 
-    obj.label66 = gui.fromHandle(_obj_newObject("label"));
+    obj.label66 = GUI.fromHandle(_obj_newObject("label"));
     obj.label66:setParent(obj.layout32);
-    obj.label66:setField("resistencias.bonuscarismastr");
+    obj.label66:setField("pericias.bonusadestrarAnimaisstr");
     obj.label66:setAlign("client");
     obj.label66:setHorzTextAlign("center");
     obj.label66:setVertTextAlign("trailing");
@@ -2528,17 +2528,17 @@ function newfrmElysium()
     obj.label66:setName("label66");
     obj.label66:setFontColor("white");
 
-    obj.horzLine25 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine25 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine25:setParent(obj.layout32);
     obj.horzLine25:setStrokeColor("white");
     obj.horzLine25:setStrokeSize(1);
     obj.horzLine25:setAlign("bottom");
     obj.horzLine25:setName("horzLine25");
 
-    obj.label67 = gui.fromHandle(_obj_newObject("label"));
+    obj.label67 = GUI.fromHandle(_obj_newObject("label"));
     obj.label67:setParent(obj.flowPart35);
     obj.label67:setAlign("client");
-    obj.label67:setText("Teste de Resistência");
+    obj.label67:setText("Adestrar Animais");
     obj.label67:setVertTextAlign("trailing");
     obj.label67:setMargins({left=5});
     obj.label67:setAutoSize(true);
@@ -2546,12 +2546,12 @@ function newfrmElysium()
     obj.label67:setName("label67");
     obj.label67:setFontColor("white");
 
-    obj.dataLink32 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink32 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink32:setParent(obj.flowLayout10);
-    obj.dataLink32:setFields({'atributos.modcarisma', 'bonusProficiencia', 'resistencias.carisma'});
+    obj.dataLink32:setFields({'atributos.modsabedoria', 'bonusProficiencia', 'pericias.adestrarAnimais'});
     obj.dataLink32:setName("dataLink32");
 
-    obj.flowPart36 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart36 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart36:setParent(obj.flowLayout10);
     obj.flowPart36:setMinWidth(206);
     obj.flowPart36:setMaxWidth(250);
@@ -2560,28 +2560,28 @@ function newfrmElysium()
     obj.flowPart36:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart36:setVertAlign("leading");
 
-    obj.imageCheckBox26 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox26 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox26:setParent(obj.flowPart36);
     obj.imageCheckBox26:setAlign("left");
     obj.imageCheckBox26:setWidth(20);
     obj.imageCheckBox26:setMargins({});
-    obj.imageCheckBox26:setField("pericias.atuacao");
+    obj.imageCheckBox26:setField("pericias.intuicao");
     obj.imageCheckBox26:setOptimize(false);
     obj.imageCheckBox26:setImageChecked("images/checkbox1_checked.png");
     obj.imageCheckBox26:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox26:setName("imageCheckBox26");
     obj.imageCheckBox26:setHeight(20);
 
-    obj.layout33 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout33 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout33:setParent(obj.flowPart36);
     obj.layout33:setAlign("left");
     obj.layout33:setWidth(26);
     obj.layout33:setMargins({left=2});
     obj.layout33:setName("layout33");
 
-    obj.label68 = gui.fromHandle(_obj_newObject("label"));
+    obj.label68 = GUI.fromHandle(_obj_newObject("label"));
     obj.label68:setParent(obj.layout33);
-    obj.label68:setField("pericias.bonusatuacaostr");
+    obj.label68:setField("pericias.bonusintuicaostr");
     obj.label68:setAlign("client");
     obj.label68:setHorzTextAlign("center");
     obj.label68:setVertTextAlign("trailing");
@@ -2589,17 +2589,17 @@ function newfrmElysium()
     obj.label68:setName("label68");
     obj.label68:setFontColor("white");
 
-    obj.horzLine26 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine26 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine26:setParent(obj.layout33);
     obj.horzLine26:setStrokeColor("white");
     obj.horzLine26:setStrokeSize(1);
     obj.horzLine26:setAlign("bottom");
     obj.horzLine26:setName("horzLine26");
 
-    obj.label69 = gui.fromHandle(_obj_newObject("label"));
+    obj.label69 = GUI.fromHandle(_obj_newObject("label"));
     obj.label69:setParent(obj.flowPart36);
     obj.label69:setAlign("client");
-    obj.label69:setText("Atuação");
+    obj.label69:setText("Intuição");
     obj.label69:setVertTextAlign("trailing");
     obj.label69:setMargins({left=5});
     obj.label69:setAutoSize(true);
@@ -2607,12 +2607,12 @@ function newfrmElysium()
     obj.label69:setName("label69");
     obj.label69:setFontColor("white");
 
-    obj.dataLink33 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink33 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink33:setParent(obj.flowLayout10);
-    obj.dataLink33:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.atuacao'});
+    obj.dataLink33:setFields({'atributos.modsabedoria', 'bonusProficiencia', 'pericias.intuicao'});
     obj.dataLink33:setName("dataLink33");
 
-    obj.flowPart37 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart37 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart37:setParent(obj.flowLayout10);
     obj.flowPart37:setMinWidth(206);
     obj.flowPart37:setMaxWidth(250);
@@ -2621,28 +2621,28 @@ function newfrmElysium()
     obj.flowPart37:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart37:setVertAlign("leading");
 
-    obj.imageCheckBox27 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox27 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox27:setParent(obj.flowPart37);
     obj.imageCheckBox27:setAlign("left");
     obj.imageCheckBox27:setWidth(20);
     obj.imageCheckBox27:setMargins({});
-    obj.imageCheckBox27:setField("pericias.enganacao");
+    obj.imageCheckBox27:setField("pericias.medicina");
     obj.imageCheckBox27:setOptimize(false);
     obj.imageCheckBox27:setImageChecked("images/checkbox1_checked.png");
     obj.imageCheckBox27:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox27:setName("imageCheckBox27");
     obj.imageCheckBox27:setHeight(20);
 
-    obj.layout34 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout34 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout34:setParent(obj.flowPart37);
     obj.layout34:setAlign("left");
     obj.layout34:setWidth(26);
     obj.layout34:setMargins({left=2});
     obj.layout34:setName("layout34");
 
-    obj.label70 = gui.fromHandle(_obj_newObject("label"));
+    obj.label70 = GUI.fromHandle(_obj_newObject("label"));
     obj.label70:setParent(obj.layout34);
-    obj.label70:setField("pericias.bonusenganacaostr");
+    obj.label70:setField("pericias.bonusmedicinastr");
     obj.label70:setAlign("client");
     obj.label70:setHorzTextAlign("center");
     obj.label70:setVertTextAlign("trailing");
@@ -2650,17 +2650,17 @@ function newfrmElysium()
     obj.label70:setName("label70");
     obj.label70:setFontColor("white");
 
-    obj.horzLine27 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine27 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine27:setParent(obj.layout34);
     obj.horzLine27:setStrokeColor("white");
     obj.horzLine27:setStrokeSize(1);
     obj.horzLine27:setAlign("bottom");
     obj.horzLine27:setName("horzLine27");
 
-    obj.label71 = gui.fromHandle(_obj_newObject("label"));
+    obj.label71 = GUI.fromHandle(_obj_newObject("label"));
     obj.label71:setParent(obj.flowPart37);
     obj.label71:setAlign("client");
-    obj.label71:setText("Enganação");
+    obj.label71:setText("Medicina");
     obj.label71:setVertTextAlign("trailing");
     obj.label71:setMargins({left=5});
     obj.label71:setAutoSize(true);
@@ -2668,12 +2668,12 @@ function newfrmElysium()
     obj.label71:setName("label71");
     obj.label71:setFontColor("white");
 
-    obj.dataLink34 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink34 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink34:setParent(obj.flowLayout10);
-    obj.dataLink34:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.enganacao'});
+    obj.dataLink34:setFields({'atributos.modsabedoria', 'bonusProficiencia', 'pericias.medicina'});
     obj.dataLink34:setName("dataLink34");
 
-    obj.flowPart38 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart38 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart38:setParent(obj.flowLayout10);
     obj.flowPart38:setMinWidth(206);
     obj.flowPart38:setMaxWidth(250);
@@ -2682,28 +2682,28 @@ function newfrmElysium()
     obj.flowPart38:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart38:setVertAlign("leading");
 
-    obj.imageCheckBox28 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox28 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox28:setParent(obj.flowPart38);
     obj.imageCheckBox28:setAlign("left");
     obj.imageCheckBox28:setWidth(20);
     obj.imageCheckBox28:setMargins({});
-    obj.imageCheckBox28:setField("pericias.intimidacao");
+    obj.imageCheckBox28:setField("pericias.percepcao");
     obj.imageCheckBox28:setOptimize(false);
     obj.imageCheckBox28:setImageChecked("images/checkbox1_checked.png");
     obj.imageCheckBox28:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox28:setName("imageCheckBox28");
     obj.imageCheckBox28:setHeight(20);
 
-    obj.layout35 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout35 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout35:setParent(obj.flowPart38);
     obj.layout35:setAlign("left");
     obj.layout35:setWidth(26);
     obj.layout35:setMargins({left=2});
     obj.layout35:setName("layout35");
 
-    obj.label72 = gui.fromHandle(_obj_newObject("label"));
+    obj.label72 = GUI.fromHandle(_obj_newObject("label"));
     obj.label72:setParent(obj.layout35);
-    obj.label72:setField("pericias.bonusintimidacaostr");
+    obj.label72:setField("pericias.bonuspercepcaostr");
     obj.label72:setAlign("client");
     obj.label72:setHorzTextAlign("center");
     obj.label72:setVertTextAlign("trailing");
@@ -2711,17 +2711,17 @@ function newfrmElysium()
     obj.label72:setName("label72");
     obj.label72:setFontColor("white");
 
-    obj.horzLine28 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine28 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine28:setParent(obj.layout35);
     obj.horzLine28:setStrokeColor("white");
     obj.horzLine28:setStrokeSize(1);
     obj.horzLine28:setAlign("bottom");
     obj.horzLine28:setName("horzLine28");
 
-    obj.label73 = gui.fromHandle(_obj_newObject("label"));
+    obj.label73 = GUI.fromHandle(_obj_newObject("label"));
     obj.label73:setParent(obj.flowPart38);
     obj.label73:setAlign("client");
-    obj.label73:setText("Intimidação");
+    obj.label73:setText("Percepção");
     obj.label73:setVertTextAlign("trailing");
     obj.label73:setMargins({left=5});
     obj.label73:setAutoSize(true);
@@ -2729,12 +2729,12 @@ function newfrmElysium()
     obj.label73:setName("label73");
     obj.label73:setFontColor("white");
 
-    obj.dataLink35 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink35 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink35:setParent(obj.flowLayout10);
-    obj.dataLink35:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.intimidacao'});
+    obj.dataLink35:setFields({'atributos.modsabedoria', 'bonusProficiencia', 'pericias.percepcao'});
     obj.dataLink35:setName("dataLink35");
 
-    obj.flowPart39 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart39 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart39:setParent(obj.flowLayout10);
     obj.flowPart39:setMinWidth(206);
     obj.flowPart39:setMaxWidth(250);
@@ -2743,28 +2743,28 @@ function newfrmElysium()
     obj.flowPart39:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart39:setVertAlign("leading");
 
-    obj.imageCheckBox29 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox29 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox29:setParent(obj.flowPart39);
     obj.imageCheckBox29:setAlign("left");
     obj.imageCheckBox29:setWidth(20);
     obj.imageCheckBox29:setMargins({});
-    obj.imageCheckBox29:setField("pericias.persuasao");
+    obj.imageCheckBox29:setField("pericias.sobrevivencia");
     obj.imageCheckBox29:setOptimize(false);
     obj.imageCheckBox29:setImageChecked("images/checkbox1_checked.png");
     obj.imageCheckBox29:setImageUnchecked("images/checkbox1_unchecked.png");
     obj.imageCheckBox29:setName("imageCheckBox29");
     obj.imageCheckBox29:setHeight(20);
 
-    obj.layout36 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout36 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout36:setParent(obj.flowPart39);
     obj.layout36:setAlign("left");
     obj.layout36:setWidth(26);
     obj.layout36:setMargins({left=2});
     obj.layout36:setName("layout36");
 
-    obj.label74 = gui.fromHandle(_obj_newObject("label"));
+    obj.label74 = GUI.fromHandle(_obj_newObject("label"));
     obj.label74:setParent(obj.layout36);
-    obj.label74:setField("pericias.bonuspersuasaostr");
+    obj.label74:setField("pericias.bonussobrevivenciastr");
     obj.label74:setAlign("client");
     obj.label74:setHorzTextAlign("center");
     obj.label74:setVertTextAlign("trailing");
@@ -2772,17 +2772,17 @@ function newfrmElysium()
     obj.label74:setName("label74");
     obj.label74:setFontColor("white");
 
-    obj.horzLine29 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine29 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine29:setParent(obj.layout36);
     obj.horzLine29:setStrokeColor("white");
     obj.horzLine29:setStrokeSize(1);
     obj.horzLine29:setAlign("bottom");
     obj.horzLine29:setName("horzLine29");
 
-    obj.label75 = gui.fromHandle(_obj_newObject("label"));
+    obj.label75 = GUI.fromHandle(_obj_newObject("label"));
     obj.label75:setParent(obj.flowPart39);
     obj.label75:setAlign("client");
-    obj.label75:setText("Persuasão");
+    obj.label75:setText("Sobrevivência");
     obj.label75:setVertTextAlign("trailing");
     obj.label75:setMargins({left=5});
     obj.label75:setAutoSize(true);
@@ -2790,17 +2790,17 @@ function newfrmElysium()
     obj.label75:setName("label75");
     obj.label75:setFontColor("white");
 
-    obj.dataLink36 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink36 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink36:setParent(obj.flowLayout10);
-    obj.dataLink36:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.persuasao'});
+    obj.dataLink36:setFields({'atributos.modsabedoria', 'bonusProficiencia', 'pericias.sobrevivencia'});
     obj.dataLink36:setName("dataLink36");
 
-    obj.dataLink37 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink37 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink37:setParent(obj.fraLayAtributos);
     obj.dataLink37:setField("atributos.carisma");
     obj.dataLink37:setName("dataLink37");
 
-    obj.flowPart40 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart40 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart40:setParent(obj.fraLayAtributos);
     obj.flowPart40:setHeight(140);
     obj.flowPart40:setMinWidth(320);
@@ -2811,7 +2811,7 @@ function newfrmElysium()
     obj.flowPart40:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart40:setVertAlign("leading");
 
-    obj.layout37 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout37 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout37:setParent(obj.flowPart40);
     obj.layout37:setLeft(6);
     obj.layout37:setTop(12);
@@ -2819,7 +2819,7 @@ function newfrmElysium()
     obj.layout37:setHeight(115);
     obj.layout37:setName("layout37");
 
-    obj.edit11 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edit11 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edit11:setParent(obj.layout37);
     obj.edit11:setAlign("top");
     obj.edit11:setMargins({left=30, right=30});
@@ -2835,7 +2835,7 @@ function newfrmElysium()
     obj.edit11:setFontSize(15);
     obj.edit11:setFontColor("white");
 
-    obj.label76 = gui.fromHandle(_obj_newObject("label"));
+    obj.label76 = GUI.fromHandle(_obj_newObject("label"));
     obj.label76:setParent(obj.flowPart40);
     obj.label76:setFrameRegion("modificador");
     obj.label76:setField("atributos.modcarismastr");
@@ -2846,16 +2846,16 @@ function newfrmElysium()
     obj.label76:setName("label76");
     obj.label76:setFontColor("white");
 
-    obj.label77 = gui.fromHandle(_obj_newObject("label"));
+    obj.label77 = GUI.fromHandle(_obj_newObject("label"));
     obj.label77:setParent(obj.flowPart40);
     obj.label77:setFrameRegion("titulo");
-    obj.label77:setText("AGILIDADE");
+    obj.label77:setText("CARISMA");
     obj.label77:setVertTextAlign("center");
     obj.label77:setHorzTextAlign("center");
     obj.label77:setName("label77");
     obj.label77:setFontColor("white");
 
-    obj.flowLayout11 = gui.fromHandle(_obj_newObject("flowLayout"));
+    obj.flowLayout11 = GUI.fromHandle(_obj_newObject("flowLayout"));
     obj.flowLayout11:setParent(obj.flowPart40);
     obj.flowLayout11:setFrameRegion("RegiaoDePericias");
     obj.flowLayout11:setAutoHeight(true);
@@ -2865,7 +2865,7 @@ function newfrmElysium()
     obj.flowLayout11:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowLayout11:setVertAlign("leading");
 
-    obj.flowPart41 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart41 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart41:setParent(obj.flowLayout11);
     obj.flowPart41:setMinWidth(206);
     obj.flowPart41:setMaxWidth(250);
@@ -2874,7 +2874,7 @@ function newfrmElysium()
     obj.flowPart41:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart41:setVertAlign("leading");
 
-    obj.imageCheckBox30 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox30 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox30:setParent(obj.flowPart41);
     obj.imageCheckBox30:setAlign("left");
     obj.imageCheckBox30:setWidth(20);
@@ -2886,14 +2886,14 @@ function newfrmElysium()
     obj.imageCheckBox30:setName("imageCheckBox30");
     obj.imageCheckBox30:setHeight(20);
 
-    obj.layout38 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout38 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout38:setParent(obj.flowPart41);
     obj.layout38:setAlign("left");
     obj.layout38:setWidth(26);
     obj.layout38:setMargins({left=2});
     obj.layout38:setName("layout38");
 
-    obj.label78 = gui.fromHandle(_obj_newObject("label"));
+    obj.label78 = GUI.fromHandle(_obj_newObject("label"));
     obj.label78:setParent(obj.layout38);
     obj.label78:setField("resistencias.bonuscarismastr");
     obj.label78:setAlign("client");
@@ -2903,14 +2903,14 @@ function newfrmElysium()
     obj.label78:setName("label78");
     obj.label78:setFontColor("white");
 
-    obj.horzLine30 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine30 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine30:setParent(obj.layout38);
     obj.horzLine30:setStrokeColor("white");
     obj.horzLine30:setStrokeSize(1);
     obj.horzLine30:setAlign("bottom");
     obj.horzLine30:setName("horzLine30");
 
-    obj.label79 = gui.fromHandle(_obj_newObject("label"));
+    obj.label79 = GUI.fromHandle(_obj_newObject("label"));
     obj.label79:setParent(obj.flowPart41);
     obj.label79:setAlign("client");
     obj.label79:setText("Teste de Resistência");
@@ -2921,12 +2921,12 @@ function newfrmElysium()
     obj.label79:setName("label79");
     obj.label79:setFontColor("white");
 
-    obj.dataLink38 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink38 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink38:setParent(obj.flowLayout11);
     obj.dataLink38:setFields({'atributos.modcarisma', 'bonusProficiencia', 'resistencias.carisma'});
     obj.dataLink38:setName("dataLink38");
 
-    obj.flowPart42 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart42 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart42:setParent(obj.flowLayout11);
     obj.flowPart42:setMinWidth(206);
     obj.flowPart42:setMaxWidth(250);
@@ -2935,7 +2935,7 @@ function newfrmElysium()
     obj.flowPart42:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart42:setVertAlign("leading");
 
-    obj.imageCheckBox31 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox31 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox31:setParent(obj.flowPart42);
     obj.imageCheckBox31:setAlign("left");
     obj.imageCheckBox31:setWidth(20);
@@ -2947,14 +2947,14 @@ function newfrmElysium()
     obj.imageCheckBox31:setName("imageCheckBox31");
     obj.imageCheckBox31:setHeight(20);
 
-    obj.layout39 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout39 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout39:setParent(obj.flowPart42);
     obj.layout39:setAlign("left");
     obj.layout39:setWidth(26);
     obj.layout39:setMargins({left=2});
     obj.layout39:setName("layout39");
 
-    obj.label80 = gui.fromHandle(_obj_newObject("label"));
+    obj.label80 = GUI.fromHandle(_obj_newObject("label"));
     obj.label80:setParent(obj.layout39);
     obj.label80:setField("pericias.bonusatuacaostr");
     obj.label80:setAlign("client");
@@ -2964,14 +2964,14 @@ function newfrmElysium()
     obj.label80:setName("label80");
     obj.label80:setFontColor("white");
 
-    obj.horzLine31 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine31 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine31:setParent(obj.layout39);
     obj.horzLine31:setStrokeColor("white");
     obj.horzLine31:setStrokeSize(1);
     obj.horzLine31:setAlign("bottom");
     obj.horzLine31:setName("horzLine31");
 
-    obj.label81 = gui.fromHandle(_obj_newObject("label"));
+    obj.label81 = GUI.fromHandle(_obj_newObject("label"));
     obj.label81:setParent(obj.flowPart42);
     obj.label81:setAlign("client");
     obj.label81:setText("Atuação");
@@ -2982,12 +2982,12 @@ function newfrmElysium()
     obj.label81:setName("label81");
     obj.label81:setFontColor("white");
 
-    obj.dataLink39 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink39 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink39:setParent(obj.flowLayout11);
     obj.dataLink39:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.atuacao'});
     obj.dataLink39:setName("dataLink39");
 
-    obj.flowPart43 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart43 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart43:setParent(obj.flowLayout11);
     obj.flowPart43:setMinWidth(206);
     obj.flowPart43:setMaxWidth(250);
@@ -2996,7 +2996,7 @@ function newfrmElysium()
     obj.flowPart43:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart43:setVertAlign("leading");
 
-    obj.imageCheckBox32 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox32 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox32:setParent(obj.flowPart43);
     obj.imageCheckBox32:setAlign("left");
     obj.imageCheckBox32:setWidth(20);
@@ -3008,14 +3008,14 @@ function newfrmElysium()
     obj.imageCheckBox32:setName("imageCheckBox32");
     obj.imageCheckBox32:setHeight(20);
 
-    obj.layout40 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout40 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout40:setParent(obj.flowPart43);
     obj.layout40:setAlign("left");
     obj.layout40:setWidth(26);
     obj.layout40:setMargins({left=2});
     obj.layout40:setName("layout40");
 
-    obj.label82 = gui.fromHandle(_obj_newObject("label"));
+    obj.label82 = GUI.fromHandle(_obj_newObject("label"));
     obj.label82:setParent(obj.layout40);
     obj.label82:setField("pericias.bonusenganacaostr");
     obj.label82:setAlign("client");
@@ -3025,14 +3025,14 @@ function newfrmElysium()
     obj.label82:setName("label82");
     obj.label82:setFontColor("white");
 
-    obj.horzLine32 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine32 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine32:setParent(obj.layout40);
     obj.horzLine32:setStrokeColor("white");
     obj.horzLine32:setStrokeSize(1);
     obj.horzLine32:setAlign("bottom");
     obj.horzLine32:setName("horzLine32");
 
-    obj.label83 = gui.fromHandle(_obj_newObject("label"));
+    obj.label83 = GUI.fromHandle(_obj_newObject("label"));
     obj.label83:setParent(obj.flowPart43);
     obj.label83:setAlign("client");
     obj.label83:setText("Enganação");
@@ -3043,12 +3043,12 @@ function newfrmElysium()
     obj.label83:setName("label83");
     obj.label83:setFontColor("white");
 
-    obj.dataLink40 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink40 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink40:setParent(obj.flowLayout11);
     obj.dataLink40:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.enganacao'});
     obj.dataLink40:setName("dataLink40");
 
-    obj.flowPart44 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart44 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart44:setParent(obj.flowLayout11);
     obj.flowPart44:setMinWidth(206);
     obj.flowPart44:setMaxWidth(250);
@@ -3057,7 +3057,7 @@ function newfrmElysium()
     obj.flowPart44:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart44:setVertAlign("leading");
 
-    obj.imageCheckBox33 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox33 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox33:setParent(obj.flowPart44);
     obj.imageCheckBox33:setAlign("left");
     obj.imageCheckBox33:setWidth(20);
@@ -3069,14 +3069,14 @@ function newfrmElysium()
     obj.imageCheckBox33:setName("imageCheckBox33");
     obj.imageCheckBox33:setHeight(20);
 
-    obj.layout41 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout41 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout41:setParent(obj.flowPart44);
     obj.layout41:setAlign("left");
     obj.layout41:setWidth(26);
     obj.layout41:setMargins({left=2});
     obj.layout41:setName("layout41");
 
-    obj.label84 = gui.fromHandle(_obj_newObject("label"));
+    obj.label84 = GUI.fromHandle(_obj_newObject("label"));
     obj.label84:setParent(obj.layout41);
     obj.label84:setField("pericias.bonusintimidacaostr");
     obj.label84:setAlign("client");
@@ -3086,14 +3086,14 @@ function newfrmElysium()
     obj.label84:setName("label84");
     obj.label84:setFontColor("white");
 
-    obj.horzLine33 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine33 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine33:setParent(obj.layout41);
     obj.horzLine33:setStrokeColor("white");
     obj.horzLine33:setStrokeSize(1);
     obj.horzLine33:setAlign("bottom");
     obj.horzLine33:setName("horzLine33");
 
-    obj.label85 = gui.fromHandle(_obj_newObject("label"));
+    obj.label85 = GUI.fromHandle(_obj_newObject("label"));
     obj.label85:setParent(obj.flowPart44);
     obj.label85:setAlign("client");
     obj.label85:setText("Intimidação");
@@ -3104,12 +3104,12 @@ function newfrmElysium()
     obj.label85:setName("label85");
     obj.label85:setFontColor("white");
 
-    obj.dataLink41 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink41 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink41:setParent(obj.flowLayout11);
     obj.dataLink41:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.intimidacao'});
     obj.dataLink41:setName("dataLink41");
 
-    obj.flowPart45 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart45 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart45:setParent(obj.flowLayout11);
     obj.flowPart45:setMinWidth(206);
     obj.flowPart45:setMaxWidth(250);
@@ -3118,7 +3118,7 @@ function newfrmElysium()
     obj.flowPart45:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart45:setVertAlign("leading");
 
-    obj.imageCheckBox34 = gui.fromHandle(_obj_newObject("imageCheckBox"));
+    obj.imageCheckBox34 = GUI.fromHandle(_obj_newObject("imageCheckBox"));
     obj.imageCheckBox34:setParent(obj.flowPart45);
     obj.imageCheckBox34:setAlign("left");
     obj.imageCheckBox34:setWidth(20);
@@ -3130,14 +3130,14 @@ function newfrmElysium()
     obj.imageCheckBox34:setName("imageCheckBox34");
     obj.imageCheckBox34:setHeight(20);
 
-    obj.layout42 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout42 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout42:setParent(obj.flowPart45);
     obj.layout42:setAlign("left");
     obj.layout42:setWidth(26);
     obj.layout42:setMargins({left=2});
     obj.layout42:setName("layout42");
 
-    obj.label86 = gui.fromHandle(_obj_newObject("label"));
+    obj.label86 = GUI.fromHandle(_obj_newObject("label"));
     obj.label86:setParent(obj.layout42);
     obj.label86:setField("pericias.bonuspersuasaostr");
     obj.label86:setAlign("client");
@@ -3147,14 +3147,14 @@ function newfrmElysium()
     obj.label86:setName("label86");
     obj.label86:setFontColor("white");
 
-    obj.horzLine34 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine34 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine34:setParent(obj.layout42);
     obj.horzLine34:setStrokeColor("white");
     obj.horzLine34:setStrokeSize(1);
     obj.horzLine34:setAlign("bottom");
     obj.horzLine34:setName("horzLine34");
 
-    obj.label87 = gui.fromHandle(_obj_newObject("label"));
+    obj.label87 = GUI.fromHandle(_obj_newObject("label"));
     obj.label87:setParent(obj.flowPart45);
     obj.label87:setAlign("client");
     obj.label87:setText("Persuasão");
@@ -3165,12 +3165,12 @@ function newfrmElysium()
     obj.label87:setName("label87");
     obj.label87:setFontColor("white");
 
-    obj.dataLink42 = gui.fromHandle(_obj_newObject("dataLink"));
+    obj.dataLink42 = GUI.fromHandle(_obj_newObject("dataLink"));
     obj.dataLink42:setParent(obj.flowLayout11);
     obj.dataLink42:setFields({'atributos.modcarisma', 'bonusProficiencia', 'pericias.persuasao'});
     obj.dataLink42:setName("dataLink42");
 
-    obj.flowLayout12 = gui.fromHandle(_obj_newObject("flowLayout"));
+    obj.flowLayout12 = GUI.fromHandle(_obj_newObject("flowLayout"));
     obj.flowLayout12:setParent(obj.flowLayout3);
     obj.flowLayout12:setAutoHeight(true);
     obj.flowLayout12:setHorzAlign("center");
@@ -3183,7 +3183,7 @@ function newfrmElysium()
     obj.flowLayout12:setAvoidScale(true);
     obj.flowLayout12:setMargins({left=1, right=1, top=2, bottom=2});
 
-    obj.flowLayout13 = gui.fromHandle(_obj_newObject("flowLayout"));
+    obj.flowLayout13 = GUI.fromHandle(_obj_newObject("flowLayout"));
     obj.flowLayout13:setParent(obj.flowLayout12);
     obj.flowLayout13:setMinWidth(235);
     obj.flowLayout13:setMaxWidth(475);
@@ -3194,7 +3194,7 @@ function newfrmElysium()
     obj.flowLayout13:setName("flowLayout13");
     obj.flowLayout13:setMargins({left=1, right=1, top=2, bottom=2});
 
-    obj.flowPart46 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart46 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart46:setParent(obj.flowLayout13);
     obj.flowPart46:setStepSizes({105});
     obj.flowPart46:setMinScaledWidth(75);
@@ -3204,7 +3204,7 @@ function newfrmElysium()
     obj.flowPart46:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart46:setVertAlign("leading");
 
-    obj.label88 = gui.fromHandle(_obj_newObject("label"));
+    obj.label88 = GUI.fromHandle(_obj_newObject("label"));
     obj.label88:setParent(obj.flowPart46);
     obj.label88:setAlign("top");
     obj.label88:setText("CLASSE DE ARMADURA");
@@ -3216,7 +3216,7 @@ function newfrmElysium()
     obj.label88:setName("label88");
     obj.label88:setFontColor("white");
 
-    obj.edit12 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edit12 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edit12:setParent(obj.flowPart46);
     obj.edit12:setAlign("client");
     obj.edit12:setField("CA");
@@ -3227,7 +3227,7 @@ function newfrmElysium()
     obj.edit12:setHorzTextAlign("center");
     obj.edit12:setFontColor("white");
 
-    obj.flowPart47 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart47 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart47:setParent(obj.flowLayout13);
     obj.flowPart47:setStepSizes({105});
     obj.flowPart47:setMinScaledWidth(75);
@@ -3237,7 +3237,7 @@ function newfrmElysium()
     obj.flowPart47:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart47:setVertAlign("leading");
 
-    obj.label89 = gui.fromHandle(_obj_newObject("label"));
+    obj.label89 = GUI.fromHandle(_obj_newObject("label"));
     obj.label89:setParent(obj.flowPart47);
     obj.label89:setAlign("top");
     obj.label89:setText("INICIATIVA");
@@ -3249,7 +3249,7 @@ function newfrmElysium()
     obj.label89:setName("label89");
     obj.label89:setFontColor("white");
 
-    obj.edit13 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edit13 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edit13:setParent(obj.flowPart47);
     obj.edit13:setAlign("client");
     obj.edit13:setField("iniciativa");
@@ -3260,7 +3260,7 @@ function newfrmElysium()
     obj.edit13:setHorzTextAlign("center");
     obj.edit13:setFontColor("white");
 
-    obj.flowPart48 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart48 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart48:setParent(obj.flowLayout13);
     obj.flowPart48:setStepSizes({105});
     obj.flowPart48:setMinScaledWidth(75);
@@ -3270,7 +3270,7 @@ function newfrmElysium()
     obj.flowPart48:setMargins({left=1, right=1, top=2, bottom=2});
     obj.flowPart48:setVertAlign("leading");
 
-    obj.label90 = gui.fromHandle(_obj_newObject("label"));
+    obj.label90 = GUI.fromHandle(_obj_newObject("label"));
     obj.label90:setParent(obj.flowPart48);
     obj.label90:setAlign("top");
     obj.label90:setText("DESLOCAMENTO");
@@ -3282,7 +3282,7 @@ function newfrmElysium()
     obj.label90:setName("label90");
     obj.label90:setFontColor("white");
 
-    obj.edit14 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edit14 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edit14:setParent(obj.flowPart48);
     obj.edit14:setAlign("client");
     obj.edit14:setField("deslocamento");
@@ -3293,7 +3293,7 @@ function newfrmElysium()
     obj.edit14:setHorzTextAlign("center");
     obj.edit14:setFontColor("white");
 
-    obj.flowPart49 = gui.fromHandle(_obj_newObject("flowPart"));
+    obj.flowPart49 = GUI.fromHandle(_obj_newObject("flowPart"));
     obj.flowPart49:setParent(obj.flowLayout12);
     obj.flowPart49:setMinWidth(235);
     obj.flowPart49:setMaxWidth(475);
@@ -3303,20 +3303,20 @@ function newfrmElysium()
     obj.flowPart49:setName("flowPart49");
     obj.flowPart49:setVertAlign("leading");
 
-    obj.frame1 = gui.fromHandle(_obj_newObject("frame"));
+    obj.frame1 = GUI.fromHandle(_obj_newObject("frame"));
     obj.frame1:setParent(obj.flowPart49);
     obj.frame1:setAlign("client");
     obj.frame1:setFrameStyle("frames/panel5/topPanel.xml");
     obj.frame1:setMargins({left = 4, right = 4, bottom=4});
     obj.frame1:setName("frame1");
 
-    obj.layout43 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout43 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout43:setParent(obj.frame1);
     obj.layout43:setAlign("top");
     obj.layout43:setHeight(25);
     obj.layout43:setName("layout43");
 
-    obj.label91 = gui.fromHandle(_obj_newObject("label"));
+    obj.label91 = GUI.fromHandle(_obj_newObject("label"));
     obj.label91:setParent(obj.layout43);
     obj.label91:setAlign("left");
     obj.label91:setAutoSize(true);
@@ -3328,13 +3328,13 @@ function newfrmElysium()
     obj.label91:setName("label91");
     obj.label91:setFontColor("#D0D0D0");
 
-    obj.layout44 = gui.fromHandle(_obj_newObject("layout"));
+    obj.layout44 = GUI.fromHandle(_obj_newObject("layout"));
     obj.layout44:setParent(obj.layout43);
     obj.layout44:setAlign("client");
     obj.layout44:setMargins({left=5, right=3});
     obj.layout44:setName("layout44");
 
-    obj.edit15 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edit15 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edit15:setParent(obj.layout44);
     obj.edit15:setAlign("client");
     obj.edit15:setField("PVMax");
@@ -3345,13 +3345,13 @@ function newfrmElysium()
     obj.edit15:setFontColor("white");
     obj.edit15:setTransparent(true);
 
-    obj.horzLine35 = gui.fromHandle(_obj_newObject("horzLine"));
+    obj.horzLine35 = GUI.fromHandle(_obj_newObject("horzLine"));
     obj.horzLine35:setParent(obj.layout44);
     obj.horzLine35:setAlign("bottom");
     obj.horzLine35:setStrokeColor("gray");
     obj.horzLine35:setName("horzLine35");
 
-    obj.edit16 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edit16 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edit16:setParent(obj.frame1);
     obj.edit16:setAlign("client");
     obj.edit16:setField("PV");
@@ -3364,7 +3364,7 @@ function newfrmElysium()
     obj.edit16:setFontColor("white");
     obj.edit16:setTransparent(true);
 
-    obj.label92 = gui.fromHandle(_obj_newObject("label"));
+    obj.label92 = GUI.fromHandle(_obj_newObject("label"));
     obj.label92:setParent(obj.frame1);
     obj.label92:setAlign("bottom");
     obj.label92:setAutoSize(true);
@@ -3376,7 +3376,7 @@ function newfrmElysium()
     obj.label92:setName("label92");
     obj.label92:setFontColor("white");
 
-    obj.frame2 = gui.fromHandle(_obj_newObject("frame"));
+    obj.frame2 = GUI.fromHandle(_obj_newObject("frame"));
     obj.frame2:setParent(obj.flowPart49);
     obj.frame2:setAlign("bottom");
     obj.frame2:setHeight(70);
@@ -3384,7 +3384,7 @@ function newfrmElysium()
     obj.frame2:setMargins({left = 4, right = 4});
     obj.frame2:setName("frame2");
 
-    obj.edit17 = gui.fromHandle(_obj_newObject("edit"));
+    obj.edit17 = GUI.fromHandle(_obj_newObject("edit"));
     obj.edit17:setParent(obj.frame2);
     obj.edit17:setAlign("client");
     obj.edit17:setField("PVTemporario");
@@ -3397,7 +3397,7 @@ function newfrmElysium()
     obj.edit17:setFontColor("white");
     obj.edit17:setTransparent(true);
 
-    obj.label93 = gui.fromHandle(_obj_newObject("label"));
+    obj.label93 = GUI.fromHandle(_obj_newObject("label"));
     obj.label93:setParent(obj.frame2);
     obj.label93:setAlign("bottom");
     obj.label93:setAutoSize(true);
@@ -3409,178 +3409,62 @@ function newfrmElysium()
     obj.label93:setName("label93");
     obj.label93:setFontColor("white");
 
-    obj.tab2 = gui.fromHandle(_obj_newObject("tab"));
+    obj.tab2 = GUI.fromHandle(_obj_newObject("tab"));
     obj.tab2:setParent(obj.pgcPrincipal);
     obj.tab2:setTitle("Background");
     obj.tab2:setName("tab2");
 
-    obj.tab3 = gui.fromHandle(_obj_newObject("tab"));
+    obj.richEdit1 = GUI.fromHandle(_obj_newObject("richEdit"));
+    obj.richEdit1:setParent(obj.tab2);
+    lfm_setPropAsString(obj.richEdit1, "animateImages",  "true");
+    obj.richEdit1:setAlign("client");
+    lfm_setPropAsString(obj.richEdit1, "backgroundColor",  "#363B45");
+    lfm_setPropAsString(obj.richEdit1, "defaultFontColor",  "white");
+    obj.richEdit1:setField("txt");
+    lfm_setPropAsString(obj.richEdit1, "hideSelection",  "false");
+    lfm_setPropAsString(obj.richEdit1, "defaultFontSize",  "15");
+    lfm_setPropAsString(obj.richEdit1, "showToolbar",  "true");
+    obj.richEdit1:setName("richEdit1");
+
+    obj.tab3 = GUI.fromHandle(_obj_newObject("tab"));
     obj.tab3:setParent(obj.pgcPrincipal);
     obj.tab3:setTitle("Caracteristicas");
     obj.tab3:setName("tab3");
 
-    obj.tab4 = gui.fromHandle(_obj_newObject("tab"));
+    obj.tab4 = GUI.fromHandle(_obj_newObject("tab"));
     obj.tab4:setParent(obj.pgcPrincipal);
     obj.tab4:setTitle("Equipamento");
     obj.tab4:setName("tab4");
 
-    obj.tab5 = gui.fromHandle(_obj_newObject("tab"));
+    obj.tab5 = GUI.fromHandle(_obj_newObject("tab"));
     obj.tab5:setParent(obj.pgcPrincipal);
     obj.tab5:setTitle("Habilidades");
     obj.tab5:setName("tab5");
 
-    obj.tab6 = gui.fromHandle(_obj_newObject("tab"));
+    obj.tab6 = GUI.fromHandle(_obj_newObject("tab"));
     obj.tab6:setParent(obj.pgcPrincipal);
     obj.tab6:setTitle("Vida");
     obj.tab6:setName("tab6");
 
-    obj.tab7 = gui.fromHandle(_obj_newObject("tab"));
+    obj.tab7 = GUI.fromHandle(_obj_newObject("tab"));
     obj.tab7:setParent(obj.pgcPrincipal);
     obj.tab7:setTitle("Anotações");
     obj.tab7:setName("tab7");
 
-    obj.rectangle2 = gui.fromHandle(_obj_newObject("rectangle"));
-    obj.rectangle2:setParent(obj.tab7);
-    obj.rectangle2:setName("rectangle2");
-    obj.rectangle2:setAlign("client");
-    obj.rectangle2:setColor("#40000000");
-    obj.rectangle2:setXradius(10);
-    obj.rectangle2:setYradius(10);
-
-    obj.textEditor1 = gui.fromHandle(_obj_newObject("textEditor"));
-    obj.textEditor1:setParent(obj.rectangle2);
-    obj.textEditor1:setAlign("client");
-    obj.textEditor1:setField("outros.anotacoes");
-    obj.textEditor1:setMargins({left=2, right=2, top=2, bottom=2});
-    obj.textEditor1:setName("textEditor1");
-    obj.textEditor1:setTransparent(true);
+    obj.richEdit2 = GUI.fromHandle(_obj_newObject("richEdit"));
+    obj.richEdit2:setParent(obj.tab7);
+    lfm_setPropAsString(obj.richEdit2, "animateImages",  "true");
+    obj.richEdit2:setAlign("client");
+    lfm_setPropAsString(obj.richEdit2, "backgroundColor",  "#363B45");
+    lfm_setPropAsString(obj.richEdit2, "defaultFontColor",  "white");
+    obj.richEdit2:setField("txt");
+    lfm_setPropAsString(obj.richEdit2, "hideSelection",  "false");
+    lfm_setPropAsString(obj.richEdit2, "defaultFontSize",  "15");
+    lfm_setPropAsString(obj.richEdit2, "showToolbar",  "true");
+    obj.richEdit2:setName("richEdit2");
 
     obj._e_event0 = obj.dataLink1:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
-            local numAsStr = tostring(newValue);
-            				local numero;
-            				
-            				if numAsStr ~= "" then
-            					numero = tonumber(newValue);
-            				else
-            					numero = nil;
-            				end;
-            
-            				if type(sheet.atributos) ~= 'table' then
-            					sheet.atributos = {};
-            				end;				
-            				
-            				if type(numero) == 'number' then
-            					local modificador = math.floor(numero / 2) - 5;								
-            					sheet.atributos.modforca = modificador;	
-            				
-            					if modificador >= 0 then
-            						sheet.atributos.modforcastr = "+" .. modificador;
-            					else	
-            						sheet.atributos.modforcastr = "-" .. math.abs(modificador);
-            					end;	
-            				else
-            					sheet.atributos.modforca = nil;
-            					sheet.atributos.modforcastr = nil;
-            				end;
-        end, obj);
-
-    obj._e_event1 = obj.dataLink2:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
-            local modificador;
-            							local temResistencia;
-            									
-            							if sheet.atributos ~= nil then
-            								modificador = sheet.atributos.modforca;
-            								
-            								if modificador ~= nil then
-            									modificador = tonumber(modificador);
-            								end;
-            							else
-            								modificador = nil;
-            							end;
-            							
-            							if sheet.resistencias ~= nil then
-            								temResistencia = sheet.resistencias.forca or false;
-            							else
-            								temResistencia = false;
-            								sheet.resistencias = {};
-            							end;
-            													
-            							
-            							if modificador ~= nil then
-            								local valor;
-            							
-            								if temResistencia then
-            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
-            								else
-            									valor = modificador;
-            								end;								
-            								
-            								valor = math.tointeger(valor);
-            								
-            								sheet.resistencias.bonusforca = valor;
-            								
-            								if valor >= 0 then
-            									sheet.resistencias.bonusforcastr = "+" .. valor;
-            								else
-            									sheet.resistencias.bonusforcastr = "-" .. math.abs(valor);
-            								end;
-            							else
-            								sheet.resistencias.bonusforca = nil;
-            								sheet.resistencias.bonusforcastr = nil;
-            							end;
-        end, obj);
-
-    obj._e_event2 = obj.dataLink3:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
-            local modificador;
-            							local temPericia;
-            									
-            							if sheet.atributos ~= nil then
-            								modificador = sheet.atributos.modforca;
-            								
-            								if modificador ~= nil then
-            									modificador = tonumber(modificador);
-            								end;
-            							else
-            								modificador = nil;
-            							end;
-            							
-            							if sheet.pericias ~= nil then
-            								temPericia = sheet.pericias.atletismo or false;
-            							else
-            								temPericia = false;
-            								sheet.pericias = {};
-            							end;
-            													
-            							
-            							if modificador ~= nil then
-            								local valor;
-            							
-            								if temPericia then
-            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
-            								else
-            									valor = modificador;
-            								end;								
-            								
-            								valor = math.tointeger(valor);
-            								
-            								sheet.pericias.bonusatletismo	= valor;
-            								
-            								if valor >= 0 then
-            									sheet.pericias.bonusatletismostr = "+" .. valor;
-            								else
-            									sheet.pericias.bonusatletismostr = "-" .. math.abs(valor);
-            								end;
-            							else
-            								sheet.pericias.bonusatletismo = nil;
-            								sheet.pericias.bonusatletismostr = nil;
-            							end;
-        end, obj);
-
-    obj._e_event3 = obj.dataLink4:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+        function (_, field, oldValue, newValue)
             local numAsStr = tostring(newValue);
             				local numero;
             				
@@ -3609,8 +3493,8 @@ function newfrmElysium()
             				end;
         end, obj);
 
-    obj._e_event4 = obj.dataLink5:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+    obj._e_event1 = obj.dataLink2:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temResistencia;
             									
@@ -3656,8 +3540,8 @@ function newfrmElysium()
             							end;
         end, obj);
 
-    obj._e_event5 = obj.dataLink6:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+    obj._e_event2 = obj.dataLink3:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temPericia;
             									
@@ -3703,8 +3587,8 @@ function newfrmElysium()
             							end;
         end, obj);
 
-    obj._e_event6 = obj.dataLink7:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+    obj._e_event3 = obj.dataLink4:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temPericia;
             									
@@ -3750,8 +3634,8 @@ function newfrmElysium()
             							end;
         end, obj);
 
-    obj._e_event7 = obj.dataLink8:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+    obj._e_event4 = obj.dataLink5:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temPericia;
             									
@@ -3797,8 +3681,132 @@ function newfrmElysium()
             							end;
         end, obj);
 
+    obj._e_event5 = obj.dataLink6:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
+            local numAsStr = tostring(newValue);
+            				local numero;
+            				
+            				if numAsStr ~= "" then
+            					numero = tonumber(newValue);
+            				else
+            					numero = nil;
+            				end;
+            
+            				if type(sheet.atributos) ~= 'table' then
+            					sheet.atributos = {};
+            				end;				
+            				
+            				if type(numero) == 'number' then
+            					local modificador = math.floor(numero / 2) - 5;								
+            					sheet.atributos.modforca = modificador;	
+            				
+            					if modificador >= 0 then
+            						sheet.atributos.modforcastr = "+" .. modificador;
+            					else	
+            						sheet.atributos.modforcastr = "-" .. math.abs(modificador);
+            					end;	
+            				else
+            					sheet.atributos.modforca = nil;
+            					sheet.atributos.modforcastr = nil;
+            				end;
+        end, obj);
+
+    obj._e_event6 = obj.dataLink7:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
+            local modificador;
+            							local temResistencia;
+            									
+            							if sheet.atributos ~= nil then
+            								modificador = sheet.atributos.modforca;
+            								
+            								if modificador ~= nil then
+            									modificador = tonumber(modificador);
+            								end;
+            							else
+            								modificador = nil;
+            							end;
+            							
+            							if sheet.resistencias ~= nil then
+            								temResistencia = sheet.resistencias.forca or false;
+            							else
+            								temResistencia = false;
+            								sheet.resistencias = {};
+            							end;
+            													
+            							
+            							if modificador ~= nil then
+            								local valor;
+            							
+            								if temResistencia then
+            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
+            								else
+            									valor = modificador;
+            								end;								
+            								
+            								valor = math.tointeger(valor);
+            								
+            								sheet.resistencias.bonusforca = valor;
+            								
+            								if valor >= 0 then
+            									sheet.resistencias.bonusforcastr = "+" .. valor;
+            								else
+            									sheet.resistencias.bonusforcastr = "-" .. math.abs(valor);
+            								end;
+            							else
+            								sheet.resistencias.bonusforca = nil;
+            								sheet.resistencias.bonusforcastr = nil;
+            							end;
+        end, obj);
+
+    obj._e_event7 = obj.dataLink8:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
+            local modificador;
+            							local temPericia;
+            									
+            							if sheet.atributos ~= nil then
+            								modificador = sheet.atributos.modforca;
+            								
+            								if modificador ~= nil then
+            									modificador = tonumber(modificador);
+            								end;
+            							else
+            								modificador = nil;
+            							end;
+            							
+            							if sheet.pericias ~= nil then
+            								temPericia = sheet.pericias.atletismo or false;
+            							else
+            								temPericia = false;
+            								sheet.pericias = {};
+            							end;
+            													
+            							
+            							if modificador ~= nil then
+            								local valor;
+            							
+            								if temPericia then
+            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
+            								else
+            									valor = modificador;
+            								end;								
+            								
+            								valor = math.tointeger(valor);
+            								
+            								sheet.pericias.bonusatletismo	= valor;
+            								
+            								if valor >= 0 then
+            									sheet.pericias.bonusatletismostr = "+" .. valor;
+            								else
+            									sheet.pericias.bonusatletismostr = "-" .. math.abs(valor);
+            								end;
+            							else
+            								sheet.pericias.bonusatletismo = nil;
+            								sheet.pericias.bonusatletismostr = nil;
+            							end;
+        end, obj);
+
     obj._e_event8 = obj.dataLink9:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+        function (_, field, oldValue, newValue)
             local numAsStr = tostring(newValue);
             				local numero;
             				
@@ -3828,7 +3836,7 @@ function newfrmElysium()
         end, obj);
 
     obj._e_event9 = obj.dataLink10:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temResistencia;
             									
@@ -3875,7 +3883,272 @@ function newfrmElysium()
         end, obj);
 
     obj._e_event10 = obj.dataLink11:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+        function (_, field, oldValue, newValue)
+            local numAsStr = tostring(newValue);
+            				local numero;
+            				
+            				if numAsStr ~= "" then
+            					numero = tonumber(newValue);
+            				else
+            					numero = nil;
+            				end;
+            
+            				if type(sheet.atributos) ~= 'table' then
+            					sheet.atributos = {};
+            				end;				
+            				
+            				if type(numero) == 'number' then
+            					local modificador = math.floor(numero / 2) - 5;								
+            					sheet.atributos.modcarisma = modificador;	
+            				
+            					if modificador >= 0 then
+            						sheet.atributos.modcarismastr = "+" .. modificador;
+            					else	
+            						sheet.atributos.modcarismastr = "-" .. math.abs(modificador);
+            					end;	
+            				else
+            					sheet.atributos.modcarisma = nil;
+            					sheet.atributos.modcarismastr = nil;
+            				end;
+        end, obj);
+
+    obj._e_event11 = obj.dataLink12:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
+            local modificador;
+            							local temResistencia;
+            									
+            							if sheet.atributos ~= nil then
+            								modificador = sheet.atributos.modcarisma;
+            								
+            								if modificador ~= nil then
+            									modificador = tonumber(modificador);
+            								end;
+            							else
+            								modificador = nil;
+            							end;
+            							
+            							if sheet.resistencias ~= nil then
+            								temResistencia = sheet.resistencias.carisma or false;
+            							else
+            								temResistencia = false;
+            								sheet.resistencias = {};
+            							end;
+            													
+            							
+            							if modificador ~= nil then
+            								local valor;
+            							
+            								if temResistencia then
+            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
+            								else
+            									valor = modificador;
+            								end;								
+            								
+            								valor = math.tointeger(valor);
+            								
+            								sheet.resistencias.bonuscarisma = valor;
+            								
+            								if valor >= 0 then
+            									sheet.resistencias.bonuscarismastr = "+" .. valor;
+            								else
+            									sheet.resistencias.bonuscarismastr = "-" .. math.abs(valor);
+            								end;
+            							else
+            								sheet.resistencias.bonuscarisma = nil;
+            								sheet.resistencias.bonuscarismastr = nil;
+            							end;
+        end, obj);
+
+    obj._e_event12 = obj.dataLink13:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
+            local modificador;
+            							local temPericia;
+            									
+            							if sheet.atributos ~= nil then
+            								modificador = sheet.atributos.modcarisma;
+            								
+            								if modificador ~= nil then
+            									modificador = tonumber(modificador);
+            								end;
+            							else
+            								modificador = nil;
+            							end;
+            							
+            							if sheet.pericias ~= nil then
+            								temPericia = sheet.pericias.atuacao or false;
+            							else
+            								temPericia = false;
+            								sheet.pericias = {};
+            							end;
+            													
+            							
+            							if modificador ~= nil then
+            								local valor;
+            							
+            								if temPericia then
+            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
+            								else
+            									valor = modificador;
+            								end;								
+            								
+            								valor = math.tointeger(valor);
+            								
+            								sheet.pericias.bonusatuacao	= valor;
+            								
+            								if valor >= 0 then
+            									sheet.pericias.bonusatuacaostr = "+" .. valor;
+            								else
+            									sheet.pericias.bonusatuacaostr = "-" .. math.abs(valor);
+            								end;
+            							else
+            								sheet.pericias.bonusatuacao = nil;
+            								sheet.pericias.bonusatuacaostr = nil;
+            							end;
+        end, obj);
+
+    obj._e_event13 = obj.dataLink14:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
+            local modificador;
+            							local temPericia;
+            									
+            							if sheet.atributos ~= nil then
+            								modificador = sheet.atributos.modcarisma;
+            								
+            								if modificador ~= nil then
+            									modificador = tonumber(modificador);
+            								end;
+            							else
+            								modificador = nil;
+            							end;
+            							
+            							if sheet.pericias ~= nil then
+            								temPericia = sheet.pericias.enganacao or false;
+            							else
+            								temPericia = false;
+            								sheet.pericias = {};
+            							end;
+            													
+            							
+            							if modificador ~= nil then
+            								local valor;
+            							
+            								if temPericia then
+            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
+            								else
+            									valor = modificador;
+            								end;								
+            								
+            								valor = math.tointeger(valor);
+            								
+            								sheet.pericias.bonusenganacao	= valor;
+            								
+            								if valor >= 0 then
+            									sheet.pericias.bonusenganacaostr = "+" .. valor;
+            								else
+            									sheet.pericias.bonusenganacaostr = "-" .. math.abs(valor);
+            								end;
+            							else
+            								sheet.pericias.bonusenganacao = nil;
+            								sheet.pericias.bonusenganacaostr = nil;
+            							end;
+        end, obj);
+
+    obj._e_event14 = obj.dataLink15:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
+            local modificador;
+            							local temPericia;
+            									
+            							if sheet.atributos ~= nil then
+            								modificador = sheet.atributos.modcarisma;
+            								
+            								if modificador ~= nil then
+            									modificador = tonumber(modificador);
+            								end;
+            							else
+            								modificador = nil;
+            							end;
+            							
+            							if sheet.pericias ~= nil then
+            								temPericia = sheet.pericias.intimidacao or false;
+            							else
+            								temPericia = false;
+            								sheet.pericias = {};
+            							end;
+            													
+            							
+            							if modificador ~= nil then
+            								local valor;
+            							
+            								if temPericia then
+            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
+            								else
+            									valor = modificador;
+            								end;								
+            								
+            								valor = math.tointeger(valor);
+            								
+            								sheet.pericias.bonusintimidacao	= valor;
+            								
+            								if valor >= 0 then
+            									sheet.pericias.bonusintimidacaostr = "+" .. valor;
+            								else
+            									sheet.pericias.bonusintimidacaostr = "-" .. math.abs(valor);
+            								end;
+            							else
+            								sheet.pericias.bonusintimidacao = nil;
+            								sheet.pericias.bonusintimidacaostr = nil;
+            							end;
+        end, obj);
+
+    obj._e_event15 = obj.dataLink16:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
+            local modificador;
+            							local temPericia;
+            									
+            							if sheet.atributos ~= nil then
+            								modificador = sheet.atributos.modcarisma;
+            								
+            								if modificador ~= nil then
+            									modificador = tonumber(modificador);
+            								end;
+            							else
+            								modificador = nil;
+            							end;
+            							
+            							if sheet.pericias ~= nil then
+            								temPericia = sheet.pericias.persuasao or false;
+            							else
+            								temPericia = false;
+            								sheet.pericias = {};
+            							end;
+            													
+            							
+            							if modificador ~= nil then
+            								local valor;
+            							
+            								if temPericia then
+            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
+            								else
+            									valor = modificador;
+            								end;								
+            								
+            								valor = math.tointeger(valor);
+            								
+            								sheet.pericias.bonuspersuasao	= valor;
+            								
+            								if valor >= 0 then
+            									sheet.pericias.bonuspersuasaostr = "+" .. valor;
+            								else
+            									sheet.pericias.bonuspersuasaostr = "-" .. math.abs(valor);
+            								end;
+            							else
+            								sheet.pericias.bonuspersuasao = nil;
+            								sheet.pericias.bonuspersuasaostr = nil;
+            							end;
+        end, obj);
+
+    obj._e_event16 = obj.dataLink17:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
             local numAsStr = tostring(newValue);
             				local numero;
             				
@@ -3904,8 +4177,8 @@ function newfrmElysium()
             				end;
         end, obj);
 
-    obj._e_event11 = obj.dataLink12:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+    obj._e_event17 = obj.dataLink18:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temResistencia;
             									
@@ -3951,8 +4224,8 @@ function newfrmElysium()
             							end;
         end, obj);
 
-    obj._e_event12 = obj.dataLink13:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+    obj._e_event18 = obj.dataLink19:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temPericia;
             									
@@ -3998,8 +4271,8 @@ function newfrmElysium()
             							end;
         end, obj);
 
-    obj._e_event13 = obj.dataLink14:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+    obj._e_event19 = obj.dataLink20:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temPericia;
             									
@@ -4045,8 +4318,8 @@ function newfrmElysium()
             							end;
         end, obj);
 
-    obj._e_event14 = obj.dataLink15:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+    obj._e_event20 = obj.dataLink21:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temPericia;
             									
@@ -4092,8 +4365,8 @@ function newfrmElysium()
             							end;
         end, obj);
 
-    obj._e_event15 = obj.dataLink16:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+    obj._e_event21 = obj.dataLink22:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temPericia;
             									
@@ -4139,8 +4412,8 @@ function newfrmElysium()
             							end;
         end, obj);
 
-    obj._e_event16 = obj.dataLink17:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+    obj._e_event22 = obj.dataLink23:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temPericia;
             									
@@ -4186,8 +4459,273 @@ function newfrmElysium()
             							end;
         end, obj);
 
-    obj._e_event17 = obj.dataLink18:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+    obj._e_event23 = obj.dataLink24:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
+            local numAsStr = tostring(newValue);
+            				local numero;
+            				
+            				if numAsStr ~= "" then
+            					numero = tonumber(newValue);
+            				else
+            					numero = nil;
+            				end;
+            
+            				if type(sheet.atributos) ~= 'table' then
+            					sheet.atributos = {};
+            				end;				
+            				
+            				if type(numero) == 'number' then
+            					local modificador = math.floor(numero / 2) - 5;								
+            					sheet.atributos.modcarisma = modificador;	
+            				
+            					if modificador >= 0 then
+            						sheet.atributos.modcarismastr = "+" .. modificador;
+            					else	
+            						sheet.atributos.modcarismastr = "-" .. math.abs(modificador);
+            					end;	
+            				else
+            					sheet.atributos.modcarisma = nil;
+            					sheet.atributos.modcarismastr = nil;
+            				end;
+        end, obj);
+
+    obj._e_event24 = obj.dataLink25:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
+            local modificador;
+            							local temResistencia;
+            									
+            							if sheet.atributos ~= nil then
+            								modificador = sheet.atributos.modcarisma;
+            								
+            								if modificador ~= nil then
+            									modificador = tonumber(modificador);
+            								end;
+            							else
+            								modificador = nil;
+            							end;
+            							
+            							if sheet.resistencias ~= nil then
+            								temResistencia = sheet.resistencias.carisma or false;
+            							else
+            								temResistencia = false;
+            								sheet.resistencias = {};
+            							end;
+            													
+            							
+            							if modificador ~= nil then
+            								local valor;
+            							
+            								if temResistencia then
+            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
+            								else
+            									valor = modificador;
+            								end;								
+            								
+            								valor = math.tointeger(valor);
+            								
+            								sheet.resistencias.bonuscarisma = valor;
+            								
+            								if valor >= 0 then
+            									sheet.resistencias.bonuscarismastr = "+" .. valor;
+            								else
+            									sheet.resistencias.bonuscarismastr = "-" .. math.abs(valor);
+            								end;
+            							else
+            								sheet.resistencias.bonuscarisma = nil;
+            								sheet.resistencias.bonuscarismastr = nil;
+            							end;
+        end, obj);
+
+    obj._e_event25 = obj.dataLink26:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
+            local modificador;
+            							local temPericia;
+            									
+            							if sheet.atributos ~= nil then
+            								modificador = sheet.atributos.modcarisma;
+            								
+            								if modificador ~= nil then
+            									modificador = tonumber(modificador);
+            								end;
+            							else
+            								modificador = nil;
+            							end;
+            							
+            							if sheet.pericias ~= nil then
+            								temPericia = sheet.pericias.atuacao or false;
+            							else
+            								temPericia = false;
+            								sheet.pericias = {};
+            							end;
+            													
+            							
+            							if modificador ~= nil then
+            								local valor;
+            							
+            								if temPericia then
+            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
+            								else
+            									valor = modificador;
+            								end;								
+            								
+            								valor = math.tointeger(valor);
+            								
+            								sheet.pericias.bonusatuacao	= valor;
+            								
+            								if valor >= 0 then
+            									sheet.pericias.bonusatuacaostr = "+" .. valor;
+            								else
+            									sheet.pericias.bonusatuacaostr = "-" .. math.abs(valor);
+            								end;
+            							else
+            								sheet.pericias.bonusatuacao = nil;
+            								sheet.pericias.bonusatuacaostr = nil;
+            							end;
+        end, obj);
+
+    obj._e_event26 = obj.dataLink27:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
+            local modificador;
+            							local temPericia;
+            									
+            							if sheet.atributos ~= nil then
+            								modificador = sheet.atributos.modcarisma;
+            								
+            								if modificador ~= nil then
+            									modificador = tonumber(modificador);
+            								end;
+            							else
+            								modificador = nil;
+            							end;
+            							
+            							if sheet.pericias ~= nil then
+            								temPericia = sheet.pericias.enganacao or false;
+            							else
+            								temPericia = false;
+            								sheet.pericias = {};
+            							end;
+            													
+            							
+            							if modificador ~= nil then
+            								local valor;
+            							
+            								if temPericia then
+            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
+            								else
+            									valor = modificador;
+            								end;								
+            								
+            								valor = math.tointeger(valor);
+            								
+            								sheet.pericias.bonusenganacao	= valor;
+            								
+            								if valor >= 0 then
+            									sheet.pericias.bonusenganacaostr = "+" .. valor;
+            								else
+            									sheet.pericias.bonusenganacaostr = "-" .. math.abs(valor);
+            								end;
+            							else
+            								sheet.pericias.bonusenganacao = nil;
+            								sheet.pericias.bonusenganacaostr = nil;
+            							end;
+        end, obj);
+
+    obj._e_event27 = obj.dataLink28:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
+            local modificador;
+            							local temPericia;
+            									
+            							if sheet.atributos ~= nil then
+            								modificador = sheet.atributos.modcarisma;
+            								
+            								if modificador ~= nil then
+            									modificador = tonumber(modificador);
+            								end;
+            							else
+            								modificador = nil;
+            							end;
+            							
+            							if sheet.pericias ~= nil then
+            								temPericia = sheet.pericias.intimidacao or false;
+            							else
+            								temPericia = false;
+            								sheet.pericias = {};
+            							end;
+            													
+            							
+            							if modificador ~= nil then
+            								local valor;
+            							
+            								if temPericia then
+            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
+            								else
+            									valor = modificador;
+            								end;								
+            								
+            								valor = math.tointeger(valor);
+            								
+            								sheet.pericias.bonusintimidacao	= valor;
+            								
+            								if valor >= 0 then
+            									sheet.pericias.bonusintimidacaostr = "+" .. valor;
+            								else
+            									sheet.pericias.bonusintimidacaostr = "-" .. math.abs(valor);
+            								end;
+            							else
+            								sheet.pericias.bonusintimidacao = nil;
+            								sheet.pericias.bonusintimidacaostr = nil;
+            							end;
+        end, obj);
+
+    obj._e_event28 = obj.dataLink29:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
+            local modificador;
+            							local temPericia;
+            									
+            							if sheet.atributos ~= nil then
+            								modificador = sheet.atributos.modcarisma;
+            								
+            								if modificador ~= nil then
+            									modificador = tonumber(modificador);
+            								end;
+            							else
+            								modificador = nil;
+            							end;
+            							
+            							if sheet.pericias ~= nil then
+            								temPericia = sheet.pericias.persuasao or false;
+            							else
+            								temPericia = false;
+            								sheet.pericias = {};
+            							end;
+            													
+            							
+            							if modificador ~= nil then
+            								local valor;
+            							
+            								if temPericia then
+            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
+            								else
+            									valor = modificador;
+            								end;								
+            								
+            								valor = math.tointeger(valor);
+            								
+            								sheet.pericias.bonuspersuasao	= valor;
+            								
+            								if valor >= 0 then
+            									sheet.pericias.bonuspersuasaostr = "+" .. valor;
+            								else
+            									sheet.pericias.bonuspersuasaostr = "-" .. math.abs(valor);
+            								end;
+            							else
+            								sheet.pericias.bonuspersuasao = nil;
+            								sheet.pericias.bonuspersuasaostr = nil;
+            							end;
+        end, obj);
+
+    obj._e_event29 = obj.dataLink30:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
             local numAsStr = tostring(newValue);
             				local numero;
             				
@@ -4216,8 +4754,8 @@ function newfrmElysium()
             				end;
         end, obj);
 
-    obj._e_event18 = obj.dataLink19:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+    obj._e_event30 = obj.dataLink31:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temResistencia;
             									
@@ -4263,8 +4801,8 @@ function newfrmElysium()
             							end;
         end, obj);
 
-    obj._e_event19 = obj.dataLink20:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+    obj._e_event31 = obj.dataLink32:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temPericia;
             									
@@ -4310,8 +4848,8 @@ function newfrmElysium()
             							end;
         end, obj);
 
-    obj._e_event20 = obj.dataLink21:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+    obj._e_event32 = obj.dataLink33:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temPericia;
             									
@@ -4357,8 +4895,8 @@ function newfrmElysium()
             							end;
         end, obj);
 
-    obj._e_event21 = obj.dataLink22:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+    obj._e_event33 = obj.dataLink34:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temPericia;
             									
@@ -4404,8 +4942,8 @@ function newfrmElysium()
             							end;
         end, obj);
 
-    obj._e_event22 = obj.dataLink23:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+    obj._e_event34 = obj.dataLink35:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temPericia;
             									
@@ -4451,8 +4989,8 @@ function newfrmElysium()
             							end;
         end, obj);
 
-    obj._e_event23 = obj.dataLink24:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+    obj._e_event35 = obj.dataLink36:addEventListener("onChange",
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temPericia;
             									
@@ -4498,538 +5036,8 @@ function newfrmElysium()
             							end;
         end, obj);
 
-    obj._e_event24 = obj.dataLink25:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
-            local numAsStr = tostring(newValue);
-            				local numero;
-            				
-            				if numAsStr ~= "" then
-            					numero = tonumber(newValue);
-            				else
-            					numero = nil;
-            				end;
-            
-            				if type(sheet.atributos) ~= 'table' then
-            					sheet.atributos = {};
-            				end;				
-            				
-            				if type(numero) == 'number' then
-            					local modificador = math.floor(numero / 2) - 5;								
-            					sheet.atributos.modcarisma = modificador;	
-            				
-            					if modificador >= 0 then
-            						sheet.atributos.modcarismastr = "+" .. modificador;
-            					else	
-            						sheet.atributos.modcarismastr = "-" .. math.abs(modificador);
-            					end;	
-            				else
-            					sheet.atributos.modcarisma = nil;
-            					sheet.atributos.modcarismastr = nil;
-            				end;
-        end, obj);
-
-    obj._e_event25 = obj.dataLink26:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
-            local modificador;
-            							local temResistencia;
-            									
-            							if sheet.atributos ~= nil then
-            								modificador = sheet.atributos.modcarisma;
-            								
-            								if modificador ~= nil then
-            									modificador = tonumber(modificador);
-            								end;
-            							else
-            								modificador = nil;
-            							end;
-            							
-            							if sheet.resistencias ~= nil then
-            								temResistencia = sheet.resistencias.carisma or false;
-            							else
-            								temResistencia = false;
-            								sheet.resistencias = {};
-            							end;
-            													
-            							
-            							if modificador ~= nil then
-            								local valor;
-            							
-            								if temResistencia then
-            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
-            								else
-            									valor = modificador;
-            								end;								
-            								
-            								valor = math.tointeger(valor);
-            								
-            								sheet.resistencias.bonuscarisma = valor;
-            								
-            								if valor >= 0 then
-            									sheet.resistencias.bonuscarismastr = "+" .. valor;
-            								else
-            									sheet.resistencias.bonuscarismastr = "-" .. math.abs(valor);
-            								end;
-            							else
-            								sheet.resistencias.bonuscarisma = nil;
-            								sheet.resistencias.bonuscarismastr = nil;
-            							end;
-        end, obj);
-
-    obj._e_event26 = obj.dataLink27:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
-            local modificador;
-            							local temPericia;
-            									
-            							if sheet.atributos ~= nil then
-            								modificador = sheet.atributos.modcarisma;
-            								
-            								if modificador ~= nil then
-            									modificador = tonumber(modificador);
-            								end;
-            							else
-            								modificador = nil;
-            							end;
-            							
-            							if sheet.pericias ~= nil then
-            								temPericia = sheet.pericias.atuacao or false;
-            							else
-            								temPericia = false;
-            								sheet.pericias = {};
-            							end;
-            													
-            							
-            							if modificador ~= nil then
-            								local valor;
-            							
-            								if temPericia then
-            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
-            								else
-            									valor = modificador;
-            								end;								
-            								
-            								valor = math.tointeger(valor);
-            								
-            								sheet.pericias.bonusatuacao	= valor;
-            								
-            								if valor >= 0 then
-            									sheet.pericias.bonusatuacaostr = "+" .. valor;
-            								else
-            									sheet.pericias.bonusatuacaostr = "-" .. math.abs(valor);
-            								end;
-            							else
-            								sheet.pericias.bonusatuacao = nil;
-            								sheet.pericias.bonusatuacaostr = nil;
-            							end;
-        end, obj);
-
-    obj._e_event27 = obj.dataLink28:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
-            local modificador;
-            							local temPericia;
-            									
-            							if sheet.atributos ~= nil then
-            								modificador = sheet.atributos.modcarisma;
-            								
-            								if modificador ~= nil then
-            									modificador = tonumber(modificador);
-            								end;
-            							else
-            								modificador = nil;
-            							end;
-            							
-            							if sheet.pericias ~= nil then
-            								temPericia = sheet.pericias.enganacao or false;
-            							else
-            								temPericia = false;
-            								sheet.pericias = {};
-            							end;
-            													
-            							
-            							if modificador ~= nil then
-            								local valor;
-            							
-            								if temPericia then
-            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
-            								else
-            									valor = modificador;
-            								end;								
-            								
-            								valor = math.tointeger(valor);
-            								
-            								sheet.pericias.bonusenganacao	= valor;
-            								
-            								if valor >= 0 then
-            									sheet.pericias.bonusenganacaostr = "+" .. valor;
-            								else
-            									sheet.pericias.bonusenganacaostr = "-" .. math.abs(valor);
-            								end;
-            							else
-            								sheet.pericias.bonusenganacao = nil;
-            								sheet.pericias.bonusenganacaostr = nil;
-            							end;
-        end, obj);
-
-    obj._e_event28 = obj.dataLink29:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
-            local modificador;
-            							local temPericia;
-            									
-            							if sheet.atributos ~= nil then
-            								modificador = sheet.atributos.modcarisma;
-            								
-            								if modificador ~= nil then
-            									modificador = tonumber(modificador);
-            								end;
-            							else
-            								modificador = nil;
-            							end;
-            							
-            							if sheet.pericias ~= nil then
-            								temPericia = sheet.pericias.intimidacao or false;
-            							else
-            								temPericia = false;
-            								sheet.pericias = {};
-            							end;
-            													
-            							
-            							if modificador ~= nil then
-            								local valor;
-            							
-            								if temPericia then
-            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
-            								else
-            									valor = modificador;
-            								end;								
-            								
-            								valor = math.tointeger(valor);
-            								
-            								sheet.pericias.bonusintimidacao	= valor;
-            								
-            								if valor >= 0 then
-            									sheet.pericias.bonusintimidacaostr = "+" .. valor;
-            								else
-            									sheet.pericias.bonusintimidacaostr = "-" .. math.abs(valor);
-            								end;
-            							else
-            								sheet.pericias.bonusintimidacao = nil;
-            								sheet.pericias.bonusintimidacaostr = nil;
-            							end;
-        end, obj);
-
-    obj._e_event29 = obj.dataLink30:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
-            local modificador;
-            							local temPericia;
-            									
-            							if sheet.atributos ~= nil then
-            								modificador = sheet.atributos.modcarisma;
-            								
-            								if modificador ~= nil then
-            									modificador = tonumber(modificador);
-            								end;
-            							else
-            								modificador = nil;
-            							end;
-            							
-            							if sheet.pericias ~= nil then
-            								temPericia = sheet.pericias.persuasao or false;
-            							else
-            								temPericia = false;
-            								sheet.pericias = {};
-            							end;
-            													
-            							
-            							if modificador ~= nil then
-            								local valor;
-            							
-            								if temPericia then
-            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
-            								else
-            									valor = modificador;
-            								end;								
-            								
-            								valor = math.tointeger(valor);
-            								
-            								sheet.pericias.bonuspersuasao	= valor;
-            								
-            								if valor >= 0 then
-            									sheet.pericias.bonuspersuasaostr = "+" .. valor;
-            								else
-            									sheet.pericias.bonuspersuasaostr = "-" .. math.abs(valor);
-            								end;
-            							else
-            								sheet.pericias.bonuspersuasao = nil;
-            								sheet.pericias.bonuspersuasaostr = nil;
-            							end;
-        end, obj);
-
-    obj._e_event30 = obj.dataLink31:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
-            local numAsStr = tostring(newValue);
-            				local numero;
-            				
-            				if numAsStr ~= "" then
-            					numero = tonumber(newValue);
-            				else
-            					numero = nil;
-            				end;
-            
-            				if type(sheet.atributos) ~= 'table' then
-            					sheet.atributos = {};
-            				end;				
-            				
-            				if type(numero) == 'number' then
-            					local modificador = math.floor(numero / 2) - 5;								
-            					sheet.atributos.modcarisma = modificador;	
-            				
-            					if modificador >= 0 then
-            						sheet.atributos.modcarismastr = "+" .. modificador;
-            					else	
-            						sheet.atributos.modcarismastr = "-" .. math.abs(modificador);
-            					end;	
-            				else
-            					sheet.atributos.modcarisma = nil;
-            					sheet.atributos.modcarismastr = nil;
-            				end;
-        end, obj);
-
-    obj._e_event31 = obj.dataLink32:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
-            local modificador;
-            							local temResistencia;
-            									
-            							if sheet.atributos ~= nil then
-            								modificador = sheet.atributos.modcarisma;
-            								
-            								if modificador ~= nil then
-            									modificador = tonumber(modificador);
-            								end;
-            							else
-            								modificador = nil;
-            							end;
-            							
-            							if sheet.resistencias ~= nil then
-            								temResistencia = sheet.resistencias.carisma or false;
-            							else
-            								temResistencia = false;
-            								sheet.resistencias = {};
-            							end;
-            													
-            							
-            							if modificador ~= nil then
-            								local valor;
-            							
-            								if temResistencia then
-            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
-            								else
-            									valor = modificador;
-            								end;								
-            								
-            								valor = math.tointeger(valor);
-            								
-            								sheet.resistencias.bonuscarisma = valor;
-            								
-            								if valor >= 0 then
-            									sheet.resistencias.bonuscarismastr = "+" .. valor;
-            								else
-            									sheet.resistencias.bonuscarismastr = "-" .. math.abs(valor);
-            								end;
-            							else
-            								sheet.resistencias.bonuscarisma = nil;
-            								sheet.resistencias.bonuscarismastr = nil;
-            							end;
-        end, obj);
-
-    obj._e_event32 = obj.dataLink33:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
-            local modificador;
-            							local temPericia;
-            									
-            							if sheet.atributos ~= nil then
-            								modificador = sheet.atributos.modcarisma;
-            								
-            								if modificador ~= nil then
-            									modificador = tonumber(modificador);
-            								end;
-            							else
-            								modificador = nil;
-            							end;
-            							
-            							if sheet.pericias ~= nil then
-            								temPericia = sheet.pericias.atuacao or false;
-            							else
-            								temPericia = false;
-            								sheet.pericias = {};
-            							end;
-            													
-            							
-            							if modificador ~= nil then
-            								local valor;
-            							
-            								if temPericia then
-            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
-            								else
-            									valor = modificador;
-            								end;								
-            								
-            								valor = math.tointeger(valor);
-            								
-            								sheet.pericias.bonusatuacao	= valor;
-            								
-            								if valor >= 0 then
-            									sheet.pericias.bonusatuacaostr = "+" .. valor;
-            								else
-            									sheet.pericias.bonusatuacaostr = "-" .. math.abs(valor);
-            								end;
-            							else
-            								sheet.pericias.bonusatuacao = nil;
-            								sheet.pericias.bonusatuacaostr = nil;
-            							end;
-        end, obj);
-
-    obj._e_event33 = obj.dataLink34:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
-            local modificador;
-            							local temPericia;
-            									
-            							if sheet.atributos ~= nil then
-            								modificador = sheet.atributos.modcarisma;
-            								
-            								if modificador ~= nil then
-            									modificador = tonumber(modificador);
-            								end;
-            							else
-            								modificador = nil;
-            							end;
-            							
-            							if sheet.pericias ~= nil then
-            								temPericia = sheet.pericias.enganacao or false;
-            							else
-            								temPericia = false;
-            								sheet.pericias = {};
-            							end;
-            													
-            							
-            							if modificador ~= nil then
-            								local valor;
-            							
-            								if temPericia then
-            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
-            								else
-            									valor = modificador;
-            								end;								
-            								
-            								valor = math.tointeger(valor);
-            								
-            								sheet.pericias.bonusenganacao	= valor;
-            								
-            								if valor >= 0 then
-            									sheet.pericias.bonusenganacaostr = "+" .. valor;
-            								else
-            									sheet.pericias.bonusenganacaostr = "-" .. math.abs(valor);
-            								end;
-            							else
-            								sheet.pericias.bonusenganacao = nil;
-            								sheet.pericias.bonusenganacaostr = nil;
-            							end;
-        end, obj);
-
-    obj._e_event34 = obj.dataLink35:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
-            local modificador;
-            							local temPericia;
-            									
-            							if sheet.atributos ~= nil then
-            								modificador = sheet.atributos.modcarisma;
-            								
-            								if modificador ~= nil then
-            									modificador = tonumber(modificador);
-            								end;
-            							else
-            								modificador = nil;
-            							end;
-            							
-            							if sheet.pericias ~= nil then
-            								temPericia = sheet.pericias.intimidacao or false;
-            							else
-            								temPericia = false;
-            								sheet.pericias = {};
-            							end;
-            													
-            							
-            							if modificador ~= nil then
-            								local valor;
-            							
-            								if temPericia then
-            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
-            								else
-            									valor = modificador;
-            								end;								
-            								
-            								valor = math.tointeger(valor);
-            								
-            								sheet.pericias.bonusintimidacao	= valor;
-            								
-            								if valor >= 0 then
-            									sheet.pericias.bonusintimidacaostr = "+" .. valor;
-            								else
-            									sheet.pericias.bonusintimidacaostr = "-" .. math.abs(valor);
-            								end;
-            							else
-            								sheet.pericias.bonusintimidacao = nil;
-            								sheet.pericias.bonusintimidacaostr = nil;
-            							end;
-        end, obj);
-
-    obj._e_event35 = obj.dataLink36:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
-            local modificador;
-            							local temPericia;
-            									
-            							if sheet.atributos ~= nil then
-            								modificador = sheet.atributos.modcarisma;
-            								
-            								if modificador ~= nil then
-            									modificador = tonumber(modificador);
-            								end;
-            							else
-            								modificador = nil;
-            							end;
-            							
-            							if sheet.pericias ~= nil then
-            								temPericia = sheet.pericias.persuasao or false;
-            							else
-            								temPericia = false;
-            								sheet.pericias = {};
-            							end;
-            													
-            							
-            							if modificador ~= nil then
-            								local valor;
-            							
-            								if temPericia then
-            									valor = modificador	+ (tonumber(sheet.bonusProficiencia) or 0)						
-            								else
-            									valor = modificador;
-            								end;								
-            								
-            								valor = math.tointeger(valor);
-            								
-            								sheet.pericias.bonuspersuasao	= valor;
-            								
-            								if valor >= 0 then
-            									sheet.pericias.bonuspersuasaostr = "+" .. valor;
-            								else
-            									sheet.pericias.bonuspersuasaostr = "-" .. math.abs(valor);
-            								end;
-            							else
-            								sheet.pericias.bonuspersuasao = nil;
-            								sheet.pericias.bonuspersuasaostr = nil;
-            							end;
-        end, obj);
-
     obj._e_event36 = obj.dataLink37:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+        function (_, field, oldValue, newValue)
             local numAsStr = tostring(newValue);
             				local numero;
             				
@@ -5059,7 +5067,7 @@ function newfrmElysium()
         end, obj);
 
     obj._e_event37 = obj.dataLink38:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temResistencia;
             									
@@ -5106,7 +5114,7 @@ function newfrmElysium()
         end, obj);
 
     obj._e_event38 = obj.dataLink39:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temPericia;
             									
@@ -5153,7 +5161,7 @@ function newfrmElysium()
         end, obj);
 
     obj._e_event39 = obj.dataLink40:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temPericia;
             									
@@ -5200,7 +5208,7 @@ function newfrmElysium()
         end, obj);
 
     obj._e_event40 = obj.dataLink41:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temPericia;
             									
@@ -5247,7 +5255,7 @@ function newfrmElysium()
         end, obj);
 
     obj._e_event41 = obj.dataLink42:addEventListener("onChange",
-        function (self, field, oldValue, newValue)
+        function (_, field, oldValue, newValue)
             local modificador;
             							local temPericia;
             									
@@ -5472,7 +5480,6 @@ function newfrmElysium()
         if self.UpperGridCampo3 ~= nil then self.UpperGridCampo3:destroy(); self.UpperGridCampo3 = nil; end;
         if self.horzLine33 ~= nil then self.horzLine33:destroy(); self.horzLine33 = nil; end;
         if self.tab7 ~= nil then self.tab7:destroy(); self.tab7 = nil; end;
-        if self.rectangle2 ~= nil then self.rectangle2:destroy(); self.rectangle2 = nil; end;
         if self.imageCheckBox1 ~= nil then self.imageCheckBox1:destroy(); self.imageCheckBox1 = nil; end;
         if self.label21 ~= nil then self.label21:destroy(); self.label21 = nil; end;
         if self.imageCheckBox17 ~= nil then self.imageCheckBox17:destroy(); self.imageCheckBox17 = nil; end;
@@ -5492,6 +5499,7 @@ function newfrmElysium()
         if self.flowPart39 ~= nil then self.flowPart39:destroy(); self.flowPart39 = nil; end;
         if self.label91 ~= nil then self.label91:destroy(); self.label91 = nil; end;
         if self.flowPart23 ~= nil then self.flowPart23:destroy(); self.flowPart23 = nil; end;
+        if self.richEdit1 ~= nil then self.richEdit1:destroy(); self.richEdit1 = nil; end;
         if self.label54 ~= nil then self.label54:destroy(); self.label54 = nil; end;
         if self.layout35 ~= nil then self.layout35:destroy(); self.layout35 = nil; end;
         if self.layout11 ~= nil then self.layout11:destroy(); self.layout11 = nil; end;
@@ -5511,7 +5519,6 @@ function newfrmElysium()
         if self.flowPart41 ~= nil then self.flowPart41:destroy(); self.flowPart41 = nil; end;
         if self.linUpperGridCampo4 ~= nil then self.linUpperGridCampo4:destroy(); self.linUpperGridCampo4 = nil; end;
         if self.flowPart30 ~= nil then self.flowPart30:destroy(); self.flowPart30 = nil; end;
-        if self.textEditor1 ~= nil then self.textEditor1:destroy(); self.textEditor1 = nil; end;
         if self.label18 ~= nil then self.label18:destroy(); self.label18 = nil; end;
         if self.label2 ~= nil then self.label2:destroy(); self.label2 = nil; end;
         if self.imageCheckBox33 ~= nil then self.imageCheckBox33:destroy(); self.imageCheckBox33 = nil; end;
@@ -5524,6 +5531,7 @@ function newfrmElysium()
         if self.layout14 ~= nil then self.layout14:destroy(); self.layout14 = nil; end;
         if self.layout16 ~= nil then self.layout16:destroy(); self.layout16 = nil; end;
         if self.layout21 ~= nil then self.layout21:destroy(); self.layout21 = nil; end;
+        if self.richEdit2 ~= nil then self.richEdit2:destroy(); self.richEdit2 = nil; end;
         if self.UpperGridCampo6 ~= nil then self.UpperGridCampo6:destroy(); self.UpperGridCampo6 = nil; end;
         if self.flowLineBreak2 ~= nil then self.flowLineBreak2:destroy(); self.flowLineBreak2 = nil; end;
         if self.imageCheckBox12 ~= nil then self.imageCheckBox12:destroy(); self.imageCheckBox12 = nil; end;
@@ -5726,9 +5734,23 @@ function newfrmElysium()
 
     obj:endUpdate();
 
-     __o_rrpgObjs.endObjectsLoading();
-
     return obj;
+end;
+
+function newfrmElysium()
+    local retObj = nil;
+    __o_rrpgObjs.beginObjectsLoading();
+
+    __o_Utils.tryFinally(
+      function()
+        retObj = constructNew_frmElysium();
+      end,
+      function()
+        __o_rrpgObjs.endObjectsLoading();
+      end);
+
+    assert(retObj ~= nil);
+    return retObj;
 end;
 
 local _frmElysium = {
@@ -5742,7 +5764,7 @@ local _frmElysium = {
     description=""};
 
 frmElysium = _frmElysium;
-rrpg.registrarForm(_frmElysium);
-rrpg.registrarDataType(_frmElysium);
+Firecast.registrarForm(_frmElysium);
+Firecast.registrarDataType(_frmElysium);
 
 return _frmElysium;

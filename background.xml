@@ -1,0 +1,3 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<richEdit animateImages = "true"  align = "client" backgroundColor = "#363B45" defaultFontColor = "white" field = "txt" hideSelection = "false" defaultFontSize = "15" showToolbar = "true" />
