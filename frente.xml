@@ -1,27 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rectangle class="fundo">
-	<scrollBox align="client">
-		<flowLayout class="tile" align="top" height="500" margins="{left=10, right=10, top=10}" autoHeight="true" horzAlign="center" lineSpacing="2" name="fraFrenteLayout">
+<?xml version = "1.0" encoding = "UTF-8"?>
+<rectangle class = "fundo">
+	<scrollBox align = "client">
+		<flowLayout class = "tile" align = "top" height = "500" margins = "{left=10, right=10, top=10}" autoHeight = "true" horzAlign = "center" lineSpacing = "2" name = "fraFrenteLayout">
 			<!-- PARTE SUPERIOR DA FRENTE -->
-			<flowLayout class="oneLineTile" autoHeight="true" minScaledWidth="290" horzAlign="center">
-				<!-- NOME DO PERSONAGEM -->				
-				
-				<flowPart name="flwNome1" minWidth="320" maxWidth="1600" frameStyle="frames/banner/dragon.xml" height="175" vertAlign="center" avoidScale="true">							
-					<layout align="client" name="layNomeHolderFrente">
-							<edit name="edtNome1" field="nome" class="transparente vcenter" fontSize="17" align="client"/>
-							<label margins="{left=3}" name="labNome1" align="bottom" text="NOME DO PERSONAGEM" class="tituloCampo" autoSize="true"/>
-					</layout>
-				</flowPart>								
+			<flowLayout class="oneLineTile" autoHeight="true" minScaledWidth = "290" horzAlign = "leading">
 
 				<!-- GRID DE INFORMACOES SUPERIORES DA FRENTE -->
-				<flowLayout  minWidth="320" maxWidth="1600" name="fraUpperGridFrente" avoidScale="true" frameStyle="frames/upperInfoGrid/frame.xml" autoHeight="true" vertAlign="trailing" maxControlsPerLine="3">								
-						<upperGridCampo field="classeENivel" minWidth="100" titulo="CLASSE E NIVEL"/>
-						<upperGridCampo field="antecedentes" titulo="ANTECEDENTES"/>
-						<upperGridCampo field="nomeDoJogador" titulo="JOGADOR"/>									
-						<upperGridCampo field="raca" minWidth="100" titulo="RAÇA"/>
-						<upperGridCampo field="tendencia" titulo="TENDÊNCIA"/>
-						<upperGridCampo field="experiencia.valor" titulo="EXPERIÊNCIA"/>
+				<!-- NOME, RACA, CODENOME/FACCAO E CLASSE/SUBCLASSE -->
+
+				<flowLayout  minWidth = "320" maxWidth = "900" name = "fraUpperGridFrente" avoidScale = "true" frameStyle = "frames/upperInfoGrid/frame.xml" autoHeight = "true" maxControlsPerLine = "3">			
+					<upperGridCampo field = "nomeDoPersonagem" minWidth = "350" titulo = "NOME DO PERSONAGEM"/>
+					<upperGridCampo field = "raca" minWidth = "350" titulo = "RAÇA"/>
+					<upperGridCampo field = "faccao" minWidth = "350" titulo = "CODENOME/FACÇÃO"/>
+					<upperGridCampo field = "classeESubclasse" minWidth = "350" titulo = "CLASSE/SUBCLASSE"/>
 				</flowLayout>
+
+				<!-- RANK-->
+
+				<flowLayout minWidth = "120" height = "135" frameStyle = "frames/panel4transp/frame.xml">
+
+					<flowPart stepSizes="{105}" minScaledWidth="75" height="120">
+						<label align = "top" text = "RANK" height = "20" fontSize = "20" wordWrap = "true" horzTextAlign = "center" textTrimming = "none"/>
+						<edit align = "client" class = "atributo transparente" field = "rank" fontSize = "55"/>	
+					</flowPart>
+				</flowLayout>		
+
 			</flowLayout>							
 			<flowLineBreak/>
 			
@@ -110,8 +113,7 @@
 				
 				<!-- segunda coluna -->
 				
-				<flowLayout autoHeight="true" horzAlign="center" vertAlign="leading" 
-							class="halfTile" maxControlsPerLine="1">
+				<flowLayout autoHeight = "true" horzAlign = "center" vertAlign = "leading" class = "halfTile" maxControlsPerLine = "1">
 					<!-- CA, Iniciativa e Deslocamento -->
 					
 					<flowLayout minWidth="235" maxWidth="475" autoHeight="true" avoidScale="false" vertAlign="center" horzAlign="justify">
