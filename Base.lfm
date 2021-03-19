@@ -15,7 +15,7 @@
 		</tab>
 
 		<tab title = "Background">
-			<!-- <import file = "magias.xml"/>-->
+			<import file = "background.xml"/>
 		</tab>
 		
 		<tab title = "Caracteristicas">
@@ -35,9 +35,7 @@
 		</tab> 
 
 		<tab title = "Anotações">
-			<rectangle class = "fundo">
-				<textEditor align = "client" field = "outros.anotacoes" class = "transparente"  margins = "{left=2, right=2, top=2, bottom=2}"/>
-			</rectangle>
+			<import file = "anotacoes.xml"/>
 		</tab>
 	</tabControl>	
 

@@ -20,7 +20,7 @@
 		</layout>
 	</template>	
 		
-	<template name="upperGridCampo">
+	<template name = "upperGridCampo">
 		<!-- baseName = uniqueName("UpperGridCampo"); -->	
 	
 		<flowPart height="$(height or 50)" minScaledWidth="$(minScaledWidth or minWidth or 100)" 
